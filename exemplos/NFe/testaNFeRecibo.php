@@ -7,8 +7,8 @@ require_once(dirname(__FILE__).'/../../libs/NFe/ToolsNFePHP.class.php');
 
 $nfe     = new ToolsNFePHP;
 $modSOAP = '2'; //usando cURL
-$recibo  = ''; //este é o numero do seu recibo mude antes de executar este script
-$chave   = '41140806161494000172550010000000221324615473';
+$recibo  = '351000093461047'; //este é o numero do seu recibo mude antes de executar este script
+$chave   = '35150912011430000198550010000097861010097861';
 $tpAmb   = '2'; //homologação
 
 header('Content-type: text/xml; charset=UTF-8');

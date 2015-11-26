@@ -3,11 +3,11 @@
 require_once(dirname(__FILE__).'/../../libs/NFe/ToolsNFePHP.class.php');
 
 $nfe  = new ToolsNFePHP;
-$file = dirname(__FILE__).'/../xml/35101158716523000119550010000000011003000000-nfe.xml';
+$file = '35150912011430000198550010000097861010097861-nfe.xml';
 $arq  = file_get_contents($file);
 
 if ($xml = $nfe->signXML($arq, 'infNFe')) {
-
+    echo $xml;
     file_put_contents($file, $xml);
 
 } else {

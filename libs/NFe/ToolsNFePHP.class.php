@@ -281,7 +281,7 @@ class ToolsNFePHP extends CommonNFePHP
     /**
      * Modelo da NF-e: 55 (NF-e) ou 65 (NFC-e), default 55 pois é a mais comum
      * atualmente
-     * @var integer 
+     * @var integer
      */
     public $modelo = 55;
     /**
@@ -567,11 +567,11 @@ class ToolsNFePHP extends CommonNFePHP
         'SP'=>'35',
         'TO'=>'17',
         'SVAN'=>'91'); // TODO fmertins 22/08: não existe código da SVRS?
-    
+
     /**
      * ctgList
-     * Lista de relacionamento dos estados com os sistemas de continvência 
-     * @var array 
+     * Lista de relacionamento dos estados com os sistemas de continvência
+     * @var array
      */
     private $ctgList = array(
         'AC'=>'SVCAN',
@@ -601,7 +601,7 @@ class ToolsNFePHP extends CommonNFePHP
         'SE'=>'SVCAN',
         'SP'=>'SVCAN',
         'TO'=>'SVCAN');
-    
+
     /**
      * siglaUFList
      * Lista dos numeros identificadores dos estados
@@ -767,9 +767,10 @@ class ToolsNFePHP extends CommonNFePHP
             $this->siglaUF=$aConfig['UF'];
             $this->cUF=$this->cUFlist[$aConfig['UF']];
             $this->cnpj=$aConfig['cnpj'];
-            $this->certName=$aConfig['certName'];
+            $this->pubKEY = $aConfig['pubKey'];
+            $this->priKEY = $aConfig['priKey'];
+            $this->certKEY = $aConfig['certKey'];
             $this->keyPass=$aConfig['keyPass'];
-            $this->passPhrase=$aConfig['passPhrase'];
             $this->arqDir = $aConfig['arquivosDir'];
             $this->xmlURLfile = $aConfig['arquivoURLxml'];
             //atribui o modelo automaticamente a partir do nome do arquivo XML
@@ -806,66 +807,7 @@ class ToolsNFePHP extends CommonNFePHP
                     'mailREPLYTOname'=>$aConfig['mailREPLYTOname']);
             }
         } else {
-            //testa a existencia do arquivo de configuração
-            if (is_file($this->raizDir.'config'.DIRECTORY_SEPARATOR.'config.php')) {
-                //carrega o arquivo de configuração
-                include($this->raizDir.'config'.DIRECTORY_SEPARATOR.'config.php');
-                // carrega propriedades da classe com os dados de configuração
-                // a sring $sAmb será utilizada para a construção dos diretorios
-                // dos arquivos de operação do sistema
-                $this->tpAmb = $ambiente;
-                //carrega as propriedades da classe com as configurações
-                $this->empName = $empresa;
-                $this->siglaUF = $UF;
-                $this->cUF = $this->cUFlist[$UF];
-                $this->cnpj = $cnpj;
-                $this->certName = $certName;
-                $this->keyPass = $keyPass;
-                $this->passPhrase = $passPhrase;
-                $this->arqDir = $arquivosDir;
-                $this->xmlURLfile = $arquivoURLxml;
-                //atribui o modelo automaticamente a partir do nome do arquivo XML
-                $this->modelo = substr($this->xmlURLfile, -6, 2);
-                $this->URLbase = $baseurl;
-                $this->danfelogopath = $danfeLogo;
-                $this->danfelogopos = $danfeLogoPos;
-                $this->danfeform = $danfeFormato;
-                $this->danfepaper = $danfePapel;
-                $this->danfecanhoto = $danfeCanhoto;
-                $this->danfefont = $danfeFonte;
-                $this->danfeprinter = $danfePrinter;
-                $this->schemeVer = $schemes;
-                if (isset($certsDir)) {
-                    $this->certsDir =  $certsDir;
-                }
-                if ($proxyIP != '') {
-                    $this->aProxy = array(
-                        'IP'=>$proxyIP,
-                        'PORT'=>$proxyPORT,
-                        'USER'=>$proxyUSER,
-                        'PASS'=>$proxyPASS);
-                }
-                if ($mailFROM != '') {
-                    $this->aMail = array(
-                        'mailFROM'=>$mailFROM,
-                        'mailHOST'=>$mailHOST,
-                        'mailUSER'=>$mailUSER,
-                        'mailPASS'=>$mailPASS,
-                        'mailPROTOCOL'=>$mailPROTOCOL,
-                        'mailFROMmail'=>$mailFROMmail,
-                        'mailFROMname'=>$mailFROMname,
-                        'mailREPLYTOmail'=>$mailREPLYTOmail,
-                        'mailREPLYTOname'=>$mailREPLYTOname);
-                }
-            } else {
-                // caso não exista arquivo de configuração retorna erro
-                $msg = "Não foi localizado o arquivo de configuração.\n";
-                $this->pSetError($msg);
-                if ($this->exceptions) {
-                    throw new nfephpException($msg);
-                }
-                return false;
-            }
+            throw new nfephpException("Os par�metros n�o foram informados");
         }
         //estabelece o ambiente
         $sAmb = ($this->tpAmb == self::AMBIENTE_HOMOLOGACAO) ? 'homologacao' : 'producao';
@@ -963,15 +905,6 @@ class ToolsNFePHP extends CommonNFePHP
         //carrega um array com os dados para acesso aos WebServices SEFAZ
         if (!$this->aURL = $this->pLoadSEFAZ($this->tpAmb, $this->siglaUF)) {
             $msg = "Erro no carregamento das informacoes da SEFAZ: $this->errMsg";
-            $this->pSetError($msg);
-            if ($this->exceptions) {
-                throw new nfephpException($msg);
-            }
-            return false;
-        }
-        //se houver erro no carregamento dos certificados passe para erro
-        if (!$this->pLoadCerts()) {
-            $msg = "Erro no carregamento dos certificados.";
             $this->pSetError($msg);
             if ($this->exceptions) {
                 throw new nfephpException($msg);
@@ -1324,7 +1257,7 @@ class ToolsNFePHP extends CommonNFePHP
             $retEvento = $prot->getElementsByTagName("retEvento")->item(0);
             if (isset($retEvento)) {
                 //verificar se se trata de cancelamento caso seja alterar o protocolo
-                //se não deixar 
+                //se não deixar
                 if ($retEvento->getElementsByTagName("tpEvento")->item(0)->nodeValue == '110111') {
                     $protver     = trim($retEvento->getAttribute("versao"));
                     $tpAmb       = $retEvento->getElementsByTagName("tpAmb")->item(0)->nodeValue;
@@ -1510,8 +1443,8 @@ class ToolsNFePHP extends CommonNFePHP
                 $msg = "Um xml deve ser passado para que seja assinado!!";
                 throw new nfephpException($msg);
             }
-            if (! is_file($this->priKEY)) {
-                $msg = "Arquivo \"$this->priKEY\" da chave privada parece invalido, verifique!!";
+            if ($this->priKEY == "") {
+                $msg = "A chave privada parece invalida, verifique!!";
                 throw new nfephpException($msg);
             }
             if (is_file($docxml)) {
@@ -1522,15 +1455,15 @@ class ToolsNFePHP extends CommonNFePHP
             //obter a chave privada para a assinatura
             //modificado para permitir a leitura de arquivos maiores
             //que o normal que é cerca de 2kBytes.
-            if (! $filep = fopen($this->priKEY, "r")) {
+            /*if (! $filep = fopen($this->priKEY, "r")) {
                 $msg = "Erro ao ler arquivo da chave privada!!";
                 throw new nfephpException($msg);
-            }
-            $priv_key = '';
-            while (! feof($filep)) {
+            }*/
+            $priv_key = $this->priKEY;
+            /*while (! feof($filep)) {
                 $priv_key .= fread($filep, 8192);
             }
-            fclose($filep);
+            fclose($filep);*/
             $pkeyid = openssl_get_privatekey($priv_key);
             //limpeza do xml com a retirada dos CR, LF e TAB
             $order = array("\r\n", "\n", "\r", "\t");
@@ -1652,10 +1585,10 @@ class ToolsNFePHP extends CommonNFePHP
      * $this->cStat = 107 - "Serviço em Operação"
      *        cStat = 108 - "Serviço Paralisado Momentaneamente (curto prazo)"
      *        cStat = 109 - "Serviço Paralisado sem Previsão"
-     *        cStat = 113 - "SVC em processo de desativação. SVC será desabilitada 
+     *        cStat = 113 - "SVC em processo de desativação. SVC será desabilitada
      *                       para a SEFAZ-XX em dd/mm/aa às hh:mm horas"
      *        cStat = 114 - "SVC desabilitada pela SEFAZ Origem"
-     *        
+     *
      * @name statusServico
      * @param  string $siglaUF sigla da unidade da Federação
      * @param  integer $tpAmb tipo de ambiente 1-produção e 2-homologação
@@ -2415,14 +2348,14 @@ class ToolsNFePHP extends CommonNFePHP
 
     /**
      * getDistDFe
-     * Serviço destinado à distribuição de informações resumidas e documentos 
-     * fiscais eletrônicos de interesse de um ator, seja este pessoa 
+     * Serviço destinado à distribuição de informações resumidas e documentos
+     * fiscais eletrônicos de interesse de um ator, seja este pessoa
      * física ou jurídica.
-     * 
+     *
      * Este serviço é oferecido apenas no AN - Ambiente Nacional
      * Web Service de Consulta da Relação de Documentos Destinados
      * este método irá substituir o método getListNFe
-     * 
+     *
      * @param string $fonte Deve ser a sigla da UF; não usar AN pois não existe AN em $this->cUFlist
      * @param string $tpAmb
      * @param integer $ultNSU
@@ -2562,7 +2495,7 @@ class ToolsNFePHP extends CommonNFePHP
         }//fim catch
         return $retorno;
     }//fim getDistDFe
-    
+
     /**
      * getListNFe
      * Consulta da Relação de Documentos Destinados
@@ -2572,17 +2505,17 @@ class ToolsNFePHP extends CommonNFePHP
      *
      * @name getListNFe
      * @param boolean $ambNac TRUE - usa ambiente Nacional para buscar a lista de NFe, FALSE usa sua própria SEFAZ
-     * @param string $indNFe Indicador de NF-e consultada: 
-     * 0=Todas as NF-e; 1=Somente as NF-e que ainda não tiveram manifestação do destinatário 
-     * (Desconhecimento da operação, Operação não Realizada ou Confirmação da Operação); 
+     * @param string $indNFe Indicador de NF-e consultada:
+     * 0=Todas as NF-e; 1=Somente as NF-e que ainda não tiveram manifestação do destinatário
+     * (Desconhecimento da operação, Operação não Realizada ou Confirmação da Operação);
      * 2=Idem anterior, incluindo as NF-e que também não tiveram a Ciência da Operação
-     * @param string $indEmi Indicador do Emissor da NF-e: 
-     * 0=Todos os Emitentes / Remetentes; 1=Somente as NF-e emitidas por emissores / remetentes 
-     * que não tenham a mesma raiz do CNPJ do destinatário (para excluir as notas fiscais 
+     * @param string $indEmi Indicador do Emissor da NF-e:
+     * 0=Todos os Emitentes / Remetentes; 1=Somente as NF-e emitidas por emissores / remetentes
+     * que não tenham a mesma raiz do CNPJ do destinatário (para excluir as notas fiscais
      * de transferência entre filiais).
-     * @param string $ultNSU Último NSU recebido pela Empresa. 
-     * Caso seja informado com zero, ou com um NSU muito antigo, a consulta 
-     * retornará unicamente as notas fiscais que tenham sido recepcionadas 
+     * @param string $ultNSU Último NSU recebido pela Empresa.
+     * Caso seja informado com zero, ou com um NSU muito antigo, a consulta
+     * retornará unicamente as notas fiscais que tenham sido recepcionadas
      * nos últimos 15 dias.
      * @param string $tpAmb Tipo de ambiente 1=Produção 2=Homologação
      * @param array $resp Array com os retornos parametro passado por REFERENCIA
@@ -2951,7 +2884,7 @@ class ToolsNFePHP extends CommonNFePHP
     /**
      * Solicita inutilização de uma série de números de NF. O processo de inutilização
      * será gravado na "pasta Inutilizadas".
-     * 
+     *
      * ATENÇÃO: este webservice *não* é oferecido pelas SVC (Sefaz Virtual de Contingência)
      * conforme NT 2013.007 versão "1.02" de Dezembro/2013.
      *
@@ -3501,7 +3434,7 @@ class ToolsNFePHP extends CommonNFePHP
     /**
      * envCCe
      * Envia carta de correção da Nota Fiscal para a SEFAZ.
-     * 
+     *
      * ATENÇÃO! Serviço indisponível para SVC-XX.
      *
      * @name envCCe
@@ -4264,42 +4197,24 @@ class ToolsNFePHP extends CommonNFePHP
      * @param  boolean $testaVal True testa a validade do certificado ou false não testa
      * @return boolean true se o certificado foi carregado e false se não
      */
-    public function pLoadCerts($testaVal = true)
+    public function pLoadCerts($certs, $testaVal = true)
     {
         try {
             if (!function_exists('openssl_pkcs12_read')) {
                 $msg = "Função não existente: openssl_pkcs12_read!!";
                 throw new nfephpException($msg);
             }
-            //monta o path completo com o nome da chave privada
-            $this->priKEY = $this->certsDir.$this->cnpj.'_priKEY.pem';
-            //monta o path completo com o nome da chave prublica
-            $this->pubKEY =  $this->certsDir.$this->cnpj.'_pubKEY.pem';
+
+            //grava a chave privada
+            $this->priKEY = $certs['priKey'];
+            //grava a chave publica
+            $this->pubKEY =  $certs['pubKey'];
             //monta o path completo com o nome do certificado (chave publica e privada) em formato pem
-            $this->certKEY = $this->certsDir.$this->cnpj.'_certKEY.pem';
+            $this->certKEY = $certs['certKey'];
             //verificar se o nome do certificado e
-            //o path foram carregados nas variaveis da classe
-            if ($this->certsDir == '' || $this->certName == '') {
-                $msg = "Um certificado deve ser passado para a classe pelo arquivo de configuração!! ";
-                throw new nfephpException($msg);
-            }
-            //monta o caminho completo até o certificado pfx
-            $pfxCert = $this->certsDir.$this->certName;
-            //verifica se o arquivo existe
-            if (!file_exists($pfxCert)) {
-                $msg = "Certificado não encontrado!! $pfxCert";
-                throw new nfephpException($msg);
-            }
-            //carrega o certificado em um string
-            $pfxContent = file_get_contents($pfxCert);
-            //carrega os certificados e chaves para um array denominado $x509certdata
-            if (!openssl_pkcs12_read($pfxContent, $x509certdata, $this->keyPass)) {
-                $msg = "O certificado não pode ser lido!! Provavelmente corrompido ou com formato inválido!!";
-                throw new nfephpException($msg);
-            }
             if ($testaVal) {
                 //verifica sua validade
-                if (!$aResp = $this->pValidCerts($x509certdata['cert'])) {
+                if (!$aResp = $this->pValidCerts($this->pubKEY)) {
                      $msg = "Certificado invalido!! - ".$aResp['error'];
                     throw new nfephpException($msg);
                 }
@@ -4310,8 +4225,8 @@ class ToolsNFePHP extends CommonNFePHP
             //caso a data de validade do PFX for maior que a data do PEM
             //deleta dos arquivos PEM, recria e prossegue
             $flagNovo = false;
-            if (file_exists($this->pubKEY)) {
-                $cert = file_get_contents($this->pubKEY);
+            if ($this->pubKEY != "") {
+                $cert = $this->pubKEY;
                 if (!$data = openssl_x509_read($cert)) {
                     //arquivo não pode ser lido como um certificado
                     //então deletar
@@ -4337,43 +4252,18 @@ class ToolsNFePHP extends CommonNFePHP
                 $flagNovo = true;
             }//fim if file pubkey
             //verificar a chave privada em PEM
-            if (!file_exists($this->priKEY)) {
+            if ($this->priKEY == "") {
                 //arquivo não encontrado
                 $flagNovo = true;
             }
             //verificar o certificado em PEM
-            if (!file_exists($this->certKEY)) {
+            if ($this->certKEY == "") {
                 //arquivo não encontrado
                 $flagNovo = true;
             }
             //criar novos arquivos PEM
             if ($flagNovo) {
-                if (file_exists($this->pubKEY)) {
-                    unlink($this->pubKEY);
-                }
-                if (file_exists($this->priKEY)) {
-                    unlink($this->priKEY);
-                }
-                if (file_exists($this->certKEY)) {
-                    unlink($this->certKEY);
-                }
-                //recriar os arquivos pem com o arquivo pfx
-                if (! file_put_contents($this->priKEY, $x509certdata['pkey'])) {
-                    $msg = "Impossivel gravar no diretório!!! Permissão negada!!";
-                    throw new nfephpException($msg);
-                }
-                //acrescenta a cadeia completa dos certificados se estiverem
-                //inclusas no arquivo pfx, caso contrario deverão ser inclusas
-                //manualmente para acessar os serviços em GO
-                $chain = '';
-                if (isset($x509certdata['extracerts'])) {
-                    $aCer = $x509certdata['extracerts'];
-                    foreach ($aCer as $cert) {
-                        $chain .= "$cert";
-                    }
-                }
-                file_put_contents($this->pubKEY, $x509certdata['cert']);
-                file_put_contents($this->certKEY, $x509certdata['cert'] . $chain);
+                throw new nfephpException("O certificado n�o foi informado");
             }
         } catch (nfephpException $e) {
             $this->pSetError($e->getMessage());
@@ -4467,13 +4357,8 @@ class ToolsNFePHP extends CommonNFePHP
         try {
             //inicializa variavel
             $data = '';
-            //carregar a chave publica do arquivo pem
-            if (!$pubKey = file_get_contents($certFile)) {
-                $msg = "Arquivo não encontrado - $certFile .";
-                throw new nfephpException($msg);
-            }
             //carrega o certificado em um array usando o LF como referencia
-            $arCert = explode("\n", $pubKey);
+            $arCert = explode("\n", $certFile);
             foreach ($arCert as $curData) {
                 //remove a tag de inicio e fim do certificado
                 if (strncmp($curData, '-----BEGIN CERTIFICATE', 22) != 0
@@ -4482,6 +4367,7 @@ class ToolsNFePHP extends CommonNFePHP
                     $data .= trim($curData);
                 }
             }
+
         } catch (nfephpException $e) {
             $this->pSetError($e->getMessage());
             if ($this->exceptions) {
@@ -4656,6 +4542,14 @@ class ToolsNFePHP extends CommonNFePHP
                     curl_setopt($oCurl, CURLOPT_PROXYAUTH, "CURLAUTH_BASIC");
                 } //fim if senha proxy
             }//fim if aProxy
+            $certKeyFile = tmpfile();
+            fwrite($certKeyFile, $this->certKEY);
+            $certKeyPath = stream_get_meta_data($certKeyFile);
+            $certKeyPath = $certKeyPath['uri'];
+            $priKeyFile = tmpfile();
+            fwrite($priKeyFile, $this->priKEY);
+            $priKeyPath = stream_get_meta_data($priKeyFile);
+            $priKeyPath = $priKeyPath['uri'];
             curl_setopt($oCurl, CURLOPT_CONNECTTIMEOUT, $this->soapTimeout);
             curl_setopt($oCurl, CURLOPT_URL, $urlsefaz.'');
             curl_setopt($oCurl, CURLOPT_PORT, 443);
@@ -4665,14 +4559,16 @@ class ToolsNFePHP extends CommonNFePHP
             //curl_setopt($oCurl, CURLOPT_SSLVERSION, 3);
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, 2); // verifica o host evita MITM
             curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($oCurl, CURLOPT_SSLCERT, $this->certKEY);
-            curl_setopt($oCurl, CURLOPT_SSLKEY, $this->priKEY);
+            curl_setopt($oCurl, CURLOPT_SSLCERT, $certKeyPath);
+            curl_setopt($oCurl, CURLOPT_SSLKEY, $priKeyPath);
             curl_setopt($oCurl, CURLOPT_POST, 1);
             curl_setopt($oCurl, CURLOPT_POSTFIELDS, $data);
             curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parametros);
             $xml = curl_exec($oCurl);
             $info = curl_getinfo($oCurl); //informações da conexão
+            fclose($certKeyFile);
+            fclose($priKeyFile);
             $txtInfo ="";
             $txtInfo .= "URL=$info[url]\n";
             $txtInfo .= "Content type=$info[content_type]\n";
@@ -5188,11 +5084,11 @@ class ToolsNFePHP extends CommonNFePHP
         $this->errMsg .= "$msg\n";
         $this->errStatus = true;
     }
-    
+
     /**
      * ativaContingencia
-     * Ativa a contingencia SVCAN ou SVCRS conforme a 
-     * sigla do estado 
+     * Ativa a contingencia SVCAN ou SVCRS conforme a
+     * sigla do estado
      * @param string $siglaUF
      * @return void
      */
@@ -5214,22 +5110,22 @@ class ToolsNFePHP extends CommonNFePHP
             $this->enableSVCRS = true;
         }
     }
-    
+
     /**
      * desativaContingencia
-     * Desliga opção de contingência 
-     * 
+     * Desliga opção de contingência
+     *
      * @return void
      */
     public function desativaContingencia()
     {
         $this->enableSVCAN = false;
         $this->enableSVCRS = false;
-    }        
-    
+    }
+
     /**
      * Gera numero de lote com base em microtime
-     * @return string 
+     * @return string
      */
     private function pGeraNumLote()
     {
@@ -5238,7 +5134,7 @@ class ToolsNFePHP extends CommonNFePHP
 
     /**
      * pClearXml
-     * Remove \r \n \s \t 
+     * Remove \r \n \s \t
      * @param string $xml
      * @param boolean $remEnc remover encoding
      * @return string
@@ -5260,7 +5156,7 @@ class ToolsNFePHP extends CommonNFePHP
         $retXml = str_replace("\t", '', $retXml);
         return $retXml;
     }
-    
+
     /**
      * pLoadServico
      * Monta o namespace e o cabecalho da comunicação SOAP

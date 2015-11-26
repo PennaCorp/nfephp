@@ -17,7 +17,7 @@
 							<xs:whiteSpace value="preserve"/>
 							<xs:minLength value="1"/>
 							<xs:maxLength value="4"/>
-							<xs:pattern value="[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}"/>
+							<xs:pattern value="[!-ÿ]{1}[ -ÿ]*[!-ÿ]{1}|[!-ÿ]{1}"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
@@ -30,7 +30,7 @@
 							<xs:whiteSpace value="preserve"/>
 							<xs:minLength value="1"/>
 							<xs:maxLength value="6"/>
-							<xs:pattern value="[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}"/>
+							<xs:pattern value="[!-ÿ]{1}[ -ÿ]*[!-ÿ]{1}|[!-ÿ]{1}"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>

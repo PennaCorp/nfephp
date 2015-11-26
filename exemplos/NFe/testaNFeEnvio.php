@@ -8,7 +8,7 @@ $nfe = new ToolsNFePHP;
 $modSOAP = '2'; //usando cURL
 
 //use isso, este é o modo manual voce tem mais controle sobre o que acontece
-$filename = dirname(__FILE__).'/../xml/35101158716523000119550010000000011003000000-nfe.xml';
+$filename = '35150912011430000198550010000097861010097861-nfe.xml';
 //obter um numero de lote
 $lote = substr(str_replace(',', '', number_format(microtime(true)*1000000, 0)), 0, 15);
 // montar o array com a NFe
