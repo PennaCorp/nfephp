@@ -742,7 +742,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param boolean $exceptions Opcional Utilize true para gerar exceções
      * @return boolean true sucesso false Erro
      */
-    public function __construct($aConfig = '', $mododebug = 2, $exceptions = false)
+    public function __construct($aConfig = '', $mododebug = 1, $exceptions = true)
     {
         if (is_numeric($mododebug)) {
             $this->debugMode = $mododebug;
@@ -3098,37 +3098,19 @@ class ToolsNFePHP extends CommonNFePHP
         $doc->formatOutput = false;
         $doc->preserveWhiteSpace = false;
         $doc->loadXML($retorno, LIBXML_NOBLANKS | LIBXML_NOEMPTYTAG);
-        $cStat = !empty($doc->getElementsByTagName('cStat')->item(0)->nodeValue) ?
+        $retorno = "";
+        if ($doc->getElementsByTagName("nfeInutilizacaoNF2Result")->item(0) != null){
+            $retorno = $doc->getElementsByTagName("infInut")->item(0);
+        }else{
+            $retorno = $doc->getElementsByTagName("infInut")->item(1);
+        }
+        $file = fopen("teste.txt", "w+");
+        fwrite($file, $doc->saveXML());
+        fclose($file);
+        $cStat = !empty($retorno->getElementsByTagName('cStat')->item(0)->nodeValue) ?
                 $doc->getElementsByTagName('cStat')->item(0)->nodeValue : '';
-        $xMotivo = !empty($doc->getElementsByTagName('xMotivo')->item(0)->nodeValue) ?
-                $doc->getElementsByTagName('xMotivo')->item(0)->nodeValue : '';
-        // tipo de ambiente
-        $aRetorno['tpAmb'] = $doc->getElementsByTagName('tpAmb')->item(0)->nodeValue;
-        // verssão do aplicativo
-        $aRetorno['verAplic'] = $doc->getElementsByTagName('verAplic')->item(0)->nodeValue;
-        // status do serviço
-        $aRetorno['cStat'] = $cStat;
-        // motivo da resposta (opcional)
-        $aRetorno['xMotivo'] = $xMotivo;
-        // Código da UF que atendeu a solicitação
-        $aRetorno['cUF'] = $doc->getElementsByTagName('cUF')->item(0)->nodeValue;
-        // Ano de inutilização da numeração
-        $aRetorno['ano'] = $doc->getElementsByTagName('ano')->item(0)->nodeValue;
-        // CNPJ do emitente
-        $aRetorno['CNPJ'] = $doc->getElementsByTagName('CNPJ')->item(0)->nodeValue;
-        // Modelo da NF-e
-        $aRetorno['mod'] = $doc->getElementsByTagName('mod')->item(0)->nodeValue;
-        // Série da NF-e
-        $aRetorno['serie'] = $doc->getElementsByTagName('serie')->item(0)->nodeValue;
-        // Número da NF-e inicial a ser inutilizada
-        $aRetorno['nNFIni'] = $doc->getElementsByTagName('nNFIni')->item(0)->nodeValue;
-        // Número da NF-e final a ser inutilizada
-        $aRetorno['nNFFin'] = $doc->getElementsByTagName('nNFFin')->item(0)->nodeValue;
-        // data e hora do retorno a operação (opcional)
-        $aRetorno['dhRecbto'] = !empty($doc->getElementsByTagName('dhRecbto')->item(0)->nodeValue) ?
-                                 date("d/m/Y H:i:s", $this->pConvertTime($doc->getElementsByTagName('dhRecbto')->item(0)->nodeValue)) : '';
-        // Número do Protocolo de Inutilização
-        $aRetorno['nProt'] = $doc->getElementsByTagName('nProt')->item(0)->nodeValue;
+        $xMotivo = !empty($retorno->getElementsByTagName('xMotivo')->item(0)->nodeValue) ?
+        $doc->getElementsByTagName('xMotivo')->item(0)->nodeValue : '';
         if ($cStat == '') {
             //houve erro
             $msg = "Nao houve retorno Soap verifique o debug!!";
@@ -3141,13 +3123,40 @@ class ToolsNFePHP extends CommonNFePHP
         //verificar o status da solicitação
         if ($cStat != '102') {
             //houve erro
-            $msg = "Rejeição : $cStat - $xMotivo";
+            $msg = "Rejei��o : $cStat - $xMotivo";
             $this->pSetError($msg);
             if ($this->exceptions) {
                 throw new nfephpException($msg);
             }
             return false;
         }
+        // tipo de ambiente
+        $aRetorno['tpAmb'] = $retorno->getElementsByTagName('tpAmb')->item(0)->nodeValue;
+        // verssão do aplicativo
+        $aRetorno['verAplic'] = $retorno->getElementsByTagName('verAplic')->item(0)->nodeValue;
+        // status do serviço
+        $aRetorno['cStat'] = $cStat;
+        // motivo da resposta (opcional)
+        $aRetorno['xMotivo'] = $xMotivo;
+        // Código da UF que atendeu a solicitação
+        $aRetorno['cUF'] = $retorno->getElementsByTagName('cUF')->item(0)->nodeValue;
+        // Ano de inutilização da numeração
+        $aRetorno['ano'] = $retorno->getElementsByTagName('ano')->item(0)->nodeValue;
+        // CNPJ do emitente
+        $aRetorno['CNPJ'] = $retorno->getElementsByTagName('CNPJ')->item(0)->nodeValue;
+        // Modelo da NF-e
+        $aRetorno['mod'] = $retorno->getElementsByTagName('mod')->item(0)->nodeValue;
+        // Série da NF-e
+        $aRetorno['serie'] = $retorno->getElementsByTagName('serie')->item(0)->nodeValue;
+        // Número da NF-e inicial a ser inutilizada
+        $aRetorno['nNFIni'] = $retorno->getElementsByTagName('nNFIni')->item(0)->nodeValue;
+        // Número da NF-e final a ser inutilizada
+        $aRetorno['nNFFin'] = $retorno->getElementsByTagName('nNFFin')->item(0)->nodeValue;
+        // data e hora do retorno a operação (opcional)
+        $aRetorno['dhRecbto'] = !empty($retorno->getElementsByTagName('dhRecbto')->item(0)->nodeValue) ?
+                                 date("d/m/Y H:i:s", $this->pConvertTime($retorno->getElementsByTagName('dhRecbto')->item(0)->nodeValue)) : '';
+        // Número do Protocolo de Inutilização
+        $aRetorno['nProt'] = $retorno->getElementsByTagName('nProt')->item(0)->nodeValue;
         $aRetorno['bStat'] = true;
         //gravar o retorno na pasta temp
         $nome = $this->temDir.$id.'-retInut.xml';
@@ -4544,7 +4553,7 @@ class ToolsNFePHP extends CommonNFePHP
             }//fim if aProxy
             $certKeyFile = tmpfile();
             fwrite($certKeyFile, $this->certKEY);
-            $certKeyPath = stream_get_meta_data($certKeyFile);
+            $certKeyPath = stream_get_meta_data($certKeyFile); //obt�m o caminho do arquivo
             $certKeyPath = $certKeyPath['uri'];
             $priKeyFile = tmpfile();
             fwrite($priKeyFile, $this->priKEY);

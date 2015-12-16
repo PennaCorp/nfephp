@@ -7,7 +7,7 @@
         public function __construct(PennaCorpCertificate $pennaCorpCertificate){
             $con = con();
             $this->pennaCorpCertificate = $pennaCorpCertificate;
-            $query = "select EM_RAZAO, EM_UF, EM_CGC, EM_GRUPO, ";
+            $query = "select EM_RAZAO, EM_UF, EM_CGC, EM_GRUPO, EM_MODELO, EM_SERIE, ";
             $query .= "(select AF_STRING from auxfilho where ap_nome='NFE.XML' and AF_CODIGO='PRODUCAO')";
             $query .= " as AMBIENTE from empresa where em_number='".$pennaCorpCertificate->getEmpresa()."' and EM_LIGADA='T'";
             $result = mysqli_query($con, $query);
@@ -24,19 +24,18 @@
             }
             $aConfigLoc = array();
             /*
-            *DEFINIDO PELO nfephp
-            *1-Ambiente de produção
-            *2-Ambiente de homologação
+                *DEFINIDO PELO nfephp
+                *1-Ambiente de produção
+                *2-Ambiente de homologação
             */
             $aConfigLoc['ambiente'] = ($row['AMBIENTE'] == 'PROD' ? 1 : 2);
             $aConfigLoc['empresa'] = $row['EM_RAZAO'];
             $aConfigLoc['UF'] = $row['EM_UF'];
             $aConfigLoc['cnpj'] = $row['EM_CGC'];
+            $aConfigLoc['modelo'] = $row['EM_MODELO'];
+            $aConfigLoc['serie'] = $row['EM_SERIE'];
             //Por segurança, o nome do certificado da empresa é criptografado com MD5
             /*definir gravação de senha*/
-            /*$priKEY
-        $pubKEY
-        $certKEY*/
             $aConfigLoc['pubKey'] = $pennaCorpCertificate->getPubKey();
             $aConfigLoc['priKey'] = $pennaCorpCertificate->getPriKey();
             $aConfigLoc['certKey'] = $pennaCorpCertificate->getCertKey();
@@ -57,6 +56,81 @@
             $aConfigLoc['mailFROM'] = "";
             $this->aConfig = $aConfigLoc;
             parent::__construct($aConfigLoc);
+        }
+        public function pcInutNF(array $parametros){
+            $hasNIni = isset($parametros['nIni']);
+            $hasNFim = isset($parametros['nFin']);
+            if (!$hasNIni && !$hasNFim){
+                throw new nfephpException("Número inicial e final não informados");
+            }
+            if (!$hasNIni){
+                throw new nfephpException("O número inicial é obrigatório");
+            }
+            //Caso não possua fim, mas possua início, iguale o fim ao inicio
+            if ($hasNIni && !$hasNFim){
+                $parametros['nFin'] = $parametros['nIni'];
+            }
+            if (!preg_match("/^[0-9]+$/", $parametros['nIni'])){
+                throw new nfephpException("O número inicial é inválido");
+            }
+            if ($hasNFim && !preg_match("/^[0-9]+$/", $parametros['nFin'])){
+                throw new nfephpException("O número final é inválido");
+            }
+            $parametros['nIni'] = $parametros['nIni'];
+            $parametros['nFin'] = $parametros['nFin'];
+            $parametros['xJust'] = (isset($parametros['xJust']) ? $parametros['xJust'] : "Pedido de inutilização de NFe");
+            $year = date("y");
+            $aConfigLoc = $this->aConfig;
+            $aRetorno = array();
+            try{
+                $resultado = parent::inutNF($year,
+                                $aConfigLoc['serie'],
+                                $parametros['nIni'],
+                                $parametros['nFin'],
+                                $parametros['xJust'],
+                                $aConfigLoc['ambiente'],
+                                $aRetorno
+                );
+                if (!$resultado || $this->errStatus){
+                    return array("status" => false, "message" => $this->errMsg);
+                }
+                return array("status" => true, "message" => $aRetorno['xMotivo']);
+            }catch(Exception $e){
+                return array("status" => false, "message" => $e->getMessage());
+            }
+        }
+        public function pcCancelEvent(array $parametros, array &$aRetorno = array()){
+            extract($parametros);
+            if (!isset($chNfe)){
+                throw new nfephpException("A chave de acesso não foi informada");
+            }
+            if (!isset($nProt)){
+                throw new nfephpException("O protocolo não foi informada");
+            }
+            if (!isset($xJust)){
+                throw new nfephpException("A justificativa de cancelamento não foi informada");
+            }
+            if (!preg_match("/^[0-9]+$/", $chNfe)){
+                throw new nfephpException("A chave de acesso informada é inválida");
+            }
+            if (!preg_match("/^[0-9]+$/", $nProt)){
+                throw new nfephpException("O protocolo informado é inválido");
+            }
+            if (!preg_match("/^(.){15,255}$/", $xJust)){
+                $error = "A justificativa de cancelamento não é válida, ";
+                $error .= "ela precisa ter um tamanho entre 15 a 255 caracteres";
+                throw new nfephpException($error);
+            }
+            $aConfigLoc = $this->aConfig;
+            try{
+                $resultado = parent::cancelEvent($chNfe, $nProt, $xJust, '', $aRetorno);
+                if (!$resultado || $this->errStatus){
+                    return array("status" => false, "message" => $this->errMsg);
+                }
+                return array("status" => true, "message" => $aRetorno['xMotivo']);
+            }catch(Exception $e){
+                return array("status" => false, "message" => $e->getMessage());
+            }
         }
         public function addProtocolo($xmlNfe, $xmlProt){
             $docnfe = new DOMDocument();
