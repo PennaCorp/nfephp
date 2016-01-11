@@ -1,29 +1,29 @@
 <?php
 
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
  * 
- * Esta classe atende aos critÈrios estabelecidos no
- * Manual de ImportaÁ„o/ExportaÁ„o TXT Notas Fiscais eletrÙnicas vers„o 2.0.0
+ * Esta classe atende aos crit√©rios estabelecidos no
+ * Manual de Importa√ß√£o/Exporta√ß√£o TXT Notas Fiscais eletr√¥nicas vers√£o 2.0.0
  *
  * @package     NFePHP
  * @name        ConvertNFePHP
@@ -43,14 +43,14 @@
  *              Clauber Santos <cload_info at yahoo dot com dot br>
  *              Crercio <crercio at terra dot com dot br>
  *              Diogo Mosela <diego dot caicai at gmail dot com>
- *              Eduardo Gusm„o <eduardo dot intrasis at gmail dot com>
+ *              Eduardo Gusm√£o <eduardo dot intrasis at gmail dot com>
  *              Elton Nagai <eltaum at gmail dot com>
  *              Fabio Ananias Silva <binhoouropreto at gmail dot com>
  *              Giovani Paseto <giovaniw2 at gmail dot com>
  *              Giuliano Nascimento <giusoft at hotmail dot com>
  *              Guilherme Calabria Filho <guiga at gmail dot com>
  *              Helder Ferreira <helder.mauricicio at gmail dot com>
- *              Jo„o Eduardo Silva CorrÍa <jscorrea2 at gmail dot com>
+ *              Jo√£o Eduardo Silva Corr√™a <jscorrea2 at gmail dot com>
  *              Leandro C. Lopez <leandro.castoldi at gmail dot com>
  *              Leandro G. Santana <leandrosantana1 at gmail dot com>
  *              Marcos Diez <marcos at unitron dot com dot br>
@@ -106,14 +106,14 @@ class ConvertNFePHP
 
     /**
      * limparString
-     * Se for = true remove caracteres especiais na convers„o de TXT pra XML
+     * Se for = true remove caracteres especiais na convers√£o de TXT pra XML
      * @var boolean
      */
     public $limparString = true;
 
     /**
      * contruct
-     * MÈtodo contrutor da classe
+     * M√©todo contrutor da classe
      *
      * @name contruct
      * @param boolean $limparString Ativa flag para limpar os caracteres especiais e acentos
@@ -150,12 +150,12 @@ class ConvertNFePHP
 
     /**
      * nfeTxt2XmlArrayComLinhas
-     * MÈtodo de convers„o das NFe de txt para xml, conforme
-     * especificaÁıes do Manual de ImportaÁ„o/ExportaÁ„o TXT
-     * Notas Fiscais eletrÙnicas vers„o 2.0.0 (24/08/2010)
+     * M√©todo de convers√£o das NFe de txt para xml, conforme
+     * especifica√ß√µes do Manual de Importa√ß√£o/Exporta√ß√£o TXT
+     * Notas Fiscais eletr√¥nicas vers√£o 2.0.0 (24/08/2010)
      *
      * @name nfeTxt2XmlArrayComLinhas
-     * @param string $arrayComAsLinhasDoArquivo Array de Strings onde cada elemento È uma linha do arquivo
+     * @param string $arrayComAsLinhasDoArquivo Array de Strings onde cada elemento √© uma linha do arquivo
      * @return string xml construido
      */
     protected function nfeTxt2XmlArrayComLinhas($arrayComAsLinhasDoArquivo)
@@ -164,11 +164,11 @@ class ConvertNFePHP
         $notas = array();
         $currnota = -1;
 
-        //lÍ linha por linha do arquivo txt
+        //l√™ linha por linha do arquivo txt
         for ($l = 0; $l < count($arquivo); $l++) {
             //separa os elementos do arquivo txt usando o pipe "|"
             $dados = explode("|", $arquivo[$l]);
-            //remove todos os espaÁos adicionais, tabs, linefeed, e CR
+            //remove todos os espa√ßos adicionais, tabs, linefeed, e CR
             //de todos os campos de dados retirados do TXT
             for ($x = 0; $x < count($dados); $x++) {
                 if (!empty($dados[$x])) {
@@ -181,17 +181,17 @@ class ConvertNFePHP
             //monta o dado conforme o tipo, inicia lendo o primeiro campo da matriz
             switch ($dados[0]) {
                 case "NOTA FISCAL":
-                    // primeiro elemento n„o faz nada, aqui È informado o
-                    //n˙mero de NF contidas no TXT
+                    // primeiro elemento n√£o faz nada, aqui √© informado o
+                    //n√∫mero de NF contidas no TXT
                     break;
                 case "A":
-                    //atributos da NFe, campos obrigatÛrios [NFe]
-                    //A|vers„o do schema|id
+                    //atributos da NFe, campos obrigat√≥rios [NFe]
+                    //A|vers√£o do schema|id
                     // cria nota no array
                     $currnota++;
                     unset($dom, $NFe, $infNFe, $NFref, $refNFP);
                     /// limpar todas variaveis utilizadas por cada nota fiscal....
-                    //(evitar que o produto entre 2 vezes ou q o endereÁo anterior seja usado, e coisas do tipo....)
+                    //(evitar que o produto entre 2 vezes ou q o endere√ßo anterior seja usado, e coisas do tipo....)
                     unset($dom, $NFe, $infNFe, $ide, $cUF, $cNF, $natOp,
                           $indPag, $mod, $serie, $nNF, $dhEmi, $dhSaiEnt,
                           $tpNF, $idDest, $cMunFG, $tpImp, $tpEmis, $cDV,
@@ -355,7 +355,7 @@ class ConvertNFePHP
                     break;
                 case "B14":
                     //NF referenciadas [NFref]
-                    //B14|cUF|AAMM(ano mÍs)|CNPJ|Mod|serie|nNF|
+                    //B14|cUF|AAMM(ano m√™s)|CNPJ|Mod|serie|nNF|
                     if (!isset($NFref)) {
                         $notas[$currnota]['NFref'] = $dom->createElement("NFref");
                         $NFref = & $notas[$currnota]['NFref'];
@@ -377,7 +377,7 @@ class ConvertNFePHP
                     $NFref->appendChild($refNF);
                     break;
                 case "B20a":
-                    //Grupo de informaÁıes da NF [NFref]
+                    //Grupo de informa√ß√µes da NF [NFref]
                     if (!isset($NFref)) {
                         $notas[$currnota]['NFref'] = $dom->createElement("NFref");
                         $NFref = & $notas[$currnota]['NFref'];
@@ -481,7 +481,7 @@ class ConvertNFePHP
                     $emit->insertBefore($emit->appendChild($cpf), $xNome);
                     break;
                 case "C05":
-                    //Grupo do EndereÁo do emitente [emit]
+                    //Grupo do Endere√ßo do emitente [emit]
                     //C05|XLgr|Nro|Cpl|Bairro|CMun|XMun|UF|CEP|cPais|xPais|fone|
                     $enderEmi = $dom->createElement("enderEmit");
                     $xLgr = $dom->createElement("xLgr", $dados[1]);
@@ -520,15 +520,15 @@ class ConvertNFePHP
                     $emit->insertBefore($emit->appendChild($enderEmi), $IE);
                     break;
                 case "E":
-                    //Grupo de identificaÁ„o do Destinat·rio da NF-e [infNFe]
+                    //Grupo de identifica√ß√£o do Destinat√°rio da NF-e [infNFe]
                     //E|xNome|indIEDest|IE|ISUF|IM|email|
                     $dest = $dom->createElement("dest");
-                    //se ambiente homologaÁ„o preencher conforme NT2011.002
-                    //v·lida a partir de 01/05/2011
+                    //se ambiente homologa√ß√£o preencher conforme NT2011.002
+                    //v√°lida a partir de 01/05/2011
                     if ($this->tpAmb == '2') {
                         $xNome = $dom->createElement("xNome", 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL');
                         $dest->appendChild($xNome);
-                        //Verificar a regra abaixo p/HomologaÁ„o - 9=Nao contribuinte que pode ou n„o ter I.E.
+                        //Verificar a regra abaixo p/Homologa√ß√£o - 9=Nao contribuinte que pode ou n√£o ter I.E.
                         $indIEDest = $dom->createElement("indIEDest", "9");
                         $dest->appendChild($indIEDest);
                         //$IE = $dom->createElement("IE", '');
@@ -559,14 +559,14 @@ class ConvertNFePHP
                     break;
                 case "E02":
                     //CNPJ [dest]
-                    //se ambiente homologaÁ„o preencher conforme NT2011.002,
-                    //v·lida a partir de 01/05/2011
+                    //se ambiente homologa√ß√£o preencher conforme NT2011.002,
+                    //v√°lida a partir de 01/05/2011
                     if ($this->tpAmb == '2') {
                         if ($dados[1] != '') {
-                            //operaÁ„o nacional em ambiente homologaÁ„o usar 99999999000191
+                            //opera√ß√£o nacional em ambiente homologa√ß√£o usar 99999999000191
                             $CNPJ = $dom->createElement("CNPJ", '99999999000191');
                         } else {
-                            //operaÁ„o com o exterior CNPJ vazio
+                            //opera√ß√£o com o exterior CNPJ vazio
                             $CNPJ = $dom->createElement("CNPJ", '');
                         }
                     } else {
@@ -576,14 +576,14 @@ class ConvertNFePHP
                     break;
                 case "E03":
                     //CPF [dest]
-                    //se ambiente homologaÁ„o preencher conforme NT2011.002,
-                    //v·lida a partir de 01/05/2011
+                    //se ambiente homologa√ß√£o preencher conforme NT2011.002,
+                    //v√°lida a partir de 01/05/2011
                     if ($this->tpAmb == '2') {
                         if ($dados[1] != '') {
-                            //operaÁ„o nacional em ambiente homologaÁ„o usar 99999999000191
+                            //opera√ß√£o nacional em ambiente homologa√ß√£o usar 99999999000191
                             $CNPJ = $dom->createElement("CNPJ", '99999999000191');
                         } else {
-                            //operaÁ„o com o exterior CNPJ vazio
+                            //opera√ß√£o com o exterior CNPJ vazio
                             $CNPJ = $dom->createElement("CNPJ", '');
                         }
                         $dest->insertBefore($dest->appendChild($CNPJ), $xNome);
@@ -594,13 +594,13 @@ class ConvertNFePHP
                     break;
                 case "E03a":
                     //idEstrangeiro [dest]
-                    //Verificar se h· NT que instrua preenchimento em ambiente homologaÁ„o. Procurei e n„o encontrei restriÁ„o
-                    //idEstrangeiro È aceito como NULL (Branco), por isso n„o h· regra de !empty abaixo
+                    //Verificar se h√° NT que instrua preenchimento em ambiente homologa√ß√£o. Procurei e n√£o encontrei restri√ß√£o
+                    //idEstrangeiro √© aceito como NULL (Branco), por isso n√£o h√° regra de !empty abaixo
                     $idEstrangeiro = $dom->createElement("idEstrangeiro", $dados[1]);
                     $dest->insertBefore($dest->appendChild($idEstrangeiro), $xNome);
                     break;
                 case "E05":
-                    //Grupo de endereÁo do Destinat·rio da NF-e [dest]
+                    //Grupo de endere√ßo do Destinat√°rio da NF-e [dest]
                     //E05|xLgr|nro|xCpl|xBairro|cMun|xMun|UF|CEP|cPais|xPais|fone|
                     $enderDest = $dom->createElement("enderDest");
                     $xLgr = $dom->createElement("xLgr", $dados[1]);
@@ -639,7 +639,7 @@ class ConvertNFePHP
                     $dest->insertBefore($dest->appendChild($enderDest), $indIEDest);
                     break;
                 case "F":
-                    //Grupo de identificaÁ„o do Local de retirada [infNFe]
+                    //Grupo de identifica√ß√£o do Local de retirada [infNFe]
                     //F|xLgr|nro|xCpl|xBairro|cMun|xMun|UF|
                     $retirada = $dom->createElement("retirada");
                     if (!empty($dados[1])) {
@@ -687,7 +687,7 @@ class ConvertNFePHP
                     }
                     break;
                 case "G":
-                    // Grupo de identificaÁ„o do Local de entrega [entrega]
+                    // Grupo de identifica√ß√£o do Local de entrega [entrega]
                     //G|xLgr|nro|xCpl|xBairro|cMun|xMun|UF|
                     $entrega = $dom->createElement("entrega");
                     if (!empty($dados[1])) {
@@ -736,7 +736,7 @@ class ConvertNFePHP
                     }
                     break;
                 case "H":
-                    // Grupo do detalhamento de Produtos e ServiÁos da NF-e [infNFe]
+                    // Grupo do detalhamento de Produtos e Servi√ßos da NF-e [infNFe]
                     $det = $dom->createElement("det");
                     $det->setAttribute("nItem", $dados[1]);
                     if (!empty($dados[2])) {
@@ -842,7 +842,7 @@ class ConvertNFePHP
                     $prod->appendChild($NVE);
                     break;
                 case "I18":
-                    //Tag da DeclaraÁ„o de ImportaÁ„o [prod]
+                    //Tag da Declara√ß√£o de Importa√ß√£o [prod]
                     //I18|nDI|dDI|xLocDesemb|UFDesemb|dDesemb|tpViaTransp|vAFRMM|tpIntermedio|CNPJ|UFTerceiro|cExportador|
                     $DI = $dom->createElement("DI");
                     if (!empty($dados[1])) {
@@ -900,7 +900,7 @@ class ConvertNFePHP
                     }
                     break;
                 case "I25":
-                    //AdiÁıes [DI]
+                    //Adi√ß√µes [DI]
                     //I25|nAdicao|nSeqAdic|cFabricante|vDescDI|nDraw|
                     $adi = $dom->createElement("adi");
                     if (!empty($dados[1])) {
@@ -926,7 +926,7 @@ class ConvertNFePHP
                     $DI->appendChild($adi);
                     break;
                 case "I50":
-                    //InformaÁıes de exportaÁ„o
+                    //Informa√ß√µes de exporta√ß√£o
                     //I50|nDraw|
                     $detExport = $dom->createElement("detExport");
                     if (!empty($dados[1])) {
@@ -936,7 +936,7 @@ class ConvertNFePHP
                     $DI->appendChild($detExport);
                     break;
                 case "I52":
-                    //ExportaÁ„o indireta
+                    //Exporta√ß√£o indireta
                     //I52|nRE|chNFe|qExport|
                     $exportInd = $dom->createElement("exportInd");
                     if (!empty($dados[1])) {
@@ -954,7 +954,7 @@ class ConvertNFePHP
                     $DI->appendChild($exportInd);
                     break;
                 case "J":
-                    //Grupo do detalhamento de veÌculos novos [prod]
+                    //Grupo do detalhamento de ve√≠culos novos [prod]
                     //J|TpOp|Chassi|CCor|XCor|Pot|cilin|pesoL|pesoB|NSerie|TpComb|NMotor|CMT|Dist|anoMod
                     //|anoFab|tpPint|tpVeic|espVeic|VIN|condVeic|cMod|cCorDENATRAN|lota|tpRest|
                     $veicProd = $dom->createElement("veicProd");
@@ -1057,7 +1057,7 @@ class ConvertNFePHP
                     $prod->appendChild($veicProd);
                     break;
                 case "K":
-                    //Grupo do detalhamento de Medicamentos e de matÈriasprimas farmacÍuticas [prod]
+                    //Grupo do detalhamento de Medicamentos e de mat√©riasprimas farmac√™uticas [prod]
                     //K|NLote|QLote|DFab|DVal|VPMC|
                     $med = $dom->createElement("med");
                     if (!empty($dados[1])) {
@@ -1103,7 +1103,7 @@ class ConvertNFePHP
                     $prod->appendChild($arma);
                     break;
                 case "LA":
-                    //Grupo de informaÁıes especÌficas para combustÌveis lÌquidos e lubrificantes [prod]
+                    //Grupo de informa√ß√µes espec√≠ficas para combust√≠veis l√≠quidos e lubrificantes [prod]
                     //LA|cProdANP|pMixGN|CODIF|qTemp|UFCons|
                     $comb = $dom->createElement("comb");
                     $cProdANP = $dom->createElement("cProdANP", $dados[1]);
@@ -1137,7 +1137,7 @@ class ConvertNFePHP
                     $comb->appendChild($CIDE);
                     break;
                 case "LB":
-                    //N˙mero do RECOPI
+                    //N√∫mero do RECOPI
                     $recopi = $dom->createElement("nRECOPI", $dados[1]);
                     $prod->appendChild($recopi);
                     break;
@@ -1145,7 +1145,7 @@ class ConvertNFePHP
                     //GRUPO DE TRIBUTOS INCIDENTES NO PRODUTO SERVICO
                     $imposto = $dom->createElement("imposto");
                     //lei da transparencia 12.741/12
-                    //Nota TÈcnica 2013/003
+                    //Nota T√©cnica 2013/003
                     $vTotTrib=trim($dados[1]);
                     if (strlen($vTotTrib)>0) {
                         $vTotTrib = $dom->createElement("vTotTrib", $vTotTrib);
@@ -1275,7 +1275,7 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS30);
                     break;
                 case "N06":
-                    //Grupo de TributaÁ„o do ICMS 40, 41 ou 50 [ICMS]
+                    //Grupo de Tributa√ß√£o do ICMS 40, 41 ou 50 [ICMS]
                     //N06|Orig|CST|vICMS|motDesICMS|
                     $ICMS40 = $dom->createElement("ICMS40");
                     $orig = $dom->createElement("orig", $dados[1]);
@@ -1293,9 +1293,9 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS40);
                     break;
                 case "N07":
-                    //Grupo de TributaÁ„o do ICMS = 51 [ICMS]
+                    //Grupo de Tributa√ß√£o do ICMS = 51 [ICMS]
                     //N07|Orig|CST|modBC|pRedBC|vBC|pICMS|vICMSOp|pDif|vICMSDif|*vICMS*|
-                    //Parece haver um erro no manual de integraÁ„o do TXT, pois falta o vICMS, que h· na NT 2013/005
+                    //Parece haver um erro no manual de integra√ß√£o do TXT, pois falta o vICMS, que h√° na NT 2013/005
                     $ICMS51 = $dom->createElement("ICMS51");
                     $orig = $dom->createElement("orig", $dados[1]);
                     $ICMS51->appendChild($orig);
@@ -1336,7 +1336,7 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS51);
                     break;
                 case "N08":
-                    //Grupo de TributaÁ„o do ICMS = 60 [ICMS]
+                    //Grupo de Tributa√ß√£o do ICMS = 60 [ICMS]
                     //N08|orig|CST|vBCSTRet|vICMSSTRet|
                     $ICMS60 = $dom->createElement("ICMS60");
                     $orig = $dom->createElement("orig", $dados[1]);
@@ -1352,7 +1352,7 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS60);
                     break;
                 case "N09":
-                    //Grupo de TributaÁ„o do ICMS 70 [ICMS]
+                    //Grupo de Tributa√ß√£o do ICMS 70 [ICMS]
                     //N09|orig|CST|modBC|pRedBC|vBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|vICMSDeson|motDesICMS|
                     $ICMS70 = $dom->createElement("ICMS70");
                     $orig = $dom->createElement("orig", $dados[1]);
@@ -1394,7 +1394,7 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS70);
                     break;
                 case "N10":
-                    //Grupo de TributaÁ„o do ICMS 90 Outros [ICMS]
+                    //Grupo de Tributa√ß√£o do ICMS 90 Outros [ICMS]
                     //N10|orig|CST|modBC|vBC|pRedBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|vICMSDeson|motDesICMS|
                     $ICMS90 = $dom->createElement("ICMS90");
                     $orig = $dom->createElement("orig", $dados[1]);
@@ -1438,7 +1438,7 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMS90);
                     break;
                 case "N10a":
-                    //Partilha do ICMS entre a UF de origem e UF de destino ou a UF definida na legislaÁ„o [ICMS]
+                    //Partilha do ICMS entre a UF de origem e UF de destino ou a UF definida na legisla√ß√£o [ICMS]
                     //N10a|orig|CST|modBC|vBC|pRedBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST
                     //|vICMSST|pBCOp|UFST|
                     $ICMSPart = $dom->createElement("ICMSPart");
@@ -1481,8 +1481,8 @@ class ConvertNFePHP
                     $ICMS->appendChild($ICMSPart);
                     break;
                 case "N10b":
-                    //ICMS ST repasse de ICMS ST retido anteriormente em operaÁıes interestaduais com repasses
-                    //atravÈs do Substituto Tribut·rio [ICMS]
+                    //ICMS ST repasse de ICMS ST retido anteriormente em opera√ß√µes interestaduais com repasses
+                    //atrav√©s do Substituto Tribut√°rio [ICMS]
                     //N10b|orig|CST|vBCSTRet|vICMSSTRet|vBCSTDest|vICMSSTDest|
                     $ICMSST = $dom->createElement("ICMSST");
                     $orig = $dom->createElement("orig", $dados[1]);
@@ -1715,7 +1715,7 @@ class ConvertNFePHP
                     $IPITrib->insertBefore($IPITrib->appendChild($vUnid), $vIPI);
                     break;
                 case "O08":
-                    //Grupo IPI N„o tributavel 0 ou 1 [IPI]
+                    //Grupo IPI N√£o tributavel 0 ou 1 [IPI]
                     // todos esses campos sao obrigatorios
                     //O08|CST|
                     $IPINT = $dom->createElement("IPINT");
@@ -1724,7 +1724,7 @@ class ConvertNFePHP
                     $IPI->appendChild($IPINT);
                     break;
                 case "P":
-                    //Grupo do Imposto de ImportaÁ„o 0 ou 1 [imposto]
+                    //Grupo do Imposto de Importa√ß√£o 0 ou 1 [imposto]
                     // todos esses campos sao obrigatorios
                     //P|vBC|vDespAdu|vII|vIOF|
                     $II = $dom->createElement("II");
@@ -1745,7 +1745,7 @@ class ConvertNFePHP
                     $imposto->appendChild($PIS);
                     break;
                 case "Q02":
-                    //Grupo de PIS tributado pela alÌquota 0 pou 1 [PIS]
+                    //Grupo de PIS tributado pela al√≠quota 0 pou 1 [PIS]
                     // todos esses campos sao obrigatorios
                     //Q02|CST|vBC|pPIS|vPIS|
                     $PISAliq = $dom->createElement("PISAliq");
@@ -1775,7 +1775,7 @@ class ConvertNFePHP
                     $PIS->appendChild($PISQtde);
                     break;
                 case "Q04":
-                    //Grupo de PIS n„o tributado 0 ou 1 [PIS]
+                    //Grupo de PIS n√£o tributado 0 ou 1 [PIS]
                     // todos esses campos sao obrigatorios
                     //Q04|CST|
                     $PISNT = $dom->createElement("PISNT");
@@ -1784,14 +1784,14 @@ class ConvertNFePHP
                     $PIS->appendChild($PISNT);
                     break;
                 case "Q05":
-                    //Grupo de PIS Outras OperaÁıes 0 ou 1 [PIS]
+                    //Grupo de PIS Outras Opera√ß√µes 0 ou 1 [PIS]
                     //Q05|CST|
                     $PISOutr = $dom->createElement("PISOutr");
                     $CST = $dom->createElement("CST", $dados[1]);
                     $PISOutr->appendChild($CST);
                     break;
                 case "Q07":
-                    //Valor da Base de C·lculo do PIS e AlÌquota do PIS (em percentual) 0 pu 1 [PISOutr]
+                    //Valor da Base de C√°lculo do PIS e Al√≠quota do PIS (em percentual) 0 pu 1 [PISOutr]
                     // todos esses campos sao obrigatorios
                     //Q07|vBC|pPIS|vPIS|
                     $vPIS = $dom->createElement("vPIS", $dados[3]);
@@ -1803,7 +1803,7 @@ class ConvertNFePHP
                     $PISOutr->insertBefore($pPIS, $vPIS);
                     break;
                 case "Q10":
-                    //Quantidade Vendida e AlÌquota do PIS (em reais) 0 ou 1 [PISOutr]
+                    //Quantidade Vendida e Al√≠quota do PIS (em reais) 0 ou 1 [PISOutr]
                     // todos esses campos sao obrigatorios
                     //Q10|qBCProd|vAliqProd|
                     $qBCProd = $dom->createElement("qBCProd", $dados[1]);
@@ -1812,7 +1812,7 @@ class ConvertNFePHP
                     $PISOutr->insertBefore($vAliqProd, $vPIS);
                     break;
                 case "R":
-                    //Grupo de PIS SubstituiÁ„o Tribut·ria 0 ou 1 [imposto]
+                    //Grupo de PIS Substitui√ß√£o Tribut√°ria 0 ou 1 [imposto]
                     // todos esses campos sao obrigatorios
                     //R|vPIS|
                     $PISST = $dom->createElement("PISST");
@@ -1820,7 +1820,7 @@ class ConvertNFePHP
                     $PISST->appendChild($vPIS);
                     $imposto->appendChild($PISST);
                     break;
-                case "R02": //Valor da Base de C·lculo do PIS e AlÌquota do PIS (em percentual) 0 ou 1 [PISST]
+                case "R02": //Valor da Base de C√°lculo do PIS e Al√≠quota do PIS (em percentual) 0 ou 1 [PISST]
                     // todos esses campos sao obrigatorios
                     //R02|vBC|pPIS|
                     $vBC = $dom->createElement("vBC", $dados[1]);
@@ -1829,7 +1829,7 @@ class ConvertNFePHP
                     $PISST->insertBefore($pPIS, $vPIS);
                     break;
                 case "R04":
-                    //Quantidade Vendida e AlÌquota do PIS (em reais) 0 ou 1 [PISST]
+                    //Quantidade Vendida e Al√≠quota do PIS (em reais) 0 ou 1 [PISST]
                     // todos esses campos sao obrigatorios
                     //R04|qBCProd|vAliqProd|
                     $qBCProd = $dom->createElement("qBCProd", $dados[1]);
@@ -1838,13 +1838,13 @@ class ConvertNFePHP
                     $PISST->appendChild($vAliqProd);
                     break;
                 case "S":
-                    //Grupo do COFINS obrigatÛrio [imposto]
+                    //Grupo do COFINS obrigat√≥rio [imposto]
                     //S|
                     $COFINS = $dom->createElement("COFINS");
                     $imposto->appendChild($COFINS);
                     break;
                 case "S02":
-                    //Grupo de COFINS tributado pela alÌquota 0 ou 1 [COFINS]
+                    //Grupo de COFINS tributado pela al√≠quota 0 ou 1 [COFINS]
                     // todos esses campos sao obrigatorios
                     //S02|CST|vBC|pCOFINS|vCOFINS|
                     $COFINSAliq = $dom->createElement("COFINSAliq");
@@ -1874,7 +1874,7 @@ class ConvertNFePHP
                     $COFINS->appendChild($COFINSQtde);
                     break;
                 case "S04":
-                    //Grupo de COFINS n„o tributado 0 ou 1 [COFINS]
+                    //Grupo de COFINS n√£o tributado 0 ou 1 [COFINS]
                     // todos esses campos sao obrigatorios
                     //S04|CST|
                     $COFINSNT = $dom->createElement("COFINSNT");
@@ -1883,7 +1883,7 @@ class ConvertNFePHP
                     $COFINS->appendChild($COFINSNT);
                     break;
                 case "S05":
-                    //Grupo de COFINS Outras OperaÁıes 0 ou 1 [COFINS]
+                    //Grupo de COFINS Outras Opera√ß√µes 0 ou 1 [COFINS]
                     //S05|CST|vCOFINS|
                     $COFINSOutr = $dom->createElement("COFINSOutr");
                     $CST = $dom->createElement("CST", $dados[1]);
@@ -1893,7 +1893,7 @@ class ConvertNFePHP
                     $COFINS->appendChild($COFINSOutr);
                     break;
                 case "S07":
-                    //Valor da Base de C·lculo da COFINS e AlÌquota da COFINS
+                    //Valor da Base de C√°lculo da COFINS e Al√≠quota da COFINS
                     //(em percentual) 0 ou 1 [COFINSOutr]
                     // todos esses campos sao obrigatorios
                     //S07|CST|pCOFINS|
@@ -1902,7 +1902,7 @@ class ConvertNFePHP
                     $pCOFINS = $dom->createElement("pCOFINS", $dados[2]);
                     $COFINSOutr->insertBefore($pCOFINS, $vCOFINS);
                     break;
-                case "S09": //Quantidade Vendida e AlÌquota da COFINS (em reais) 0 ou 1 [COFINSOutr]
+                case "S09": //Quantidade Vendida e Al√≠quota da COFINS (em reais) 0 ou 1 [COFINSOutr]
                     // todos esses campos sao obrigatorios
                     //S09|qBCProd|vAliqProd|
                     $qBCProd = $dom->createElement("qBCProd", $dados[1]);
@@ -1911,7 +1911,7 @@ class ConvertNFePHP
                     $COFINSOutr->insertBefore($vAliqProd, $vCOFINS);
                     break;
                 case "T":
-                    //Grupo de COFINS SubstituiÁ„o Tribut·ria 0 ou 1 [imposto]
+                    //Grupo de COFINS Substitui√ß√£o Tribut√°ria 0 ou 1 [imposto]
                     // todos esses campos sao obrigatorios
                     //T|vCOFINS|
                     $COFINSST = $dom->createElement("COFINSST");
@@ -1920,7 +1920,7 @@ class ConvertNFePHP
                     $imposto->appendChild($COFINSST);
                     break;
                 case "T02":
-                    //Valor da Base de C·lculo da COFINS e AlÌquota da COFINS
+                    //Valor da Base de C√°lculo da COFINS e Al√≠quota da COFINS
                     //(em percentual) 0 ou 1 [COFINSST]
                     // todos esses campos sao obrigatorios
                     //T02|vBC|pCOFINS|
@@ -1930,7 +1930,7 @@ class ConvertNFePHP
                     $COFINSST->insertBefore($pCOFINS, $vCOFINS);
                     break;
                 case "T04":
-                    //Quantidade Vendida e AlÌquota da COFINS (em reais) 0 u 1 [COFINSST]
+                    //Quantidade Vendida e Al√≠quota da COFINS (em reais) 0 u 1 [COFINSST]
                     // todos esses campos sao obrigatorios
                     //T04|qBCProd|vAliqProd|
                     $qBCProd = $dom->createElement("qBCProd", $dados[1]);
@@ -1967,7 +1967,7 @@ class ConvertNFePHP
                     break;
                 case "UA":
                     //Grupo de Tributos Devolvidos 0 ou 1 [det]
-                    // campos [2-4] sao obrigatorios. ($dados[1] ficou "perdido", pois È o grupo "impostoDevol" - nao enviar nada).
+                    // campos [2-4] sao obrigatorios. ($dados[1] ficou "perdido", pois √© o grupo "impostoDevol" - nao enviar nada).
                     //UA|impostoDevol|pDevol|IPI|vIPIDevol|
                     $impostoDevol = $dom->createElement("impostoDevol");
                     //Motivo da devolucao deve ir em "infAdProd"
@@ -2021,7 +2021,7 @@ class ConvertNFePHP
                     $vNF = $dom->createElement("vNF", $dados[15]);
                     $ICMSTot->appendChild($vNF);
                     //lei da transparencia 12.741/12
-                    //Nota TÈcnica 2013/003
+                    //Nota T√©cnica 2013/003
                     $vTotTrib=trim($dados[16]);
                     if (strlen($vTotTrib)>0) {
                         $vTotTrib = $dom->createElement("vTotTrib", $vTotTrib);
@@ -2031,7 +2031,7 @@ class ConvertNFePHP
                     $total->appendChild($ICMSTot);
                     break;
                 case "W17":
-                    // Grupo de Valores Totais referentes ao ISSQN 0 ou 1 [total] (Apenas "dCompet=data do serviÁo" obrigatÛrio)
+                    // Grupo de Valores Totais referentes ao ISSQN 0 ou 1 [total] (Apenas "dCompet=data do servi√ßo" obrigat√≥rio)
                     //W17|vServ|vBC|vISS|vPIS|vCOFINS|dCompet|vDeducao|vOutro|vDescIncond|vDescCond|vISSRet|cRegTrib|
                     $ISSQNtot = $dom->createElement("ISSQNtot");
                     if (!empty($dados[1])) {
@@ -2082,7 +2082,7 @@ class ConvertNFePHP
                     }
                     $total->appendChild($ISSQNtot);
                     break;
-                case "W23": //Grupo de RetenÁıes de Tributos 0 ou 1 [total]
+                case "W23": //Grupo de Reten√ß√µes de Tributos 0 ou 1 [total]
                     //W23|vRetPIS|vRetCOFINS|vRetCSLL|vBCIRRF|vIRRF|vBCRetPrev|vRetPrev|
                     $retTrib = $dom->createElement("retTrib");
                     if (!empty($dados[1])) {
@@ -2116,8 +2116,8 @@ class ConvertNFePHP
                     $total->appendChild($retTrib);
                     break;
                 case "X":
-                    // Grupo de InformaÁıes do Transporte da NF-e obrigatorio [infNFe]
-                    // todos esses campos s„o obrigatÛrios
+                    // Grupo de Informa√ß√µes do Transporte da NF-e obrigatorio [infNFe]
+                    // todos esses campos s√£o obrigat√≥rios
                     //X|modFrete|
                     $transp = $dom->createElement("transp");
                     $modFrete = $dom->createElement("modFrete", $dados[1]);
@@ -2167,8 +2167,8 @@ class ConvertNFePHP
                     }
                     break;
                 case "X11":
-                    //Grupo de RetenÁ„o do ICMS do transporte 0 ou 1 [transp]
-                    // todos esses campos s„o obrigatÛrios
+                    //Grupo de Reten√ß√£o do ICMS do transporte 0 ou 1 [transp]
+                    // todos esses campos s√£o obrigat√≥rios
                     //X11|vServ|vBCRet|pICMSRet|vICMSRet|CFOP|cMunFG|
                     $retTransp = $dom->createElement("retTransp");
                     $vServ = $dom->createElement("vServ", $dados[1]);
@@ -2186,7 +2186,7 @@ class ConvertNFePHP
                     $transp->appendChild($retTransp);
                     break;
                 case "X18":
-                    //Grupo VeÌculo 0 ou 1 [transp]
+                    //Grupo Ve√≠culo 0 ou 1 [transp]
                     //X18|placa|UF|RNTC|
                     if (!empty($dados[1])) {
                         $veicTransp = $dom->createElement("veicTransp");
@@ -2256,7 +2256,7 @@ class ConvertNFePHP
                     break;
                 case "X33":
                     //Grupo de Lacres 0 a N [vol]
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     //X33|nLacre|
                     $lacres = $dom->createElement("lacres");
                     $nLacre = $dom->createElement("nLacre", $dados[1]);
@@ -2264,7 +2264,7 @@ class ConvertNFePHP
                     $vol->appendChild($lacres);
                     break;
                 case "Y":
-                    //Grupo de CobranÁa 0 ou 1 [infNFe]
+                    //Grupo de Cobran√ßa 0 ou 1 [infNFe]
                     $cobr = $dom->createElement("cobr");
                     $infNFe->appendChild($cobr);
                     break;
@@ -2318,15 +2318,15 @@ class ConvertNFePHP
                     break;
                 case "YA":
                     //Grupo de Formas de Pagamento 0 - 100 [infNFe]
-                    //ObrigatÛrio para NFC-e, a critÈrio da UF. N„o informar para NF-e.
+                    //Obrigat√≥rio para NFC-e, a crit√©rio da UF. N√£o informar para NF-e.
                     //YA|tPag|vPag|card|CNPJ|tBand|cAut
                     $pag = $dom->createElement("pag");
                     $tPag = $dom->createElement("tPag",$dados[1]);
                     $pag->appendChild($tPag);
                     $vPag = $dom->createElement("vPag",$dados[2]);
                     $pag->appendChild($vPag);
-                    //$dados[3] tambÈm È um grupo, assim como em "UA" o $dados[1] era o grupo. 
-                    //Verifiquem se EU estou com o conceito errado, ou se o manual do Emissor est· "disperdiÁando" campos.
+                    //$dados[3] tamb√©m √© um grupo, assim como em "UA" o $dados[1] era o grupo. 
+                    //Verifiquem se EU estou com o conceito errado, ou se o manual do Emissor est√° "disperdi√ßando" campos.
                     if(!empty($dados[4])){
                       $card = $dom->createElement("card");
                       $CNPJ = $dom->createElement("CNPJ",$dados[4]);
@@ -2340,7 +2340,7 @@ class ConvertNFePHP
                     $infNFe->appendChild($pag);
                     break;
                 case "Z":
-                    //Grupo de InformaÁıes Adicionais 0 ou 1 [infNFe]
+                    //Grupo de Informa√ß√µes Adicionais 0 ou 1 [infNFe]
                     //Z|infAdFisco|infCpl|
                     $infAdic = $dom->createElement("infAdic");
                     if (!empty($dados[1])) {
@@ -2355,7 +2355,7 @@ class ConvertNFePHP
                     break;
                 case "Z04":
                     //Grupo do campo de uso livre do contribuinte 0-10 [infAdic]
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     //Z04|xCampo|xTexto|
                     $obsCont = $dom->createElement("obsCont");
                     $obsCont->setAttribute("xCampo", $dados[1]);
@@ -2365,7 +2365,7 @@ class ConvertNFePHP
                     break;
                 case "Z07":
                     //Grupo do campo de uso livre do Fisco 0-10 [infAdic]
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     //Z07|xCampo|xTexto|
                     $obsFisco = $dom->createElement("obsFisco");
                     $obsFisco->setAttribute("xCampo", $dados[1]);
@@ -2375,7 +2375,7 @@ class ConvertNFePHP
                     break;
                 case "Z10":
                     //Grupo do processo referenciado 0 ou N [infAdic]
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     //Z10|nProc|indProc|
                     $procRef = $dom->createElement("procRef");
                     $nProc = $dom->createElement("nProc", $dados[1]);
@@ -2385,8 +2385,8 @@ class ConvertNFePHP
                     $infAdic->appendChild($procRef);
                     break;
                 case "ZA":
-                    //Grupo de ExportaÁ„o 0 ou 1 [infNFe]
-                    //todos os campos s„o obrigatorios
+                    //Grupo de Exporta√ß√£o 0 ou 1 [infNFe]
+                    //todos os campos s√£o obrigatorios
                     //ZA|UFSaidaPais|xLocExporta|xLocDespacho|
                     $exporta = $dom->createElement("exporta");
                     $UFSaidaPais = $dom->createElement("UFSaidaPais", $dados[1]);
@@ -2417,7 +2417,7 @@ class ConvertNFePHP
                     break;
                 case "ZC01":
                     //0 ou 1 Grupo de Cana [infNFe]
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     //ZC01|safra|ref|qTotMes|qTotAnt|qTotGer|vFor|vTotDed|vLiqFor|
                     $cana = $dom->createElement("cana");
                     $safra = $dom->createElement("safra", $dados[1]);
@@ -2439,9 +2439,9 @@ class ConvertNFePHP
                     $infNFe->appendChild($cana);
                     break;
                 case "ZC04":
-                    //1 a 31 Grupo de Fornecimento di·rio de cana [cana]
+                    //1 a 31 Grupo de Fornecimento di√°rio de cana [cana]
                     //ZC04|dia|qtde|
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     $forDia = $dom->createElement("forDia");
                     $dia = $dom->createElement("dia", $dados[1]);
                     $forDia->appendChild($dia);
@@ -2450,9 +2450,9 @@ class ConvertNFePHP
                     $cana->appendChild($forDia);
                     break;
                 case "ZC10":
-                    //0 a 10 Grupo de DeduÁıes ? Taxas e ContribuiÁıes [cana]
+                    //0 a 10 Grupo de Dedu√ß√µes ? Taxas e Contribui√ß√µes [cana]
                     //ZC10|xDed|vDed|
-                    //todos os campos s„o obrigatorios
+                    //todos os campos s√£o obrigatorios
                     $deduc = $dom->createElement("deduc");
                     $xDed = $dom->createElement("xDed", $dados[1]);
                     $deduc->appendChild($xDed);
@@ -2472,7 +2472,7 @@ class ConvertNFePHP
             $this->chave = $nota['chave'];
             $this->tpAmb = $nota['tpAmb'];
             $this->xml = '';
-            //salva o xml na vari·vel se o txt n„o estiver em branco
+            //salva o xml na vari√°vel se o txt n√£o estiver em branco
             if (!empty($infNFe)) {
                 $NFe->appendChild($infNFe);
                 $dom->appendChild($NFe);
@@ -2480,7 +2480,7 @@ class ConvertNFePHP
                 $xml = $dom->saveXML();
                 $this->xml = $dom->saveXML();
                 $xml = str_replace('<?xml version="1.0" encoding="UTF-8  standalone="no"?>', '<?xml version="1.0" encoding="UTF-8"?>', $xml);
-                //remove linefeed, carriage return, tabs e multiplos espaÁos
+                //remove linefeed, carriage return, tabs e multiplos espa√ßos
                 $xml = preg_replace('/\s\s+/', ' ', $xml);
                 $xml = str_replace("> <", "><", $xml);
                 $arquivos_xml[] = $xml;
@@ -2503,9 +2503,9 @@ class ConvertNFePHP
      */
     private function limpaString($texto)
     {
-        $aFind = array('&', '·', '‡', '„', '‚', 'È', 'Í',
-            'Ì', 'Û', 'Ù', 'ı', '˙', '¸', 'Á', '¡', '¿', '√', '¬',
-            '…', ' ', 'Õ', '”', '‘', '’', '⁄', '‹', '«');
+        $aFind = array('&', '√°', '√†', '√£', '√¢', '√©', '√™',
+            '√≠', '√≥', '√¥', '√µ', '√∫', '√º', '√ß', '√Å', '√Ä', '√É', '√Ç',
+            '√â', '√ä', '√ç', '√ì', '√î', '√ï', '√ö', '√ú', '√á');
         $aSubs = array('e', 'a', 'a', 'a', 'a', 'e', 'e',
             'i', 'o', 'o', 'o', 'u', 'u', 'c', 'A', 'A', 'A', 'A',
             'E', 'E', 'I', 'O', 'O', 'O', 'U', 'U', 'C');
@@ -2516,7 +2516,7 @@ class ConvertNFePHP
 
     /**
      * calculaDV
-     * FunÁ„o para o calculo o digito verificador da chave da NFe
+     * Fun√ß√£o para o calculo o digito verificador da chave da NFe
      * 
      * @name calculaDV
      * @param string $chave43
@@ -2545,7 +2545,7 @@ class ConvertNFePHP
     /**
      * montaChaveXML
      * Monta a chave da NFe de 44 digitos com base em seus dados
-     * Isso È ˙til no caso da chave formada no txt estar errada
+     * Isso √© √∫til no caso da chave formada no txt estar errada
      * 
      * @name montaChaveXML
      * @param object $dom 

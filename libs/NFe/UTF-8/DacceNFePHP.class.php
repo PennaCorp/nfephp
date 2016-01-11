@@ -1,22 +1,22 @@
 <?php
 /**
- * Este arquivo é parte do projeto NFePHP - Nota Fiscal eletrônica em PHP.
+ * Este arquivo Ã© parte do projeto NFePHP - Nota Fiscal eletrÃ´nica em PHP.
  *
- * Este programa é um software livre: você pode redistribuir e/ou modificá-lo
- * sob os termos da Licença Pública Geral GNU como é publicada pela Fundação
- * para o Software Livre, na versão 3 da licença, ou qualquer versão posterior.
+ * Este programa Ã© um software livre: vocÃª pode redistribuir e/ou modificÃ¡-lo
+ * sob os termos da LicenÃ§a PÃºblica Geral GNU como Ã© publicada pela FundaÃ§Ã£o
+ * para o Software Livre, na versÃ£o 3 da licenÃ§a, ou qualquer versÃ£o posterior.
  * e/ou
- * sob os termos da Licença Pública Geral Menor GNU (LGPL) como é publicada pela
- * Fundação para o Software Livre, na versão 3 da licença, ou qualquer versão posterior.
+ * sob os termos da LicenÃ§a PÃºblica Geral Menor GNU (LGPL) como Ã© publicada pela
+ * FundaÃ§Ã£o para o Software Livre, na versÃ£o 3 da licenÃ§a, ou qualquer versÃ£o posterior.
  *
- * Este programa é distribuído na esperança que será útil, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explícita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUAÇÃO PARA UM PROPÓSITO EM PARTICULAR,
- * veja a Licença Pública Geral GNU para mais detalhes.
+ * Este programa Ã© distribuÃ­do na esperanÃ§a que serÃ¡ Ãºtil, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia explÃ­cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUAÃ‡ÃƒO PARA UM PROPÃ“SITO EM PARTICULAR,
+ * veja a LicenÃ§a PÃºblica Geral GNU para mais detalhes.
  *
- * Você deve ter recebido uma cópia da Licença Publica GNU e da
- * Licença Pública Geral Menor GNU (LGPL) junto com este programa.
- * Caso contrário consulte
+ * VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a Publica GNU e da
+ * LicenÃ§a PÃºblica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contrÃ¡rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
@@ -35,21 +35,21 @@
  *              Leandro C. Lopez <leandro dot castoldi at gmail dot com>
  *              Lucas Vaccaro <lucas-vaccaro at outlook dot com>
  */
-// define o caminho base da instalação do sistema
+// define o caminho base da instalaÃ§Ã£o do sistema
 if (!defined('PATH_ROOT')) {
     define('PATH_ROOT', dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR);
 }
 // ajuste do tempo limite de resposta do processo
 set_time_limit(1800);
-// definição do caminho para o diretorio com as fontes do FDPF
+// definiÃ§Ã£o do caminho para o diretorio com as fontes do FDPF
 if (!defined('FPDF_FONTPATH')) {
     define('FPDF_FONTPATH', 'font/');
 }
 // classe extendida da classe FPDF para montagem do arquivo pdf
 require_once PATH_ROOT . 'libs/Common/PdfNFePHP.class.php';
-// classe com as funções communs entre DA*
+// classe com as funÃ§Ãµes communs entre DA*
 require_once PATH_ROOT . 'libs/Common/CommonNFePHP.class.php';
-// classe com as funções DOM
+// classe com as funÃ§Ãµes DOM
 require_once PATH_ROOT . 'libs/Common/DomDocumentNFePHP.class.php';
 // classe das Excecoes
 require_once PATH_ROOT . 'libs/Common/ExceptionNFePHP.class.php';
@@ -68,17 +68,17 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
     protected $logomarca = ''; // path para logomarca em jpg
     protected $errMsg = ''; // mesagens de erro
     protected $errStatus = FALSE; // status de erro TRUE um erro ocorreu FALSE sem erros
-    protected $orientacao = 'P'; // orientação da DANFE P-Retrato ou L-Paisagem
+    protected $orientacao = 'P'; // orientaÃ§Ã£o da DANFE P-Retrato ou L-Paisagem
     protected $papel = 'A4'; // formato do papel
-    protected $destino = 'I'; // destivo do arquivo pdf I-borwser, S-retorna o arquivo, D-força download, F-salva em arquivo local
-    protected $pdfDir = ''; // diretorio para salvar o pdf com a opção de destino = F
+    protected $destino = 'I'; // destivo do arquivo pdf I-borwser, S-retorna o arquivo, D-forÃ§a download, F-salva em arquivo local
+    protected $pdfDir = ''; // diretorio para salvar o pdf com a opÃ§Ã£o de destino = F
     protected $fontePadrao = 'Times'; // Nome da Fonte para gerar o DANFE
     protected $version = '0.1.1';
     protected $wPrint; // largura imprimivel
     protected $hPrint; // comprimento imprimivel
-    protected $wCanhoto; // largura do canhoto para a formatação paisagem
+    protected $wCanhoto; // largura do canhoto para a formataÃ§Ã£o paisagem
     protected $formatoChave = "#### #### #### #### #### #### #### #### #### #### ####";
-    // variaveis da carta de correção
+    // variaveis da carta de correÃ§Ã£o
     protected $id;
     protected $chNFe;
     protected $tpAmb;
@@ -104,15 +104,15 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
     /**
      * __construct
      *
-     * @param string $docXML Arquivo XML (diretório ou string)
-     * @param string $sOrientacao (Opcional) Orientação da impressão P-retrato L-Paisagem
+     * @param string $docXML Arquivo XML (diretÃ³rio ou string)
+     * @param string $sOrientacao (Opcional) OrientaÃ§Ã£o da impressÃ£o P-retrato L-Paisagem
      * @param string $sPapel Tamanho do papel (Ex. A4)
      * @param string $sPathLogo Caminho para o arquivo do logo
      * @param string $sDestino Destino do PDF I-browser D-download S-string F-salva
-     * @param array $aEnd array com o endereço do emitente
+     * @param array $aEnd array com o endereÃ§o do emitente
      * @param string $sDirPDF Caminho para o diretorio de armazenamento dos arquivos PDF
      * @param string $fonteDANFE Nome da fonte alternativa do DAnfe
-     * @param number $mododebug 0-Não 1-Sim e 2-nada (2 default)
+     * @param number $mododebug 0-NÃ£o 1-Sim e 2-nada (2 default)
      */
     public function __construct($docXML = '', $sOrientacao = '', $sPapel = '', $sPathLogo = '', $sDestino = 'I', $aEnd = '', $sDirPDF = '', $fontePDF = '', $mododebug = 2)
     {
@@ -217,7 +217,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
             $margSup = 2;
             $margEsq = 2;
             $margDir = 2;
-            // posição inicial do relatorio
+            // posiÃ§Ã£o inicial do relatorio
             $xInic = 1;
             $yInic = 1;
             if ($this->papel == 'A4') { // A4 210x297mm
@@ -229,14 +229,14 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
             $margSup = 3;
             $margEsq = 3;
             $margDir = 3;
-            // posição inicial do relatorio
+            // posiÃ§Ã£o inicial do relatorio
             $xInic = 5;
             $yInic = 5;
             if ($papel == 'A4') { // A4 210x297mm
                 $maxH = 210;
                 $maxW = 297;
             }
-        } // orientação
+        } // orientaÃ§Ã£o
 
         // largura imprimivel em mm
         $this->wPrint = $maxW - ($margEsq + $xInic);
@@ -250,15 +250,15 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $this->pdf->SetFillColor(255, 255, 255);
         // inicia o documento
         $this->pdf->Open();
-        // adiciona a primeira página
+        // adiciona a primeira pÃ¡gina
         $this->pdf->AddPage($this->orientacao, $this->papel);
         $this->pdf->SetLineWidth(0.1);
         $this->pdf->SetTextColor(0, 0, 0);
-        // montagem da página
+        // montagem da pÃ¡gina
         $pag = 1;
         $x = $xInic;
         $y = $yInic;
-        // coloca o cabeçalho
+        // coloca o cabeÃ§alho
         $y = $this->pHeader($x, $y, $pag);
         // coloca os dados da CCe
         $y = $this->pBody($x, $y + 15);
@@ -281,7 +281,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $maxW = $this->wPrint;
 
         // ####################################################################################
-        // coluna esquerda identificação do emitente
+        // coluna esquerda identificaÃ§Ã£o do emitente
         $w = round($maxW * 0.41, 0); // 80;
         if ($this->orientacao == 'P') {
             $aFont = array(
@@ -300,7 +300,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $h = 32;
         $oldY += $h;
         $this->pTextBox($x, $y, $w, $h);
-        $texto = 'IDENTIFICAÇÃO DO EMITENTE';
+        $texto = 'IDENTIFICAÃ‡ÃƒO DO EMITENTE';
         $this->pTextBox($x, $y, $w, 5, $texto, $aFont, 'T', 'C', 0, '');
         if (is_file($this->logomarca)) {
             $logoInfo = getimagesize($this->logomarca);
@@ -313,7 +313,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
                 $nImgH = round($logoHmm * ($nImgW / $logoWmm), 0);
                 $xImg = $x + 1;
                 $yImg = round(($h - $nImgH) / 2, 0) + $y;
-                // estabelecer posições do texto
+                // estabelecer posiÃ§Ãµes do texto
                 $x1 = round($xImg + $nImgW + 1, 0);
                 $y1 = round($h / 3 + $y, 0);
                 $tw = round(2 * $w / 3, 0);
@@ -352,7 +352,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $texto = $this->aEnd['razao'];
         $this->pTextBox($x1, $y1, $tw, 8, $texto, $aFont, 'T', 'C', 0, '');
 
-        // endereço
+        // endereÃ§o
         $y1 = $y1 + 6;
         $aFont = array(
             'font' => $this->fontePadrao,
@@ -395,14 +395,14 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
             'size' => 16,
             'style' => 'B'
         );
-        $this->pTextBox($x, $y + 2, $w2, 8, 'Representação Gráfica de CC-e', $aFont, 'T', 'C', 0, '');
+        $this->pTextBox($x, $y + 2, $w2, 8, 'RepresentaÃ§Ã£o GrÃ¡fica de CC-e', $aFont, 'T', 'C', 0, '');
 
         $aFont = array(
             'font' => $this->fontePadrao,
             'size' => 12,
             'style' => 'I'
         );
-        $this->pTextBox($x, $y + 7, $w2, 8, '(Carta de Correção Eletrônica)', $aFont, 'T', 'C', 0, '');
+        $this->pTextBox($x, $y + 7, $w2, 8, '(Carta de CorreÃ§Ã£o EletrÃ´nica)', $aFont, 'T', 'C', 0, '');
 
         $texto = 'ID do Evento: ' . $this->id;
         $aFont = array(
@@ -427,7 +427,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $x = $oldX;
         $this->pTextBox($x, $y1, $maxW, 40);
         $sY = $y1 + 40;
-        $texto = 'De acordo com as determinações legais vigentes, vimos por meio desta comunicar-lhe que a Nota Fiscal, abaixo referenciada, contêm irregularidades que estão destacadas e suas respectivas correções, solicitamos que sejam aplicadas essas correções ao executar seus lançamentos fiscais.';
+        $texto = 'De acordo com as determinaÃ§Ãµes legais vigentes, vimos por meio desta comunicar-lhe que a Nota Fiscal, abaixo referenciada, contÃªm irregularidades que estÃ£o destacadas e suas respectivas correÃ§Ãµes, solicitamos que sejam aplicadas essas correÃ§Ãµes ao executar seus lanÃ§amentos fiscais.';
         $aFont = array(
             'font' => $this->fontePadrao,
             'size' => 10,
@@ -439,10 +439,10 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $x = $oldX;
         $y = $y1;
         if ($this->CNPJDest != '') {
-            $texto = 'CNPJ do Destinatário: ' . $this->pFormat($this->CNPJDest, "##.###.###/####-##");
+            $texto = 'CNPJ do DestinatÃ¡rio: ' . $this->pFormat($this->CNPJDest, "##.###.###/####-##");
         }
         if ($this->CPFDest != '') {
-            $texto = 'CPF do Destinatário: ' . $this->pFormat($this->CPFDest, "###.###.###-##");
+            $texto = 'CPF do DestinatÃ¡rio: ' . $this->pFormat($this->CPFDest, "###.###.###-##");
         }
         $aFont = array(
             'font' => $this->fontePadrao,
@@ -454,7 +454,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $numNF = substr($this->chNFe, 25, 9);
         $serie = substr($this->chNFe, 22, 3);
         $numNF = $this->pFormat($numNF, "###.###.###");
-        $texto = "Nota Fiscal: " . $numNF . '  -   Série: ' . $serie;
+        $texto = "Nota Fiscal: " . $numNF . '  -   SÃ©rie: ' . $serie;
         $this->pTextBox($x + 2, $y + 19, $w2, 8, $texto, $aFont, 'T', 'L', 0, '');
 
         $bW = 87;
@@ -497,7 +497,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
     private function pBody($x, $y)
     {
         $maxW = $this->wPrint;
-        $texto = 'CORREÇÕES A SEREM CONSIDERADAS';
+        $texto = 'CORREÃ‡Ã•ES A SEREM CONSIDERADAS';
         $aFont = array(
             'font' => $this->fontePadrao,
             'size' => 10,
@@ -537,7 +537,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
                 'size' => 30,
                 'style' => 'B'
             );
-            $texto = "AMBIENTE DE HOMOLOGAÇÃO";
+            $texto = "AMBIENTE DE HOMOLOGAÃ‡ÃƒO";
             $this->pTextBox($x, $y + 14, $w, $h, $texto, $aFont, 'C', 'C', 0, '');
             $this->pdf->SetTextColor(0, 0, 0);
         }
@@ -552,7 +552,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
     protected function pFooter($x, $y)
     {
         $w = $this->wPrint;
-        $texto = "Este documento é uma representação gráfica da CC-e e foi impresso apenas para sua informação e não possue validade fiscal.\n A CC-e deve ser recebida e mantida em arquivo eletrônico XML e pode ser consultada através dos Portais das SEFAZ.";
+        $texto = "Este documento Ã© uma representaÃ§Ã£o grÃ¡fica da CC-e e foi impresso apenas para sua informaÃ§Ã£o e nÃ£o possue validade fiscal.\n A CC-e deve ser recebida e mantida em arquivo eletrÃ´nico XML e pode ser consultada atravÃ©s dos Portais das SEFAZ.";
         $aFont = array(
             'font' => $this->fontePadrao,
             'size' => 10,
@@ -570,7 +570,7 @@ class DacceNFePHP extends CommonNFePHP implements DocumentoNFePHP
         );
         $this->pTextBox($x, $y, $w, 4, $texto, $aFont, 'T', 'L', 0, '');
 
-        $texto = "DacceNFePHP ver. " . $this->version . "  Powered by NFePHP (GNU/GPLv3 GNU/LGPLv3) © www.nfephp.org";
+        $texto = "DacceNFePHP ver. " . $this->version . "  Powered by NFePHP (GNU/GPLv3 GNU/LGPLv3) Â© www.nfephp.org";
         $aFont = array(
             'font' => $this->fontePadrao,
             'size' => 6,

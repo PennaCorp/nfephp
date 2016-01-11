@@ -1,22 +1,22 @@
 <?php
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
@@ -40,7 +40,7 @@
 
 //namespace nfephp\NFe;
 
-//define o caminho base da instalaÁ„o do sistema
+//define o caminho base da instala√ß√£o do sistema
 if (!defined('PATH_ROOT')) {
     define('PATH_ROOT', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 }
@@ -56,7 +56,7 @@ require_once PATH_ROOT . 'libs/Common/DocumentoNFePHP.interface.php';
 
 /**
  * Classe DanfceNFePHP
- * Objetivo - impress„o de NFC-e em uma unica pagina (bobina)
+ * Objetivo - impress√£o de NFC-e em uma unica pagina (bobina)
  */
 class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
 {
@@ -241,7 +241,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
     }//fim printDocument
     
     /**
-     * o objetivo desta funÁ„o È ler o XML e gerar o DANFE com auxilio de convers„o HTML-PDF
+     * o objetivo desta fun√ß√£o √© ler o XML e gerar o DANFE com auxilio de convers√£o HTML-PDF
      * @param type $detalhes
      * @return type
      */
@@ -296,7 +296,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         //IMPOSTOS
         $impHtml = "<table width=\"100%\">\n";
         $impHtml .= "<tr>\n";
-        $impHtml .= "<td align=\"left\">".htmlspecialchars('VALOR PRODUTOS/SERVI«OS')."</td>\n";
+        $impHtml .= "<td align=\"left\">".htmlspecialchars('VALOR PRODUTOS/SERVI√áOS')."</td>\n";
         $impHtml .= "<td align=\"right\">".number_format($vProd, 2, ',', '.')."</td>\n";
         $impHtml .= "</tr>\n";
         $impHtml .= "<tr>\n";
@@ -309,7 +309,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $impHtml .= "</tr>\n";
         $impHtml .= "</table>\n";
         
-        //necess·rio para QRCode
+        //necess√°rio para QRCode
         $cDest  = '';
         if (isset($this->dest)) {
             $considEstrangeiro = !empty($this->dest->getElementsByTagName("idEstrangeiro")->item(0)->nodeValue)
@@ -340,14 +340,14 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
             $Token
         );
 
-        //FORMATA«√O DOS CAMPOS
-        $numNF = "NFCe n∫ ".$this->pFormat($nNF, "###.###.###");
+        //FORMATA√á√ÉO DOS CAMPOS
+        $numNF = "NFCe n¬∫ ".$this->pFormat($nNF, "###.###.###");
         $tsHora = $this->pConvertTime($dhEmi);
         $tsProt = $this->pConvertTime($dhRecbto);
         $valorProdutos = number_format($vProd, 2, ",", ".");
         $valorTotal = number_format($vNF, 2, ",", ".");
         
-        //CABE«ALHO
+        //CABE√áALHO
         $this->html = "";
         $this->html .= "<html>\n";
         $this->html .= "<head>\n";
@@ -403,12 +403,12 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $this->html .= "</tr>\n";
         $this->html .= "<tr>\n";
         $this->html .= "<td colspan=\"3\" class=\"menor\">".
-                htmlspecialchars("DANFE NFC-E Nota Fiscal EletrÙnica para Consumidor Final")."</td>\n";
+                htmlspecialchars("DANFE NFC-E Nota Fiscal Eletr√¥nica para Consumidor Final")."</td>\n";
         $this->html .= "</tr>\n";
         if ($tpAmb == 1) {
             $this->html .= "<tr>\n";
             $this->html .= "<td colspan=\"3\" class=\"menor\"><b>".
-                    htmlspecialchars("NFC-e n„o permite aproveitamento de crÈdito de ICMS")."<b></td>\n";
+                    htmlspecialchars("NFC-e n√£o permite aproveitamento de cr√©dito de ICMS")."<b></td>\n";
             $this->html .= "</tr>\n";
         } else {
             $this->html .= "<tr>\n";
@@ -423,7 +423,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $this->html .= "<table width=\"100%\">\n";
         $this->html .= "<tr>\n";
         $this->html .= "<td>".htmlspecialchars($numNF)."</td>\n";
-        $this->html .= "<td>SÈrie: $serieNF</td>\n";
+        $this->html .= "<td>S√©rie: $serieNF</td>\n";
         $this->html .= "<td>".date('d/m/Y H:i:s', $tsHora)."</td>\n";
         $this->html .= "</tr>\n";
         $this->html .= "</table>\n";
@@ -462,7 +462,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $this->html .= "<td align=\"right\">".number_format($vNF, 2, ',', '.')."</td>\n";
         $this->html .= "</tr>\n";
         $this->html .= "<tr>\n";
-        $this->html .= "<td align=\"left\">InformaÁ„o dos Tributos Incidentes<br>(Lei Federal 12.741/2012) </td>\n";
+        $this->html .= "<td align=\"left\">Informa√ß√£o dos Tributos Incidentes<br>(Lei Federal 12.741/2012) </td>\n";
         $this->html .= "<td align=\"right\">".number_format($vTotTrib, 2, ',', '.')."</td>\n";
         $this->html .= "</tr>\n";
         $this->html .= "</table>\n";
@@ -480,12 +480,12 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         }
         $this->html .= "<table width=\"100%\">\n";
         $this->html .= "<tr>\n";
-        $this->html .= "<td>Prot. AutorizaÁ„o: $nProt - ".date('d/m/Y H:i:s', $tsProt)."</td>\n";
+        $this->html .= "<td>Prot. Autoriza√ß√£o: $nProt - ".date('d/m/Y H:i:s', $tsProt)."</td>\n";
         $this->html .= "</tr>\n";
         $this->html .= "</table>\n";
         $this->html .= "</body>\n</html>\n";
         return $chNFe;
-    }//fim da funÁ„o montaDANFE
+    }//fim da fun√ß√£o montaDANFE
 
     protected function pagamento($pag, &$tPnome)
     {
@@ -504,7 +504,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
             $tPnome = $tPagNome;
             $vPag = number_format($this->pSimpleGetValue($pagI, "vPag"), 2, ",", ".");
             $card = $pagI->getElementsByTagName("card")->item(0);
-            //cart„o
+            //cart√£o
             if (isset($card)) {
                 $cardCNPJ = $this->pSimpleGetValue($card, "CNPJ");
                 $tBand    = $this->pSimpleGetValue($card, "tBand");
@@ -561,25 +561,25 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
                 $tPagNome = 'Cheque';
                 break;
             case '03':
-                $tPagNome = 'Cart„o de CrÈdito';
+                $tPagNome = 'Cart√£o de Cr√©dito';
                 break;
             case '04':
-                $tPagNome = 'Cart„o de DÈbito';
+                $tPagNome = 'Cart√£o de D√©bito';
                 break;
             case '05':
-                $tPagNome = 'CrÈdito Loja';
+                $tPagNome = 'Cr√©dito Loja';
                 break;
             case '10':
-                $tPagNome = 'Vale AlimentaÁ„o';
+                $tPagNome = 'Vale Alimenta√ß√£o';
                 break;
             case '11':
-                $tPagNome = 'Vale RefeiÁ„o';
+                $tPagNome = 'Vale Refei√ß√£o';
                 break;
             case '12':
                 $tPagNome = 'Vale Presente';
                 break;
             case '13':
-                $tPagNome = 'Vale CombustÌvel';
+                $tPagNome = 'Vale Combust√≠vel';
                 break;
             case '99':
                 $tPagNome = 'Outros';
@@ -596,8 +596,8 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $itensHtml = "<table width='100%'>\n";
         $itensHtml .= "<tr>\n";
         $itensHtml .= "<td>#</td>\n";
-        $itensHtml .= "<td>".htmlspecialchars('C”DIGO')."</td>\n";
-        $itensHtml .= "<td>".htmlspecialchars('DESCRI«√O')."</td>\n";
+        $itensHtml .= "<td>".htmlspecialchars('C√ìDIGO')."</td>\n";
+        $itensHtml .= "<td>".htmlspecialchars('DESCRI√á√ÉO')."</td>\n";
         $itensHtml .= "<td>QUANT.</td>\n";
         $itensHtml .= "<td>UN.</td>\n";
         $itensHtml .= "<td>VL.UNIT.</td>\n";
@@ -755,7 +755,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $idToken = '000001',
         $Token = ''
     ) {
-        $nVersao = '100'; //vers„o do QRCode
+        $nVersao = '100'; //vers√£o do QRCode
         
         $dhHex = self::str2Hex($dhEmi);
         $digHex = self::str2Hex($digVal);
@@ -772,7 +772,7 @@ class DanfeNFCeNFePHP extends CommonNFePHP implements DocumentoNFePHP
         $seq .= '&vICMS=' . $vICMS;
         $seq .= '&digVal=' . strtoupper($digHex);
         $seq .= '&cIdToken=' . $idToken.$Token;
-        //o hash code È calculado com o Token incluso
+        //o hash code √© calculado com o Token incluso
         $hash = sha1($seq);
         $seq .= '&cHashQRCode='.$hash;
         if (strpos($url, '?') === false) {

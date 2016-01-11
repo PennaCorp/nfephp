@@ -1,29 +1,29 @@
 <?php
 
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
  * 
- * Esta classe atende aos critÈrios estabelecidos no
- * Manual de ImportaÁ„o/ExportaÁ„o TXT Notas Fiscais eletrÙnicas vers„o 2.0.0
+ * Esta classe atende aos crit√©rios estabelecidos no
+ * Manual de Importa√ß√£o/Exporta√ß√£o TXT Notas Fiscais eletr√¥nicas vers√£o 2.0.0
  *
  * @package     NFePHP
  * @name        UnConvertNFePHP
@@ -42,13 +42,13 @@
  *              Clauber Santos <cload_info at yahoo dot com dot br>
  *              Crercio <crercio at terra dot com dot br>
  *              Diogo Mosela <diego dot caicai at gmail dot com>
- *              Eduardo Gusm„o <eduardo dot intrasis at gmail dot com>
+ *              Eduardo Gusm√£o <eduardo dot intrasis at gmail dot com>
  *              Elton Nagai <eltaum at gmail dot com>
  *              Fabio Ananias Silva <binhoouropreto at gmail dot com>
  *              Giovani Paseto <giovaniw2 at gmail dot com>
  *              Giuliano Nascimento <giusoft at hotmail dot com>
  *              Helder Ferreira <helder.mauricicio at gmail dot com>
- *              Jo„o Eduardo Silva CorrÍa <jscorrea2 at gmail dot com>
+ *              Jo√£o Eduardo Silva Corr√™a <jscorrea2 at gmail dot com>
  *              Leandro C. Lopez <leandro.castoldi at gmail dot com>
  *              Leandro G. Santana <leandrosantana1 at gmail dot com>
  *              Marcos Diez <marcos at unitron dot com dot br>
@@ -77,11 +77,11 @@ class UnConvertNFePHP
 
     /**
      * nfexml2txt
-     * MÈtodo de convers„o das NFe de xml para txt, conforme
-     * especificaÁıes do Manual de ImportaÁ„o/ExportaÁ„o TXT
-     * Notas Fiscais eletrÙnicas Vers„o 2.0.0
-     * Referente ao modelo de NFe contido na vers„o 4.01
-     * do manual de integraÁ„o da NFe
+     * M√©todo de convers√£o das NFe de xml para txt, conforme
+     * especifica√ß√µes do Manual de Importa√ß√£o/Exporta√ß√£o TXT
+     * Notas Fiscais eletr√¥nicas Vers√£o 2.0.0
+     * Referente ao modelo de NFe contido na vers√£o 4.01
+     * do manual de integra√ß√£o da NFe
      *
      * @name nfexml2txt
      * @param mixed string ou array $arq Paths dos arquivos xmls
@@ -89,7 +89,7 @@ class UnConvertNFePHP
      */
     public function nfexml2txt($arq)
     {
-        //verificar se a string passada como parametro È string ou array
+        //verificar se a string passada como parametro √© string ou array
         if (is_array($arq)) {
             $matriz = $arq;
         } else {
@@ -98,7 +98,7 @@ class UnConvertNFePHP
         //para cada nf passada na matriz
         $contNotas = 0;
         foreach ($matriz as $file) {
-            //carregar o conte˙do do arquivo xml em uma string
+            //carregar o conte√∫do do arquivo xml em uma string
             if (is_file($file)) {
                 $xml = file_get_contents($file);
             } else {
@@ -108,18 +108,18 @@ class UnConvertNFePHP
             $dom = new DOMDocument('1.0', 'utf-8');
             //carregar o xml no objeto DOM
             if (!$dom->loadXML($xml)) {
-                $this->errMsg = 'O arquivo indicado como NFe n„o È um XML!';
+                $this->errMsg = 'O arquivo indicado como NFe n√£o √© um XML!';
                 $this->errStatus = true;
                 return false;
             }
-            //È um xml => verificar se È uma NFe
+            //√© um xml => verificar se √© uma NFe
             $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
             if (!isset($infNFe)) {
-                $this->errMsg = 'O arquivo indicado como NFe n„o È uma NFe!';
+                $this->errMsg = 'O arquivo indicado como NFe n√£o √© uma NFe!';
                 $this->errStatus = true;
                 return false;
             }
-            // È uma NFe => transformar em txt
+            // √© uma NFe => transformar em txt
             $contNotas++;
             //tansforma no xml => txt
             $txt .= $this->cxtt($dom);
@@ -136,7 +136,7 @@ class UnConvertNFePHP
     private function cxtt($dom)
     {
         $txt = '';
-        //carregar os grupos de dados possÌveis da NFe
+        //carregar os grupos de dados poss√≠veis da NFe
         $nfeProc = $dom->getElementsByTagName("nfeProc")->item(0);
         $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
         $ide = $dom->getElementsByTagName("ide")->item(0);
@@ -163,7 +163,7 @@ class UnConvertNFePHP
         $exporta = $dom->getElementsByTagName("exporta")->item(0);
         $compra = $dom->getElementsByTagName("compra")->item(0);
         $cana = $dom->getElementsByTagName("cana")->item(0);
-        //A|vers„o do schema|id|
+        //A|vers√£o do schema|id|
         $id = $infNFe->getAttribute("Id") ? $infNFe->getAttribute("Id") : '';
         $versao = $infNFe->getAttribute("versao");
         $txt .= "A|$versao|$id|\r\n";
@@ -203,7 +203,7 @@ class UnConvertNFePHP
                 }
             }
         } //fim refNFe
-        //B14|cUF|AAMM(ano mÍs)|CNPJ|Mod|serie|nNF|
+        //B14|cUF|AAMM(ano m√™s)|CNPJ|Mod|serie|nNF|
         if (isset($refNF)) {
             foreach ($refNF as $x => $k) {
                 $cUF = !empty($refNF->item($x)->getElementsByTagName('cUF')->nodeValue) ?
@@ -480,7 +480,7 @@ class UnConvertNFePHP
         $vNF = !empty($ICMSTot->getElementsByTagName("vNF")->item(0)->nodeValue) ?
                 $ICMSTot->getElementsByTagName("vNF")->item(0)->nodeValue : '';
         //lei da transparencia 12.741/12
-        //Nota TÈcnica 2013/003
+        //Nota T√©cnica 2013/003
         $vTotTrib = !empty($ICMSTot->getElementsByTagName("$vTotTrib")->item(0)->nodeValue) ?
                 $ICMSTot->getElementsByTagName("$vTotTrib")->item(0)->nodeValue : '';
         if ($vTotTrib == '') {
@@ -507,7 +507,7 @@ class UnConvertNFePHP
                     $ISSQNTot->getElementsByTagName("vCOFINS")->item(0)->nodeValue : '';
             $txt .= "W17|$vServ|$vBC|$vISS|$vPIS|$vCOFINS|\r\n";
         } //fim ISSQNtot
-        //monta dados da RetenÁ„o de tributos
+        //monta dados da Reten√ß√£o de tributos
         if (isset($retTrib)) {
             //W23|VRetPIS|VRetCOFINS|VRetCSLL|VBCIRRF|VIRRF|VBCRetPrev|VRetPrev|
             $vRetPIS = !empty($retTrib->getElementsByTagName("vRetPIS")->item(0)->nodeValue) ?
@@ -564,7 +564,7 @@ class UnConvertNFePHP
                     $txt .= "X05|$CPF|\r\n";
                 }
             } // fim transporta
-            //monta dados da retenÁ„o tribut·ria de transporte
+            //monta dados da reten√ß√£o tribut√°ria de transporte
             if (isset($retTransp)) {
                 $vServ = !empty($retTransp->getElementsByTagName("vServ")->item(0)->nodeValue) ?
                         $retTransp->getElementsByTagName("vServ")->item(0)->nodeValue : '';
@@ -581,7 +581,7 @@ class UnConvertNFePHP
                 //X11|VServ|VBCRet|PICMSRet|VICMSRet|CFOP|CMunFG|
                 $txt .= "X11|$vServ|$vBCRet|$pICMSRet|$vICMSRet|$CFOP|$cMunFG|\r\n";
             } // fim rettransp
-            //monta dados de identificaÁ„o dos veiculos utilizados no transporte
+            //monta dados de identifica√ß√£o dos veiculos utilizados no transporte
             if (isset($veicTransp)) {
                 //X18|Placa|UF|RNTC|
                 $placa = !empty($veicTransp->getElementsByTagName("placa")->item(0)->nodeValue) ?
@@ -592,7 +592,7 @@ class UnConvertNFePHP
                         $veicTransp->getElementsByTagName("RNTC")->item(0)->nodeValue : '';
                 $txt .= "X18|$placa|$UF|$RNTC|\r\n";
             } //fim veicTransp
-            //monta dados de identificaÁ„o dos reboques utilizados no transporte
+            //monta dados de identifica√ß√£o dos reboques utilizados no transporte
             if (isset($reboque)) {
                 foreach ($reboque as $n => $reb) {
                     $placa = !empty($reboque->item($n)->getElementsByTagName("placa")->item(0)->nodeValue) ?
@@ -635,7 +635,7 @@ class UnConvertNFePHP
                 } //fim foreach volumes
             } //fim vol
         }//fim monta transp
-        //monta dados de cobranÁa
+        //monta dados de cobran√ßa
         if (isset($cobr)) {
             //instancia sub grupos da tag cobr
             $fat = $dom->getElementsByTagName('fat')->item(0);
@@ -668,7 +668,7 @@ class UnConvertNFePHP
                 } //fim foreach
             } //fim dup
         } //fim cobr
-        //monta dados das informaÁıes adicionais da NFe
+        //monta dados das informa√ß√µes adicionais da NFe
         if (isset($infAdic)) {
             //instancia sub grupos da tag infAdic
             $obsCont = $infAdic->getElementsByTagName('obsCont');
@@ -682,7 +682,7 @@ class UnConvertNFePHP
                     $infAdic->getElementsByTagName("infCpl")->item(0)->nodeValue : '';
             $txt .= "Z|$infAdFisco|$infCpl|\r\n";
 
-            //monta dados de observaÁoes da NFe
+            //monta dados de observa√ßoes da NFe
             if (isset($obsCont)) {
                 foreach ($obsCont as $n => $oC) {
                     //Z04|XCampo|XTexto|
@@ -716,7 +716,7 @@ class UnConvertNFePHP
                 } //fim foreach
             } //fim procRef
         } //fim infAdic
-        //monta dados de exportaÁ„o
+        //monta dados de exporta√ß√£o
         if (isset($exporta)) {
             //ZA|UFEmbarq|XLocEmbarq|
             $UFEmbarq = !empty($exporta->getElementsByTagName("UFEmbarq")->item(0)->nodeValue) ?
@@ -769,7 +769,7 @@ class UnConvertNFePHP
                     $txt .= "ZC04|$dia|$qtde|\r\n";
                 } //fim foreach
             } //fim fordia
-            //monta dados grupo deduÁıes
+            //monta dados grupo dedu√ß√µes
             if (isset($deduc)) {
                 foreach ($deduc as $n => $pR) {
                     //ZC10|xDed|vDed|
@@ -793,7 +793,7 @@ class UnConvertNFePHP
     private function getItens($det)
     {
         $txt = '';
-        //instanciar uma vari·vel para contagem
+        //instanciar uma vari√°vel para contagem
         $i = 0;
         foreach ($det as $d) {
             //H|nItem|infAdProd|
@@ -910,10 +910,10 @@ class UnConvertNFePHP
                             $vDescDI = !empty($adi->item($y)->getElementsByTagName("vDescDI")->item(0)->nodeValue) ?
                                     $adi->item($y)->getElementsByTagName("vDescDI")->item(0)->nodeValue : '';
                             $txt .= "I25|$nAdicao|$nSeqAdic|$cFabricante|$vDescDI|\r\n";
-                        } //fim adiÁ„o
+                        } //fim adi√ß√£o
                     }
                 }
-            } //fim importaÁ„o
+            } //fim importa√ß√£o
             //v2=>J|TpOp|Chassi|CCor|XCor|Pot|cilin|pesoL|pesoB|NSerie|TpComb|NMotor|CMT|Dist|
             //	anoMod|anoFab|tpPint|tpVeic|espVeic|VIN|condVeic|cMod|cCorDENATRAN|lota|tpRest|
             if (isset($veicProd)) {
@@ -1027,7 +1027,7 @@ class UnConvertNFePHP
             } //fim combustiveis
             //M|
             //lei da transparencia 12.741/12
-            //Nota TÈcnica 2013/003
+            //Nota T√©cnica 2013/003
             $vTotTrib = !empty($imposto->getElementsByTagName("vTotTrib")->item(0)->nodeValue) ?
                     $imposto->getElementsByTagName("vTotTrib")->item(0)->nodeValue : '';
             if ($vTotTrib == '') {
@@ -1072,7 +1072,7 @@ class UnConvertNFePHP
             $motDesICMS = !empty($ICMS->getElementsByTagName("motDesICMS")->item(0)->nodeValue) ?
                     $ICMS->getElementsByTagName("motDesICMS")->item(0)->nodeValue : '';
             switch ($CST) {
-                // a melhor maneira n„o È CST... DEPOIS PRECISA PASSAR PARA CADA TAG <ICMSST> por ex.
+                // a melhor maneira n√£o √© CST... DEPOIS PRECISA PASSAR PARA CADA TAG <ICMSST> por ex.
                 case '00': //CST 00 TRIBUTADO INTEGRALMENTE
                     // N02|Orig|CST|ModBC|VBC|PICMS|VICMS|
                     $txt .= "N02|$orig|$CST|$modBC|$vBC|$pICMS|$vICMS|\r\n";
@@ -1104,7 +1104,7 @@ class UnConvertNFePHP
                     // N08|Orig|CST|VBCST|VICMSST|
                     $txt .= "N08|$orig|$CST|$vBCST|$vICMSST|\r\n";
                     break;
-                case '70': //CST 70 - Com reduÁ„o de base de c·lculo e cobranÁa do ICMS por substituiÁ„o tribut·ria
+                case '70': //CST 70 - Com redu√ß√£o de base de c√°lculo e cobran√ßa do ICMS por substitui√ß√£o tribut√°ria
                     // N09|Orig|CST|ModBC|PRedBC|VBC|PICMS|VICMS|ModBCST|PMVAST|PRedBCST|VBCST|PICMSST|VICMSST|
                     $txt .= "N09|$orig|$CST|$modBC|$pRedBC|$vBC|$pICMS|$vICMS|$modBCST|$pMVAST|$pRedBCST
                         |$vBCST|$pICMSST|$vICMSST|\r\n";
@@ -1114,12 +1114,12 @@ class UnConvertNFePHP
                     $txt .= "N10|$orig|$CST|$modBC|$pRedBC|$vBC|$pICMS|$vICMS|$modBCST|$pMVAST|$pRedBCST
                         |$vBCST|$pICMSST|$vICMSST|\r\n";
                     break;
-                // case '??':	// CST - ???	alguns campos s„o novos (v2.0)
+                // case '??':	// CST - ???	alguns campos s√£o novos (v2.0)
                 // N10a|Orig|CST|ModBC|PRedBC|VBC|PICMS|VICMS|ModBCST|PMVAST|PRedBCST|VBCST|PICMSST|VICMSST|pBCOp|UFST|
                 //	$txt .= "N10a|$orig|$CST|$modBC|$pRedBC|$vBC|$pICMS|$vICMS|$modBCST
                 //	|$pMVAST|$pRedBCST|$vBCST|$pICMSST|$vICMSST|$pBCOp|$UFST|\r\n";
                 //	break;
-                // case '??':	// CST - ???	alguns campos s„o novos (v2.0)
+                // case '??':	// CST - ???	alguns campos s√£o novos (v2.0)
                 // N10b|Orig|CST|vBCSTRet|vICMSSTRet|vBCSTDest|vICMSSTDest|
                 //	$txt .= "N10b|$orig|$CST|$vBCSTRet|$vICMSSTRet|$vBCSTDest|$vICMSSTDest|\r\n";
                 //	break;
@@ -1172,7 +1172,7 @@ class UnConvertNFePHP
                 $cEnq = !empty($IPI->getElementsByTagName("cEnq")->item(0)->nodeValue) ?
                         $IPI->getElementsByTagName("cEnq")->item(0)->nodeValue : '';
                 $txt .= "O|$clEnq|$CNPJProd|$cSelo|$qSelo|$cEnq|\r\n";
-                //grupo de tributaÁ„o de IPI NAO TRIBUTADO
+                //grupo de tributa√ß√£o de IPI NAO TRIBUTADO
                 $IPINT = $IPI->getElementsByTagName("IPINT")->item(0);
                 if (isset($IPINT)) {
                     // O08|CST|
@@ -1180,7 +1180,7 @@ class UnConvertNFePHP
                             $IPINT->getElementsByTagName("CST")->item(0)->nodeValue : '';
                     $txtIPI = "O08|$CST|\r\n";
                 }
-                //grupo de tributaÁ„o de IPI
+                //grupo de tributa√ß√£o de IPI
                 $IPITrib = $IPI->getElementsByTagName("IPITrib")->item(0);
                 if (isset($IPITrib)) {
                     $CST = (string) !empty($IPITrib->getElementsByTagName("CST")->item(0)->nodeValue) ?
@@ -1315,7 +1315,7 @@ class UnConvertNFePHP
                     $txt .= "Q03|$CST|$qBCProd|$vAliqProd|$vPIS|\r\n";
                 }
                 if ($CST == '04' || $CST == '06' || $CST == '07' || $CST == '08' || $CST == '09') {
-                    //PIS n„o tributado
+                    //PIS n√£o tributado
                     //Q04|CST|
                     $txt .= "Q04|$CST|\r\n";
                 }
@@ -1332,7 +1332,7 @@ class UnConvertNFePHP
                     }
                 }
             } //fim PIS
-            //monta dados do PIS em SubstituiÁ„o Tribut·ria
+            //monta dados do PIS em Substitui√ß√£o Tribut√°ria
             if (isset($PISST)) {
                 $vPIS = !empty($PISST->getElementsByTagName("vPIS")->item(0)->nodeValue) ?
                         $PISST->getElementsByTagName("vPIS")->item(0)->nodeValue : '';
@@ -1394,7 +1394,7 @@ class UnConvertNFePHP
                     }
                 }
             } //fim COFINS
-            //monta dados do COFINS em SubstituiÁ„o Tribut·ria
+            //monta dados do COFINS em Substitui√ß√£o Tribut√°ria
             if (isset($COFINSST)) {
                 $vCOFINS = !empty($COFINSST->getElementsByTagName("vCOFINS")->item(0)->nodeValue) ?
                         $COFINSST->getElementsByTagName("vCOFINS")->item(0)->nodeValue : '';

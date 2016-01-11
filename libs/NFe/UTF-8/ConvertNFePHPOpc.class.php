@@ -7,12 +7,12 @@ class ConvertNfeNFePHP
     public $campos_v200=array(
                 // nomes errados no manual (baseado no nome dos campos XML)
         'A'    =>'A|versao|Id|',
-            //'A|vers„o do schema|id|'
+            //'A|vers√£o do schema|id|'
         'B'    =>'B|cUF|cNF|natOp|indPag|mod|serie|nNF|dEmi|dSaiEnt|hSaiEnt|tpNF|cMunFG|tpImp|tpEmis|cDV|tpAmb|finNFe|procEmi|verProc|dhCont|xJust|',
             //'B|cUF|cNF|NatOp|intPag|mod|serie|nNF|dEmi|dSaiEnt|hSaiEnt|tpNF|cMunFG|TpImp|TpEmis|cDV|tpAmb|finNFe|procEmi|VerProc|dhCont|xJust|'
         'B13'    =>'B13|refNFe|',
         'B14'    =>'B14|cUF|AAMM|CNPJ|mod|serie|nNF|',
-            //'B14|cUF|AAMM(ano mÍs)|CNPJ|Mod|serie|nNF|'
+            //'B14|cUF|AAMM(ano m√™s)|CNPJ|Mod|serie|nNF|'
         'B20a'    =>'B20a|cUF|AAMM|IE|mod|serie|nNF|',
         'B20d'    =>'B20d|CNPJ|',
         'B20e'    =>'B20e|CPF|',
@@ -78,8 +78,8 @@ class ConvertNfeNFePHP
         'N10f'    =>'N10f|orig|CSOSN|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|',
         'N10g'    =>'N10g|orig|CSOSN|modBCST|vBCSTRet|vICMSSTRet|',
         'N10h'    =>'N10h|orig|CSOSN|modBC|vBC|pRedBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|pCredSN|vCredICMSSN|',
-            // GRUPO Nxxx - ESSE DIGITARAM BEMMM DIFERENTE em todos tem diferenÁa... resumo:
-            // 'Orig' => 'orig'    ( atenÁ„o, no manual do XML (pois È...) esta alguns campos do simples nacional como 'Orig', e est„o errados... s„o 'orig', segundo o aplicativo do governo )
+            // GRUPO Nxxx - ESSE DIGITARAM BEMMM DIFERENTE em todos tem diferen√ßa... resumo:
+            // 'Orig' => 'orig'    ( aten√ß√£o, no manual do XML (pois √©...) esta alguns campos do simples nacional como 'Orig', e est√£o errados... s√£o 'orig', segundo o aplicativo do governo )
             // 'ModBC' => 'modBC'
             // 'VBC' => 'vBC'
             // 'PICMS' => 'pICMS'
@@ -149,7 +149,7 @@ class ConvertNfeNFePHP
             //'X|ModFrete|'
         'X03'    =>'X03|xNome|IE|xEnder|UF|xMun|',
             //'X03|XNome|IE|XEnder|UF|XMun|'
-                // o certo seria primeiro xmun, depois uf, pois È como est· no XML....
+                // o certo seria primeiro xmun, depois uf, pois √© como est√° no XML....
         'X04'    =>'X04|CNPJ|',
         'X05'    =>'X05|CPF|',
         'X11'    =>'X11|vServ|vBCRet|pICMSRet|vICMSRet|CFOP|cMunFG|',
@@ -306,11 +306,11 @@ class ConvertNfeNFePHP
         // CARREGA ARQUIVO
         $RETURN=array(    'erros'    =>array(),
                 'avisos'=>array(),
-                'xml'    =>array());    // erros de interpretaÁ„o do arquivo
+                'xml'    =>array());    // erros de interpreta√ß√£o do arquivo
         if(is_file($txt))
             $txt=file_get_contents($txt);
         // PROCESSA STRING E GERA ARRAY
-        $txt=$this->_TXT2XML_processa_txt($txt);    // esta funÁ„o gera erros de interpretaÁ„o do arquivo e separa as notas do arquivo
+        $txt=$this->_TXT2XML_processa_txt($txt);    // esta fun√ß√£o gera erros de interpreta√ß√£o do arquivo e separa as notas do arquivo
         $RETURN['erros']    =array_merge($RETURN['erros'],$txt['erros']);
         $RETURN['avisos']    =array_merge($RETURN['avisos'],$txt['avisos']);
         foreach($txt['docs'] as $k=>$v)        // esta interpreta linha a linha das notas
@@ -318,7 +318,7 @@ class ConvertNfeNFePHP
         return($RETURN);
     }
     private function _TXT2XML_processa_txt_converte_versao($array){
-        // converte o array para o array da ultima vers„o (exemplo, de 1.00 para 2.00)
+        // converte o array para o array da ultima vers√£o (exemplo, de 1.00 para 2.00)
         return(array());    // atualmente retorna em branco
     }
     private function _TXT2XML_processa_txt_tag_embranco($MSG_PADRAO,$TAG_EMBRANCO,$campos,& $RETURN, & $cur_nota_tags, $cur_nota){
@@ -338,12 +338,12 @@ class ConvertNfeNFePHP
         if(!is_array($v))
             $v=array();
         if(count($v)!=count($campos))
-            $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") È diferente de ".count($campos);
+            $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") √© diferente de ".count($campos);
         for($i=1;$i<count($campos);$i++){
             if(trim($campos[$i])==='')
                 continue;
             if(!isset($v[$i])){
-                $RETURN['erros'][]="$MSG_PADRAO Campo [$i] '".$campos[$i]."' n„o informado.";
+                $RETURN['erros'][]="$MSG_PADRAO Campo [$i] '".$campos[$i]."' n√£o informado.";
                 $v[$i]='';
             }
             $ret[ $campos[$i] ]=$v[$i];
@@ -355,7 +355,7 @@ class ConvertNfeNFePHP
             return;
         if(    !in_array($last_tag,    $this->campos_v200_lasttag[$cur_tag]) && 
             !is_array(        $this->campos_v200_lasttag[$cur_tag]))
-            $RETURN['erros'][]="$MSG_PADRAO Ultima tag $last_tag, n„o esta em: ". 
+            $RETURN['erros'][]="$MSG_PADRAO Ultima tag $last_tag, n√£o esta em: ". 
                 implode(', ',    $this->campos_v200_lasttag[$cur_tag]);
         return;
     }
@@ -363,8 +363,8 @@ class ConvertNfeNFePHP
         // processa arquivo TXT (string) e gera um array das notas
         
         $RETURN=array(
-            'erros'        =>array(),    // erros de importaÁ„o independente de qual nota esta...
-            'avisos'    =>array(),    // avisos de importaÁ„o independente de qual nota esta...
+            'erros'        =>array(),    // erros de importa√ß√£o independente de qual nota esta...
+            'avisos'    =>array(),    // avisos de importa√ß√£o independente de qual nota esta...
             'docs'        =>array()    // notas
             );
             
@@ -377,7 +377,7 @@ class ConvertNfeNFePHP
             'R','R02','R04','S','S02','S03','S04','S05','S07','S09','T','T02','T04');
         
         
-        // o arquivo TXT È feito em latin1, È OBRIGAT”RIO a convers„o para UTF-8 que È o padr„o do XML
+        // o arquivo TXT √© feito em latin1, √© OBRIGAT√ìRIO a convers√£o para UTF-8 que √© o padr√£o do XML
         if (preg_match("/^[\\x00-\\xFF]*$/u", $string) === 1){    // charset do latin1
             $string=utf8_encode($string);
         }elseif(preg_match("%(?:".
@@ -389,7 +389,7 @@ class ConvertNfeNFePHP
                 "|[\xF1-\xF3][\x80-\xBF]{3}".                  # planes 4-15
                 "|\xF4[\x80-\x8F][\x80-\xBF]{2}".    # plane 16
                 ")+%xs", $string)!==1){
-            $RETURN['avisos'][]="AtenÁ„o arquivo n„o est· na codificaÁ„o LATIN1, nem UTF-8.";
+            $RETURN['avisos'][]="Aten√ß√£o arquivo n√£o est√° na codifica√ß√£o LATIN1, nem UTF-8.";
         }
         $string        =explode("\n",str_replace("\r",'',$string));    // remove \r dos \r\n, ou \n\r e explode arquivo 
         $tot_notas    =-1;
@@ -406,7 +406,7 @@ class ConvertNfeNFePHP
             
             
             
-            $v=explode("|",$v);    // divide a linha pelos campos, neste caso n„o existe um arquivo CSV conforme o padr„o, e sim o padr„o da receita, ou seja n„o existe encapsulamento, quebra de linha e coisas do genero
+            $v=explode("|",$v);    // divide a linha pelos campos, neste caso n√£o existe um arquivo CSV conforme o padr√£o, e sim o padr√£o da receita, ou seja n√£o existe encapsulamento, quebra de linha e coisas do genero
             $TAG=$v[0];
             $MSG_PADRAO="[Linha $cur_linha, Nota $cur_nota, TAG $TAG]";
             
@@ -418,9 +418,9 @@ class ConvertNfeNFePHP
                 $MSG_PADRAO="[Linha $cur_linha, TAG $TAG]";
                 $this->_TXT2XML_verifica_last_tag($this->campos_v200_lasttag, $last_tag, $TAG, $RETURN);
                 if(count($v)!=count($campos))
-                    $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") È diferente de ".count($campos);
+                    $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") √© diferente de ".count($campos);
                 if(!isset($v[1])){
-                    $RETURN['avisos'][]="$MSG_PADRAO campo 'qtd notas fiscais no arquivo' n„o informado, considerando como 0";
+                    $RETURN['avisos'][]="$MSG_PADRAO campo 'qtd notas fiscais no arquivo' n√£o informado, considerando como 0";
                     $v[1]=0;
                 }elseif((double)$v[1]<=0){
                     $RETURN['avisos'][]="$MSG_PADRAO campo 'qtd notas fiscais no arquivo' menor igual a 0";
@@ -435,8 +435,8 @@ class ConvertNfeNFePHP
                 $last_tag=$TAG;
                 continue;
             }elseif($TAG==='A'){
-                //A|vers„o do schema|id| 
-                $campos=explode('|',$this->campos_v200[$TAG]);    // $this->campos_v200[$TAG] È oq tem mais campos
+                //A|vers√£o do schema|id| 
+                $campos=explode('|',$this->campos_v200[$TAG]);    // $this->campos_v200[$TAG] √© oq tem mais campos
                 // cria nova nota
                 $cur_nota++;
                 $cur_nota_tags    =array();
@@ -444,19 +444,19 @@ class ConvertNfeNFePHP
                 $MSG_PADRAO="[Linha $cur_linha, Nota $cur_nota, TAG $TAG]";
                 $this->_TXT2XML_verifica_last_tag($this->campos_v200_lasttag, $last_tag, $TAG, $RETURN);
                 if(count($v)!=count($campos))
-                    $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag È diferente de ".count($campos);
+                    $RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag √© diferente de ".count($campos);
                 if(!isset($v[1])){
-                    $RETURN['erros'][]="$MSG_PADRAO campo 'versao' n„o informado, considerando como 2.00";
+                    $RETURN['erros'][]="$MSG_PADRAO campo 'versao' n√£o informado, considerando como 2.00";
                 }elseif($v[1]!=='2.00'){
-                    $RETURN['aviso'][]="$MSG_PADRAO campo 'versao' diferente de 2.00, esta n„o È a ultima vers„o da NFe";
-                    //if($v[1]!=='1.00')    // assim que fizer a convers„o de vers„o 1.00 para 2.00, tirar o comentario desta linha e da inferior
-                    //    $RETURN['erros'][]="$MSG_PADRAO campo 'vers„o do schema' diferente de 1.00, esta vers„o n„o È reconhecida para convers„o TXT-XML";
+                    $RETURN['aviso'][]="$MSG_PADRAO campo 'versao' diferente de 2.00, esta n√£o √© a ultima vers√£o da NFe";
+                    //if($v[1]!=='1.00')    // assim que fizer a convers√£o de vers√£o 1.00 para 2.00, tirar o comentario desta linha e da inferior
+                    //    $RETURN['erros'][]="$MSG_PADRAO campo 'vers√£o do schema' diferente de 1.00, esta vers√£o n√£o √© reconhecida para convers√£o TXT-XML";
                 }
                 if(!isset($v[2])){
-                    $RETURN['avisos'][]="$MSG_PADRAO campo 'id' n„o informado, considerando como em branco";
+                    $RETURN['avisos'][]="$MSG_PADRAO campo 'id' n√£o informado, considerando como em branco";
                     $v[2]='';
                 }elseif(strlen($v[2])!=47 && strlen($v[2])!=0){
-                    $RETURN['avisos'][]="$MSG_PADRAO campo 'id', quantidade de caracteres (".strlen($v[2]).") n„o È igual a 47, a chave da NFe dever· ser calculada";
+                    $RETURN['avisos'][]="$MSG_PADRAO campo 'id', quantidade de caracteres (".strlen($v[2]).") n√£o √© igual a 47, a chave da NFe dever√° ser calculada";
                 }
                 $cur_versao=$v[1];
                 $RETURN['docs'][$cur_nota]=array();
@@ -467,9 +467,9 @@ class ConvertNfeNFePHP
                 $last_tag=$TAG;
                 continue;
             }elseif($cur_versao==='2.00'){
-                ///////////////// VERS√O 2.00
+                ///////////////// VERS√ÉO 2.00
                 if(!isset($this->campos_v200[$TAG])){
-                    $RETURN['erros'][]="$MSG_PADRAO Tag n„o existe no layout TXT";
+                    $RETURN['erros'][]="$MSG_PADRAO Tag n√£o existe no layout TXT";
                     continue;
                 }
                 $campos=explode("|",$this->campos_v200[$TAG]);
@@ -509,7 +509,7 @@ class ConvertNfeNFePHP
                             $last_tag='I18';
                         }
                     }
-                    // TAGS 'J' - VEICULO S” PODE 1 POR ITEM
+                    // TAGS 'J' - VEICULO S√ì PODE 1 POR ITEM
                     if($TAG=='J'){
                         if($cur_nota_tags[$TAG]!=1){
                             $RETURN['erros'][]="$MSG_PADRAO TAG informada mais de uma vez, ignorando linha. #01";
@@ -687,7 +687,7 @@ class ConvertNfeNFePHP
                     }
                     if(    ($TAG===substr($TAG,0,1).'02' && isset($cur_nota_tags[substr($TAG,0,1).'02a'])) || 
                         ($TAG===substr($TAG,0,1).'02a' && isset($cur_nota_tags[substr($TAG,0,1).'02']))    ){
-                        $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j· informada'.";
+                        $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j√° informada'.";
                         continue;
                     }
                 }elseif($TAG==='E02' || $TAG==='E03'){
@@ -703,7 +703,7 @@ class ConvertNfeNFePHP
                     }
                     if(    ($TAG==='E02' && isset($cur_nota_tags['E03'])) || 
                         ($TAG==='E03' && isset($cur_nota_tags['E02']))    ){
-                        $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j· informada.";
+                        $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j√° informada.";
                         continue;
                     }
                 // TAGS W
@@ -741,7 +741,7 @@ class ConvertNfeNFePHP
                         }
                         if(    ($TAG==='X04' && isset($cur_nota_tags['X05'])) || 
                             ($TAG==='X05' && isset($cur_nota_tags['X04']))    ){
-                            $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j· informadas.";
+                            $RETURN['erros'][]="$MSG_PADRAO TAG informada incorretamente, tags opcionais j√° informadas.";
                             continue;
                         }
                     }
@@ -789,7 +789,7 @@ class ConvertNfeNFePHP
                         $RETURN['erros'][]="$MSG_PADRAO TAG informada mais 10 vezes, ignorando linha.";
                         continue;
                     }
-                // OUTRAS TAGS QUE S” PRECISAM VERIFICAR SE N√O EST√O REPETIDAS
+                // OUTRAS TAGS QUE S√ì PRECISAM VERIFICAR SE N√ÉO EST√ÉO REPETIDAS
                 }elseif($cur_nota_tags[$TAG]!=1){
                     $RETURN['erros'][]="$MSG_PADRAO TAG informada mais de uma vez, ignorando linha. #09";
                     continue;
@@ -799,15 +799,15 @@ class ConvertNfeNFePHP
                 $last_tag=$TAG;
                 continue;
             }
-            $RETURN['erros'][]="$MSG_PADRAO N„o foi possivel interpretar linha, vers„o atual do schema: $cur_versao";
+            $RETURN['erros'][]="$MSG_PADRAO N√£o foi possivel interpretar linha, vers√£o atual do schema: $cur_versao";
         }
         if($qnt_tag_notas!=1)
-            $RETURN['erros'][]="TAG NOTAFISCAL n„o encontrada no arquivo, atenÁ„o este arquivo pode n„o ser um arquivo TXT de NFe";
+            $RETURN['erros'][]="TAG NOTAFISCAL n√£o encontrada no arquivo, aten√ß√£o este arquivo pode n√£o ser um arquivo TXT de NFe";
 #var_dump($RETURN);
         return($RETURN);
     }
     private function _TXT2XML_processa_array($array_notas,$output_string=true){
-        // processa array (vindo da funÁ„o _TXT2XML_processa_txt) e gera varios arquivos XML ($output_string=true) ou varios objetos Dom ($output_string=false)
+        // processa array (vindo da fun√ß√£o _TXT2XML_processa_txt) e gera varios arquivos XML ($output_string=true) ou varios objetos Dom ($output_string=false)
         if(!is_array($array_notas))
             return(false);
         if(!is_array($array_notas[0]))
@@ -817,7 +817,7 @@ class ConvertNfeNFePHP
         $RETURN=array(    'erros'    =>array(),
                 'avisos'=>array(),
                 'xml'    =>array());
-        // caso n„o seja vers„o 2.00 usar funÁ„o "_TXT2XML_processa_txt_converte_versao($array)" ou fazer um if ($cur_version pra cada campo...)
+        // caso n√£o seja vers√£o 2.00 usar fun√ß√£o "_TXT2XML_processa_txt_converte_versao($array)" ou fazer um if ($cur_version pra cada campo...)
         foreach($array_notas as $knota=>$v){
 #echo "$k => $v\n";
 #print_r($v);
@@ -843,10 +843,10 @@ class ConvertNfeNFePHP
                     $infNFe->setAttribute("Id", $v2['Id']);
                     $infNFe->setAttribute("versao", $v2['versao']);
                 }elseif($cur_version=='2.00'){
-                    // vers„o 2.00
+                    // vers√£o 2.00
                     $MSG_PADRAO="[TAG ".$v2['TAG'].", Nota $knota]";
-                    if(!isset($this->campos_v200[$v2['TAG']])){ //tag n„o existe
-                        $RETURN['avisos'][$knota][]="$MSG_PADRAO TAG ".$v2['TAG']." n„o encontrada nos campos da vers„o 2.00";
+                    if(!isset($this->campos_v200[$v2['TAG']])){ //tag n√£o existe
+                        $RETURN['avisos'][$knota][]="$MSG_PADRAO TAG ".$v2['TAG']." n√£o encontrada nos campos da vers√£o 2.00";
                         continue;
                     }
                     $campos=explode('|',$this->campos_v200[$v2['TAG']]);
@@ -857,13 +857,13 @@ class ConvertNfeNFePHP
                             continue;
                         }
                         if(!isset($v2[$nome_campo])){
-                            $RETURN['avisos'][$knota][]="$MSG_PADRAO Campo $nome_campo n„o encontrada no array de importaÁ„o, considerando como em branco";
-                            $v2[$nome_campo]='';    // cria campo em branco - n„o deve ocorrer!
+                            $RETURN['avisos'][$knota][]="$MSG_PADRAO Campo $nome_campo n√£o encontrada no array de importa√ß√£o, considerando como em branco";
+                            $v2[$nome_campo]='';    // cria campo em branco - n√£o deve ocorrer!
                         }else{
                             $last_len=strlen($v2[$nome_campo]);
                             $v2[$nome_campo]=trim($v2[$nome_campo]);
                             if($last_len!=strlen($v2[$nome_campo])){
-                                $RETURN['avisos'][$knota][]="$MSG_PADRAO Alterado o tamanho do campo $nome_campo apÛs TRIM de $last_len para ".strlen($v2[$nome_campo]);
+                                $RETURN['avisos'][$knota][]="$MSG_PADRAO Alterado o tamanho do campo $nome_campo ap√≥s TRIM de $last_len para ".strlen($v2[$nome_campo]);
                             }
                         }
                     }
@@ -871,7 +871,7 @@ class ConvertNfeNFePHP
                     if($v2['TAG']=='B' && !isset($ide)){
                         $ide = $dom->createElement("ide");
                         if($v2['mod']!=55)
-                            $RETURN['erros'][$knota][]="$MSG_PADRAO campo 'mod' n„o È igual a 55";
+                            $RETURN['erros'][$knota][]="$MSG_PADRAO campo 'mod' n√£o √© igual a 55";
                         foreach($campos as $nome_campo){
                             if($nome_campo=='dSaiEnt' || $nome_campo=='hSaiEnt'){
                                 if(empty($v2['dSaiEnt']))
@@ -933,7 +933,7 @@ class ConvertNfeNFePHP
                             }elseif($v2['TAG']=='B20j'){
                                 $tmp_grupo = $dom->createElement("refECF");
                             }else{
-                                $RETURN['avisos'][$knota][]="$MSG_PADRAO Tag de referencia de nota fiscal n„o implementada para importaÁ„o, ou ja processada";
+                                $RETURN['avisos'][$knota][]="$MSG_PADRAO Tag de referencia de nota fiscal n√£o implementada para importa√ß√£o, ou ja processada";
                                 continue;
                             }
                             foreach($campos as $nome_campo){
@@ -956,13 +956,13 @@ class ConvertNfeNFePHP
                             $C_emit->appendChild( $dom->createElement("IM",        $v2['IM']) );
                         if(!empty($v2['CNAE']))
                             $C_emit->appendChild( $dom->createElement("CNAE",    $v2['CNAE']) );
-                        $C_emit->appendChild( $dom->createElement("CRT",        $v2['CRT']) );    // campo obrigatÛrio, vide manual de integraÁ„o (ocorrÍncia 1-1)
+                        $C_emit->appendChild( $dom->createElement("CRT",        $v2['CRT']) );    // campo obrigat√≥rio, vide manual de integra√ß√£o (ocorr√™ncia 1-1)
                         $infNFe->appendChild($C_emit);
                     }elseif($v2['TAG']=='C02' && isset($C_xNome)){
                         $C_emit->insertBefore( $dom->createElement("CNPJ",        $v2['CNPJ']),    $C_xNome );
                     }elseif($v2['TAG']=='C02a' && isset($C_xNome)){
                         $C_emit->insertBefore( $dom->createElement("CPF",        $v2['CPF']),    $C_xNome );
-                    // emitente endereÁo
+                    // emitente endere√ßo
                     }elseif($v2['TAG']=='C05' && isset($C_emit)){
                         $tmp_grupo = $dom->createElement("enderEmit");
                         $tmp_grupo->appendChild( $dom->createElement("xLgr",         $v2['xLgr']) );
@@ -998,12 +998,12 @@ class ConvertNfeNFePHP
                         if ($B_tpAmb === '2'){
                             $v2['xNome']= 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
                             $v2['IE'] = '';
-                            $RETURN['avisos'][$knota][]="$MSG_PADRAO Campo 'xNome', e 'IE' alterados para ambiente de homologaÁ„o";
+                            $RETURN['avisos'][$knota][]="$MSG_PADRAO Campo 'xNome', e 'IE' alterados para ambiente de homologa√ß√£o";
                         }
                         $E_xNome=$dom->createElement("xNome",         $v2['xNome']);
                         $E_dest->appendChild( $E_xNome );
                         $E_IE=$dom->createElement("IE",     $v2['IE']);
-                        $E_dest->appendChild( $E_IE );        // campo obrigatÛrio, caso esteja vazio dever· ser <IE/> ou <IE></IE>
+                        $E_dest->appendChild( $E_IE );        // campo obrigat√≥rio, caso esteja vazio dever√° ser <IE/> ou <IE></IE>
                         if(!empty($v2['ISUF']))
                             $E_dest->appendChild( $dom->createElement("ISUF",     $v2['ISUF']) );
                         if(!empty($v2['email']))
@@ -1015,7 +1015,7 @@ class ConvertNfeNFePHP
                     }elseif($v2['TAG']=='E03' && isset($E_dest)){
                         if ($B_tpAmb === '2')    continue;    // usar CNPJ...
                         $E_dest->insertBefore($dom->createElement("CPF",            $v2['CPF']),$E_xNome);
-                    // destinatario endereÁo
+                    // destinatario endere√ßo
                     }elseif($v2['TAG']=='E05'){
                         $tmp_grupo = $dom->createElement("enderDest");
                         $tmp_grupo->appendChild( $dom->createElement("xLgr",         $v2['xLgr']) );
@@ -1070,7 +1070,7 @@ class ConvertNfeNFePHP
                         $G_entrega->insertBefore($G_entrega->appendChild( $dom->createElement("CPF", $v2['CPF']) ),$G_xLgr);
                     // ITENS
                     }elseif($v2['TAG']=='H'){
-                        // limpa variaveis pra n„o adiciona informaÁ„o no item errado (o item anterior por exemplo)
+                        // limpa variaveis pra n√£o adiciona informa√ß√£o no item errado (o item anterior por exemplo)
                         unset(    $M_imposto, $I_prod, $I18_DI, $H_infAdProd, 
                             $T_COFINSST, $S05_COFINSOutr, $S_COFINS, $R_PISST, $Q05_PISOutr, $Q_PIS, $P_II, $O_IPI,
                             $O07_IPITrib, $N_ICMS, $L01_comb, $I18_DI, $I_xPed);
@@ -1220,10 +1220,10 @@ class ConvertNfeNFePHP
                         
                         
                         foreach($campos as $nome_campo){
-                            // CAMPO QUE CASO SEJAM EM BRANCO, N√O ENTRAM NO XML:
+                            // CAMPO QUE CASO SEJAM EM BRANCO, N√ÉO ENTRAM NO XML:
                             if(    $v2['TAG']=='N03' || $v2['TAG']=='N05' || $v2['TAG']=='N09' || 
                                 $v2['TAG']=='N10e' || $v2['TAG']=='N10f'){
-                                if(in_array($nome_campo,array('pMVAST','pRedBCST'))){    // sacanagem n„o informar...
+                                if(in_array($nome_campo,array('pMVAST','pRedBCST'))){    // sacanagem n√£o informar...
                                     if(empty($v2[$nome_campo]))
                                         continue;
                                 }
@@ -1370,7 +1370,7 @@ class ConvertNfeNFePHP
                         $W_total = $dom->createElement("total");
                         $infNFe->appendChild($W_total);
                     }elseif($v2['TAG']=='W02' && isset($W_total)){
-                        $tmp_grupo = $dom->createElement("ICMSTot");    // porque diabos È 'icmstot', se È o total da nota
+                        $tmp_grupo = $dom->createElement("ICMSTot");    // porque diabos √© 'icmstot', se √© o total da nota
                         foreach($campos as $nome_campo){
                             if(($nome_campo=='vTotTrib' && $v2[$nome_campo]!='') || $nome_campo!='vTotTrib')
                                 $tmp_grupo->appendChild( $dom->createElement($nome_campo,$v2[$nome_campo]) );
@@ -1414,7 +1414,7 @@ class ConvertNfeNFePHP
                         $X03_transporta->insertBefore($X03_transporta->appendChild( $dom->createElement("CNPJ", $v2['CNPJ']) ),$X03_xNome);
                     }elseif($v2['TAG']=='X05' && isset($X03_transporta) && isset($X03_xNome) && !empty($v2['CPF']) ){
                         $X03_transporta->insertBefore($X03_transporta->appendChild( $dom->createElement("CPF", $v2['CPF']) ),$X03_xNome);
-                    // retenÁ„o transporte
+                    // reten√ß√£o transporte
                     }elseif($v2['TAG']=='X11' && isset($X_transp)){
                         $tmp_grupo = $dom->createElement("retTransp");
                         foreach($campos as $nome_campo)    // tudo obrigatorio
@@ -1455,7 +1455,7 @@ class ConvertNfeNFePHP
                         foreach($campos as $nome_campo)
                             $tmp_grupo->appendChild( $dom->createElement($nome_campo,$v2[$nome_campo]) );
                         $X26_vol->appendChild($tmp_grupo);
-                    // COBRAN«A
+                    // COBRAN√áA
                     }elseif($v2['TAG']=='Y'){
                         $Y_cobr = $dom->createElement("cobr");
                         $infNFe->appendChild($Y_cobr);
@@ -1473,7 +1473,7 @@ class ConvertNfeNFePHP
                             $tmp_grupo->appendChild( $dom->createElement($nome_campo,$v2[$nome_campo]) );
                         }
                         $Y_cobr->appendChild($tmp_grupo);
-                    // INFORMA«’ES ADICIONAIS
+                    // INFORMA√á√ïES ADICIONAIS
                     }elseif($v2['TAG']=='Z'){
                         $Z_infAdic = $dom->createElement("infAdic");
                         foreach($campos as $nome_campo){
@@ -1496,7 +1496,7 @@ class ConvertNfeNFePHP
                         foreach($campos as $nome_campo)
                             $tmp_grupo->appendChild( $dom->createElement($nome_campo,$v2[$nome_campo]) );
                         $Z_infAdic->appendChild($tmp_grupo);
-                    // exportaÁ„o
+                    // exporta√ß√£o
                     }elseif($v2['TAG']=='ZA'){
                         $tmp_grupo = $dom->createElement("exporta");
                         foreach($campos as $nome_campo)
@@ -1547,7 +1547,7 @@ class ConvertNfeNFePHP
                                 '<?xml version="1.0" encoding="UTF-8  standalone="no"?>',
                                 '<?xml version="1.0" encoding="UTF-8"?>',
                                 $RETURN['xml'][$knota]);
-                //remove linefeed, carriage return, tabs e multiplos espaÁos
+                //remove linefeed, carriage return, tabs e multiplos espa√ßos
                 $RETURN['xml'][$knota]= preg_replace('/\s\s+/',' ', $RETURN['xml'][$knota]);
                 $RETURN['xml'][$knota]= str_replace("> <","><", $RETURN['xml'][$knota]);
             }else{
@@ -1559,30 +1559,30 @@ class ConvertNfeNFePHP
     }
     private function __montaChaveXML(& $dom){
         $ide    = $dom->getElementsByTagName("ide")->item(0);
-        if(empty($ide))        return("'ide' n„o encontrado");
+        if(empty($ide))        return("'ide' n√£o encontrado");
         $emit   = $dom->getElementsByTagName("emit")->item(0);
-        if(empty($emit))    return("'emit' n„o encontrado");
+        if(empty($emit))    return("'emit' n√£o encontrado");
         $cUF    = $ide->getElementsByTagName('cUF')->item(0);
-        if(empty($cUF))        return("'cUF' n„o encontrado");        $cUF = $cUF->nodeValue;
+        if(empty($cUF))        return("'cUF' n√£o encontrado");        $cUF = $cUF->nodeValue;
         $dEmi   = $ide->getElementsByTagName('dEmi')->item(0);
-        if(empty($dEmi))    return("'dEmi' n„o encontrado");    $dEmi = $dEmi->nodeValue;
+        if(empty($dEmi))    return("'dEmi' n√£o encontrado");    $dEmi = $dEmi->nodeValue;
         $CNPJ   = $emit->getElementsByTagName('CNPJ')->item(0);
-        if(empty($CNPJ))    return("'CNPJ' n„o encontrado");    $CNPJ = $CNPJ->nodeValue;
+        if(empty($CNPJ))    return("'CNPJ' n√£o encontrado");    $CNPJ = $CNPJ->nodeValue;
         $mod    = $ide->getElementsByTagName('mod')->item(0);
-        if(empty($mod))        return("'mod' n„o encontrado");        $mod = $mod->nodeValue;
+        if(empty($mod))        return("'mod' n√£o encontrado");        $mod = $mod->nodeValue;
         $serie  = $ide->getElementsByTagName('serie')->item(0);
-        if(empty($serie))    return("'serie' n„o encontrado");    $serie = $serie->nodeValue;
+        if(empty($serie))    return("'serie' n√£o encontrado");    $serie = $serie->nodeValue;
         $nNF    = $ide->getElementsByTagName('nNF')->item(0);
-        if(empty($nNF))        return("'nNF' n„o encontrado");        $nNF = $nNF->nodeValue;
+        if(empty($nNF))        return("'nNF' n√£o encontrado");        $nNF = $nNF->nodeValue;
         $tpEmis = $ide->getElementsByTagName('tpEmis')->item(0);
-        if(empty($tpEmis))    return("'tpEmis' n„o encontrado");    $tpEmis = $tpEmis->nodeValue;
+        if(empty($tpEmis))    return("'tpEmis' n√£o encontrado");    $tpEmis = $tpEmis->nodeValue;
         $cNF    = $ide->getElementsByTagName('cNF')->item(0);
-        if(empty($cNF))        return("'cNF' n„o encontrado");        $cNF = $cNF->nodeValue;
+        if(empty($cNF))        return("'cNF' n√£o encontrado");        $cNF = $cNF->nodeValue;
         $cDV    = $ide->getElementsByTagName('cDV')->item(0);
-        if(empty($cDV))        return("'cDV' n„o encontrado");
+        if(empty($cDV))        return("'cDV' n√£o encontrado");
         
         
-        if( strlen($cNF) != 8 ){    // gera o numero aleatÛrio
+        if( strlen($cNF) != 8 ){    // gera o numero aleat√≥rio
             $cNF = $ide->getElementsByTagName('cNF')->item(0)->nodeValue = rand( 0 , 99999999 );
         }
         $tempData = explode("-", $dEmi);
@@ -1604,7 +1604,7 @@ class ConvertNfeNFePHP
         $cDV    = $ide->getElementsByTagName('cDV')->item(0)->nodeValue  = $this->__calculaDV($tempChave);
         $chave  = $tempChave .= $cDV;
         $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
-        if(empty($infNFe))        return("'infNFe' n„o encontrado");
+        if(empty($infNFe))        return("'infNFe' n√£o encontrado");
         $infNFe->setAttribute("Id", "NFe" . $chave);
         return(true);
     } //fim __calculaChave
@@ -1667,35 +1667,35 @@ class ConvertNfeNFePHP
             }
             unset($tmp_xml);
             if(!is_object($dom)){
-                $RETURN['erros'][$knota][]="N„o foi possivel criar o objeto DOMDocument para abrir o conte˙do XML";
+                $RETURN['erros'][$knota][]="N√£o foi possivel criar o objeto DOMDocument para abrir o conte√∫do XML";
                 continue;
             }
             if(get_class($dom)!='DOMDocument'){
-                $RETURN['erros'][$knota][]="Tipo de objeto n„o È DOMDocument";
+                $RETURN['erros'][$knota][]="Tipo de objeto n√£o √© DOMDocument";
                 continue;
             }
             $RETURN['txt'][$knota]='';
             $CUR_TXT=& $RETURN['txt'][$knota];
             $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
             if (!isset($infNFe)){
-                $RETURN['erros'][$knota][]="$MSG_PADRAO Tag infNFe n„o encontrada";
+                $RETURN['erros'][$knota][]="$MSG_PADRAO Tag infNFe n√£o encontrada";
                 continue;
             }
             $versao = $infNFe->getAttribute("versao");
-            /// vamos l·.... processo reverso agora
+            /// vamos l√°.... processo reverso agora
             if($versao=='2.00'){
                 // A
                 $CAMPOS    =explode('|',$this->campos_v200['A']);
                 foreach($CAMPOS as $k=>$v)
                     if($k!=0 && strlen(trim($v))>0)
-                        $CAMPOS[$k]=$infNFe->getAttribute($v);    // sÛ atributos
+                        $CAMPOS[$k]=$infNFe->getAttribute($v);    // s√≥ atributos
                 $CUR_TXT.=implode('|',$CAMPOS)."\n";
                 $MSG_PADRAO="[Nota $knota - ".$CAMPOS[2]."]";
                 
                 // B
                 $ide=$dom->getElementsByTagName("ide")->item(0);
                 if (empty($ide)){
-                    $RETURN['erros'][$knota][]="$MSG_PADRAO Tag ide n„o encontrada";
+                    $RETURN['erros'][$knota][]="$MSG_PADRAO Tag ide n√£o encontrada";
                     continue;
                 }
                 $CAMPOS    =explode('|',$this->campos_v200['B']);
@@ -1819,7 +1819,7 @@ class ConvertNfeNFePHP
                 // C, C02, C02a
                 $infNFe=$dom->getElementsByTagName("infNFe")->item(0);
                 if (empty($infNFe)){
-                    $RETURN['erros'][$knota][]="$MSG_PADRAO Tag infNFe n„o encontrada";
+                    $RETURN['erros'][$knota][]="$MSG_PADRAO Tag infNFe n√£o encontrada";
                     continue;
                 }
                 $emit=$infNFe->getElementsByTagName("emit")->item(0);
@@ -2008,7 +2008,7 @@ class ConvertNfeNFePHP
                         $CUR_TXT.=implode('|',$CAMPOS)."\n";
                     }
                 }
-                // ÕTENS.....
+                // √çTENS.....
                 $det=$infNFe->getElementsByTagName("det");
                 for($cur_item=0;$cur_item<$det->length;$cur_item++){
                     $item=$det->item($cur_item);
@@ -2773,7 +2773,7 @@ class ConvertNfeNFePHP
                         }
                     }
                 }
-                // COBRAN«A
+                // COBRAN√áA
                 // Y02
                 $cobr=$infNFe->getElementsByTagName("cobr")->item(0);
                 if(!empty($cobr)){
@@ -2828,7 +2828,7 @@ class ConvertNfeNFePHP
                     //Z04, Z07, Z10
                     $tmp_grupo=$infAdic->getElementsByTagName("obsCont");
                     // BUGGGGGGGGGGGGGG!!!!
-                    // obsFisco e obsCont -> campo "xCampo" deve vim do atributo e n„o do valor do tagname!!! mudar depois!!!
+                    // obsFisco e obsCont -> campo "xCampo" deve vim do atributo e n√£o do valor do tagname!!! mudar depois!!!
                         
                     if(!empty($tmp_grupo)){
                         for($c = 0; $c<$tmp_grupo->length; $c++){
@@ -2870,7 +2870,7 @@ class ConvertNfeNFePHP
                         }
                     }
                 }
-                // EXPORTA«√O
+                // EXPORTA√á√ÉO
                 // ZA
                 $tmp_grupo=$infNFe->getElementsByTagName("exporta")->item(0);
                 if(!empty($tmp_grupo)){
@@ -2964,18 +2964,18 @@ class ConvertNfeNFePHP
 FORMATO TXT:
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-VERS√O 2.00
+VERS√ÉO 2.00
     NOTA FISCAL|qtd notas fiscais no arquivo| 
-    A|vers„o do schema|id| 
+    A|vers√£o do schema|id| 
     B|cUF|cNF|NatOp|intPag|mod|serie|nNF|dEmi|dSaiEnt|hSaiEnt|tpNF|cMunFG|TpImp|TpEmis|cDV|tpAmb|finNFe|procEmi|VerProc|dhCont|xJust| 
         [0 a N] { 
-            [seleÁ„o entre B13 ou B14 ou B20a ou B20i ou B20j]{
+            [sele√ß√£o entre B13 ou B14 ou B20a ou B20i ou B20j]{
                 B13|refNFe| 
                 [ou] 
-                B14|cUF|AAMM(ano mÍs)|CNPJ|Mod|serie|nNF| 
+                B14|cUF|AAMM(ano m√™s)|CNPJ|Mod|serie|nNF| 
                 [ou] 
                 B20a|cUF|AAMM|IE|mod|serie|nNF| 
-                    [seleÁ„o entre B20d ou B20e]{ 
+                    [sele√ß√£o entre B20d ou B20e]{ 
                         B20d|CNPJ| 
                         [ou] 
                         B20e|CPF| 
@@ -2987,7 +2987,7 @@ VERS√O 2.00
             } 
         } 
     C|XNome|XFant|IE|IEST|IM|CNAE|CRT| 
-        [seleÁ„o entre C02 ou C02a]{
+        [sele√ß√£o entre C02 ou C02a]{
             C02|CNPJ| 
             [ou] 
             C02a|CPF| 
@@ -2997,7 +2997,7 @@ VERS√O 2.00
             D|CNPJ|xOrgao|matr|xAgente|fone|UF|nDAR|dEmi|vDAR|repEmi|dPag| 
         }
     E|xNome|IE|ISUF|email| 
-        [seleÁ„o entre E02 ou E03]{
+        [sele√ß√£o entre E02 ou E03]{
             E02|CNPJ| 
             [ou] 
             E03|CPF| 
@@ -3005,16 +3005,16 @@ VERS√O 2.00
     E05|xLgr|nro|xCpl|xBairro|cMun|xMun|UF|CEP|cPais|xPais|fone|
         [0 ou 1]{ 
             F|CNPJ|XLgr|Nro|XCpl|XBairro|CMun|XMun|UF| 
-                [seleÁ„o entre F02 ou F02a]{
+                [sele√ß√£o entre F02 ou F02a]{
                     F02|CNPJ 
                     [ou] 
                     F02a|CPF 
                 }
         }
         [0 ou 1]{
-            G|CNPJ|XLgr|Nro|XCpl|XBairro|CMun|XMun|UF|     // esta linha È do manual, mas est· errada!!!!
-            G|XLgr|Nro|XCpl|XBairro|CMun|XMun|UF|         // esta linha È a correta
-                [seleÁ„o entre G02 ou G02a]{
+            G|CNPJ|XLgr|Nro|XCpl|XBairro|CMun|XMun|UF|     // esta linha √© do manual, mas est√° errada!!!!
+            G|XLgr|Nro|XCpl|XBairro|CMun|XMun|UF|         // esta linha √© a correta
+                [sele√ß√£o entre G02 ou G02a]{
                     G02|CNPJ 
                     [ou] 
                     G02a|CPF 
@@ -3030,16 +3030,16 @@ VERS√O 2.00
                         I25|NAdicao|NSeqAdic|CFabricante|VDescDI| 
                     } 
             } 
-            [0 ou 1 - apenas se veÌculo]{ 
+            [0 ou 1 ‚Äì apenas se ve√≠culo]{ 
                 J|TpOp|Chassi|CCor|XCor|Pot|cilin|pesoL|pesoB|NSerie|TpComb|NMotor|CMT|Dist|anoMod|anoFab|tpPint|tpVeic|espVeic|VIN|condVeic|cMod|cCorDENATRAN|lota|tpRest| 
             } 
-            [0 a N - apenas se medicamento]{ 
+            [0 a N ‚Äì apenas se medicamento]{ 
                 K|NLote|QLote|DFab|DVal|VPMC| 
             } 
-            [0 a N - apenas se armamento]{ 
+            [0 a N ‚Äì apenas se armamento]{ 
                 L|TpArma|NSerie|NCano|Descr| 
             } 
-            [0 a N - apenas se combustÌvel]{ 
+            [0 a N ‚Äì apenas se combust√≠vel]{ 
                 L01|CProdANP|CODIF|QTemp|UFCons| 
                 [0 ou 1]{ 
                     L105|QBCProd|VAliqProd|VCIDE| 
@@ -3047,7 +3047,7 @@ VERS√O 2.00
             } 
         M| 
             N| 
-                [SeleÁ„o entre N02 ou N03 ou N04 ou N05 ou N06 ou N07 ou N08 ou N09 ou N10 ou N10a ou N10b ou N10c ou N10d ou N10e ou N10f ou N10g ou N10h]{
+                [Sele√ß√£o entre N02 ou N03 ou N04 ou N05 ou N06 ou N07 ou N08 ou N09 ou N10 ou N10a ou N10b ou N10c ou N10d ou N10e ou N10f ou N10g ou N10h]{
                     N02|Orig|CST|ModBC|VBC|PICMS|VICMS| 
                     [ou]
                     N03|Orig|CST|ModBC|VBC|PICMS|VICMS|ModBCST|PMVAST|PRedBCST|VBCST|PICMSST|VICMSST| 
@@ -3084,9 +3084,9 @@ VERS√O 2.00
                 }
                 [0 ou 1]{
                     O|ClEnq|CNPJProd|CSelo|QSelo|CEnq| 
-                        [seleÁ„o entre O07 ou O08]{
+                        [sele√ß√£o entre O07 ou O08]{
                             O07|CST|VIPI| 
-                            [seleÁ„o entre O010 ou O11]{ 
+                            [sele√ß√£o entre O010 ou O11]{ 
                                 O10|VBC|PIPI| 
                                 [ou] 
                                 O11|QUnid|VUnid| 
@@ -3102,7 +3102,7 @@ VERS√O 2.00
                     U|VBC|VAliq|VISSQN|CMunFG|CListServ|cSitTrib| 
                 }         
                 Q| 
-                    [SeleÁ„o entre Q02 ou Q03 ou Q04 ou Q05]{
+                    [Sele√ß√£o entre Q02 ou Q03 ou Q04 ou Q05]{
                         Q02|CST|VBC|PPIS|VPIS| 
                         [ou] 
                         Q03|CST|QBCProd|VAliqProd|VPIS| 
@@ -3110,19 +3110,19 @@ VERS√O 2.00
                         Q04|CST| 
                         [ou] 
                         Q05|CST|VPIS| 
-                        [SeleÁ„o entre Q07 ou Q010]{
+                        [Sele√ß√£o entre Q07 ou Q010]{
                             Q07|VBC|PPIS| 
                             [ou] 
                             Q10|QBCProd|VAliqProd| 
                         }
                     } 
                 R|VPIS| 
-                    [SeleÁ„o entre R02 ou R04]{ 
+                    [Sele√ß√£o entre R02 ou R04]{ 
                         R02|VBC|PPIS| 
                         [ou]
                         R04|QBCProd|VAliqProd| 
                 S| 
-                    [SeleÁ„o entre S02 ou S03 ou S04 ou S05]{
+                    [Sele√ß√£o entre S02 ou S03 ou S04 ou S05]{
                         S02|CST|VBC|PCOFINS|VCOFINS| 
                         [ou]
                         S03|CST|QBCProd|VAliqProd|VCOFINS| 
@@ -3130,7 +3130,7 @@ VERS√O 2.00
                         S04|CST| 
                         [ou]
                         S05|CST|VCOFINS| 
-                        [SeleÁ„o entre S07 ou S09]{
+                        [Sele√ß√£o entre S07 ou S09]{
                             S07|VBC|PCOFINS| 
                             [ou]
                             S09|QBCProd|VAliqProd| 
@@ -3138,14 +3138,14 @@ VERS√O 2.00
                     } 
                 [0 ou 1]{ 
                     T|VCOFINS| 
-                        [SeleÁ„o entre T02 ou T04]{ 
+                        [Sele√ß√£o entre T02 ou T04]{ 
                             T02|VBC|PCOFINS| 
                             [ou] 
                             T04|QBCProd|VAliqProd|
                         } 
                 } 
             }
-    }    // esta linha n„o esta no TXT, esta errado no manual....
+    }    // esta linha n√£o esta no TXT, esta errado no manual....
     W| 
     W02|vBC|vICMS|vBCST|vST|vProd|vFrete|vSeg|vDesc|vII|vIPI|vPIS|vCOFINS|vOutro|vNF|vTotTrib|
     [0 ou 1]{
@@ -3154,7 +3154,7 @@ VERS√O 2.00
     W23|VRetPIS|VRetCOFINS|VRetCSLL|VBCIRRF|VIRRF|VBCRetPrev|VRetPrev| 
     X|ModFrete| 
     X03|XNome|IE|XEnder|UF|XMun| 
-    [SeleÁ„o entre X04 ou X05]{ 
+    [Sele√ß√£o entre X04 ou X05]{ 
         X04|CNPJ|
         [ou] 
         X05|CPF|
@@ -3182,7 +3182,7 @@ VERS√O 2.00
         [0 a N]{
             Y07|NDup|DVenc|VDup| 
         } 
-    }    // esta linha n„o tem no txt - esta errado no manual...
+    }    // esta linha n√£o tem no txt - esta errado no manual...
     [0 ou 1]{ 
         Z|InfAdFisco|InfCpl| 
         [0 a 10]{
