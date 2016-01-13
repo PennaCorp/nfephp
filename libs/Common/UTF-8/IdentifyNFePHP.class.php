@@ -1,23 +1,23 @@
 <?php
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o
  * posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
@@ -33,9 +33,9 @@
  * @link      http://www.nfephp.org/
  *
  *
- * Este arquivo contem funÁıes para identificar conte˙do de arquivos
- * 2.13 - PSR-2 (n„o vai ter namescape, tem linha grande)
- * 2.12 - Adicionado descriÁ„o das constantes para facilitar a interpretaÁ„o do
+ * Este arquivo contem fun√ß√µes para identificar conte√∫do de arquivos
+ * 2.13 - PSR-2 (n√£o vai ter namescape, tem linha grande)
+ * 2.12 - Adicionado descri√ß√£o das constantes para facilitar a interpreta√ß√£o do
  *        tipo do arquivo
  * 2.11 - faltou um ); na linha 446
  * 2.10 - adicionado novos tipos de TXT, erro no evento - !empty($chave) deveria
@@ -43,30 +43,30 @@
  * 2.09 - adicionado comentarios
  * 2.08 - adicionado arquivo tipo DPEC - CTE
  * 2.07 - adicionado arquivo tipo DPEC
- * 2.06 - uso de fileinfo e adiÁ„o de boleto/contas
- * 2.05 - PSR-2 (n„o vai ter namescape)
- *           atenÁ„o NAS CONSTANTES!! NF>>e<< virou NF>>E<<
- * 2.04 - correÁ„o de bug para identificar nfe
- * 2.03 - sÛ forÁa https quando for nfc-e, se for nfe ou cte, pode ser um site
+ * 2.06 - uso de fileinfo e adi√ß√£o de boleto/contas
+ * 2.05 - PSR-2 (n√£o vai ter namescape)
+ *           aten√ß√£o NAS CONSTANTES!! NF>>e<< virou NF>>E<<
+ * 2.04 - corre√ß√£o de bug para identificar nfe
+ * 2.03 - s√≥ for√ßa https quando for nfc-e, se for nfe ou cte, pode ser um site
  *        do emitente do documento
- * 2.02 - evento de nfc-e (sabe se È nfe ou nfc-e pela chave de acesso)
+ * 2.02 - evento de nfc-e (sabe se √© nfe ou nfc-e pela chave de acesso)
  *        corrigido pdf/img que retornava sempre nfce nos modelos 55,65,57
- * 2.01 - adicionado evento de CTE (precisa ser testado, ainda n„o tem xml disso
- *        em teste, nem em produÁ„o)
- * 2.00 - alterado funÁ„o IdentifyFile para retornar um array
+ * 2.01 - adicionado evento de CTE (precisa ser testado, ainda n√£o tem xml disso
+ *        em teste, nem em produ√ß√£o)
+ * 2.00 - alterado fun√ß√£o IdentifyFile para retornar um array
  *            adicionado reconhecimento de pdf e imagens de danfes, precisa de
  *            dois executaveis externos:
- *                zbarimg (vers„o 0.10 testada e funcionando)
- *                imagemagick vers„o 9 testada e funcionando (pode ser
- *                      necess·rio ghostscript no windows)
- *            separado em varias funÁıes para facilitar a leitura
- *                adicionado algumas funÁıes para verificar digito verificador
+ *                zbarimg (vers√£o 0.10 testada e funcionando)
+ *                imagemagick vers√£o 9 testada e funcionando (pode ser
+ *                      necess√°rio ghostscript no windows)
+ *            separado em varias fun√ß√µes para facilitar a leitura
+ *                adicionado algumas fun√ß√µes para verificar digito verificador
  *                de chave de acesso
- *                    (verificaÁ„o minima para os arquivos PDF e imagem)
+ *                    (verifica√ß√£o minima para os arquivos PDF e imagem)
  *            adicionado tipo array quando tem varios formatos dentro de um
  *               arquivo PDF (danfe+dacte por exemplo)
- * 1.04 - quando È NFe, verifica se È uma NFC-e
- * 1.03 - adicionado funÁ„o para extrair do xml da nfeb2b, o dom da nfe
+ * 1.04 - quando √© NFe, verifica se √© uma NFC-e
+ * 1.03 - adicionado fun√ß√£o para extrair do xml da nfeb2b, o dom da nfe
  *            (nfeProc) e o documento do b2b (NFeB2B)
  * 1.02 - adicionado nfeb2b
  *
@@ -74,7 +74,7 @@
 // tipos arquivos
 if (!defined('NFEPHP_TIPO_ARQUIVO_DESCONHECIDO')) {
     /* -1 e 0 => tipos especiais (-1=array retorna varios documentos,
-     *                             0=n„o reconhecido)
+     *                             0=n√£o reconhecido)
      */
     define('NFEPHP_TIPO_ARQUIVO_ARRAY', -1);
     define('NFEPHP_TIPO_ARQUIVO_DESCONHECIDO', 0);
@@ -85,7 +85,7 @@ if (!defined('NFEPHP_TIPO_ARQUIVO_DESCONHECIDO')) {
     define('NFEPHP_TIPO_ARQUIVO_CTE_SEM_PROTOCOLO', 4);
     define('NFEPHP_TIPO_ARQUIVO_NFE_NFEB2B', 5);
     define('NFEPHP_TIPO_ARQUIVO_NFCE', 6);
-    define('NFEPHP_TIPO_ARQUIVO_NFCE_SEM_PROTOCOLO', 7); // ser· que existe?!
+    define('NFEPHP_TIPO_ARQUIVO_NFCE_SEM_PROTOCOLO', 7); // ser√° que existe?!
     define('NFEPHP_TIPO_ARQUIVO_DPEC_NFE', 8); // dpec de nfe
     define('NFEPHP_TIPO_ARQUIVO_DPEC_CTE', 9); // dpec de cte
 
@@ -97,14 +97,14 @@ if (!defined('NFEPHP_TIPO_ARQUIVO_DESCONHECIDO')) {
     define('NFEPHP_TIPO_ARQUIVO_CTE_PROCCANCCTE', 102); // modelo antigo (v1.04)
     define('NFEPHP_TIPO_ARQUIVO_EVENTOCTE', 103); // modelo novo (v2.0)
     define('NFEPHP_TIPO_ARQUIVO_EVENTONFCE', 104); // modelo novo (v2 e v3)
-    // este È para documento modelo 65
-    //    nfce(ser· q vai ser utilizado?)
+    // este √© para documento modelo 65
+    //    nfce(ser√° q vai ser utilizado?)
 
-    /* 200 => inutilizaÁıes e operaÁıes com a sÈrie do documento fiscal */
+    /* 200 => inutiliza√ß√µes e opera√ß√µes com a s√©rie do documento fiscal */
     define('NFEPHP_TIPO_ARQUIVO_NFE_INUTFAIXA', 200);
     define('NFEPHP_TIPO_ARQUIVO_CTE_INUTFAIXA', 201);
 
-    /* 300 => arquivos TXT para convers„o para documentos (normalmente XML) */
+    /* 300 => arquivos TXT para convers√£o para documentos (normalmente XML) */
     define('NFEPHP_TIPO_ARQUIVO_TXT_NFE', 300);
     define('NFEPHP_TIPO_ARQUIVO_TXT_CTE', 301);
     define('NFEPHP_TIPO_ARQUIVO_TXT_NFE_EMITENTE', 302);
@@ -113,7 +113,7 @@ if (!defined('NFEPHP_TIPO_ARQUIVO_DESCONHECIDO')) {
     define('NFEPHP_TIPO_ARQUIVO_TXT_NFE_TRANSPORTADORA', 305);
 
     /* 400 => arquivos que representam graficamente um documento,
-              ou que contenham cÛdigo de barra referente a
+              ou que contenham c√≥digo de barra referente a
               documentos fiscais/boletos/contas
     */
     define('NFEPHP_TIPO_ARQUIVO_PDF_NFE', 400); // BARCODE NFE
@@ -127,7 +127,7 @@ if (!class_exists('IdentifyNFePHP')) {
      * Classe Identify
      *  Objetivo - identificar um arquivo qualquer (inclusive imagens)
      *             e obter dados que tenham relevancia com documentos fiscais
-     *             em imagens/pdf È retirado os dados de codigo de barras
+     *             em imagens/pdf √© retirado os dados de codigo de barras
      */
     class IdentifyNFePHP
     {
@@ -152,11 +152,11 @@ if (!class_exists('IdentifyNFePHP')) {
             NFEPHP_TIPO_ARQUIVO_EVENTOCTE => 'XML - Evento CTe',
             NFEPHP_TIPO_ARQUIVO_EVENTONFCE => 'XML - Evento NFCe',
 
-            /* 200 => inutilizaÁıes e operaÁıes com a sÈrie do documento fiscal */
-            NFEPHP_TIPO_ARQUIVO_NFE_INUTFAIXA => 'XML - InutilizaÁ„o NFe',
-            NFEPHP_TIPO_ARQUIVO_CTE_INUTFAIXA => 'XML - InutilizaÁ„o CTe',
+            /* 200 => inutiliza√ß√µes e opera√ß√µes com a s√©rie do documento fiscal */
+            NFEPHP_TIPO_ARQUIVO_NFE_INUTFAIXA => 'XML - Inutiliza√ß√£o NFe',
+            NFEPHP_TIPO_ARQUIVO_CTE_INUTFAIXA => 'XML - Inutiliza√ß√£o CTe',
 
-            /* 300 => arquivos TXT para convers„o para documentos
+            /* 300 => arquivos TXT para convers√£o para documentos
                       (normalmente XML) */
             NFEPHP_TIPO_ARQUIVO_TXT_NFE => 'TXT - NFe',
             NFEPHP_TIPO_ARQUIVO_TXT_CTE => 'TXT - CTe',
@@ -166,13 +166,13 @@ if (!class_exists('IdentifyNFePHP')) {
             NFEPHP_TIPO_ARQUIVO_TXT_NFE_TRANSPORTADORA => 'TXT - Transportadora',
 
             /* 400 => arquivos que representam graficamente um documento,
-                      ou que contenham cÛdigo de barra referente a
+                      ou que contenham c√≥digo de barra referente a
                       documentos fiscais/boletos/contas
             */
             NFEPHP_TIPO_ARQUIVO_PDF_NFE => 'Codigo Barra - NFe',
             NFEPHP_TIPO_ARQUIVO_PDF_NFCE => 'Codigo Barra - NFCe',
             NFEPHP_TIPO_ARQUIVO_PDF_CTE => 'Codigo Barra - CTe',
-            NFEPHP_TIPO_ARQUIVO_PDF_BOLETO => 'Codigo Barra - Boleto Banc·rio',
+            NFEPHP_TIPO_ARQUIVO_PDF_BOLETO => 'Codigo Barra - Boleto Banc√°rio',
             NFEPHP_TIPO_ARQUIVO_PDF_CONTAS => 'Codigo Barra - Contas'
         );
         public $path_zbarimg = '';
@@ -195,7 +195,7 @@ if (!class_exists('IdentifyNFePHP')) {
         /* boletos e contas */
         public function identifyBoletoContas($codigo_barra)
         {
-            // pelo codigo de barra pega se È um boleto ou uma contas
+            // pelo codigo de barra pega se √© um boleto ou uma contas
             $codigo_barra = preg_replace("/[^0-9]/", "", $codigo_barra);
             // I2/5:03392526000002900229439278700000000003850101
             if (strlen($codigo_barra) == 44) {
@@ -219,7 +219,7 @@ if (!class_exists('IdentifyNFePHP')) {
                     if ($data_vencimento != '0000') {
                         $data_vencimento_ymd = ($data_vencimento - 1000) * 86400 +
                             gmmktime(0, 0, 0, "07", "03", "2000") + 5000;
-                            // +5000 para n„o dar problema de fuso
+                            // +5000 para n√£o dar problema de fuso
                         $data_vencimento_ymd = gmdate('Y-m-d', $data_vencimento_ymd);
                     } else {
                         $data_vencimento_ymd = '0000-00-00';
@@ -263,12 +263,12 @@ if (!class_exists('IdentifyNFePHP')) {
                             $p4 . $this->boletoModulo11CodigoBarra($p4);
                         $segmentos = array('1' => 'Prefeituras',
                             '2' => 'Saneamento',
-                            '3' => 'Energia ElÈtrica e G·s',
-                            '4' => 'TelecomunicaÁıes',
-                            '5' => '”rg„os Governamentais',
+                            '3' => 'Energia El√©trica e G√°s',
+                            '4' => 'Telecomunica√ß√µes',
+                            '5' => '√ìrg√£os Governamentais',
                             '6' => 'Carnes e Assemelhados ou demais Empresas / '.
-                                   '”rg„os que ser„o identificadas atravÈs do CNPJ',
-                            '7' => 'Multas de tr‚nsito',
+                                   '√ìrg√£os que ser√£o identificadas atrav√©s do CNPJ',
+                            '7' => 'Multas de tr√¢nsito',
                             '9' => 'Uso exclusivo do banco');
                         $tipo_valores = array(
                             '6' => 'Valor a ser cobrado efetivamente em reais',
@@ -329,7 +329,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 // pega cada numero isoladamente
                 $numeros[$i] = substr($num, $i - 1, 1);
                 // Efetua multiplicacao do numero pelo (falor 10)
-                // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Ita˙
+                // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Ita√∫
                 $temp = $numeros[$i] * $fator;
                 $temp0 = 0;
                 foreach (preg_split('//', $temp, -1, PREG_SPLIT_NO_EMPTY) as $v) {
@@ -345,7 +345,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 }
             }
 
-            // v·rias linhas removidas, vide funÁ„o original
+            // v√°rias linhas removidas, vide fun√ß√£o original
             // Calculo do modulo 10
             $resto = $numtotal10 % 10;
             $digito = 10 - $resto;
@@ -361,16 +361,16 @@ if (!class_exists('IdentifyNFePHP')) {
                 return ('');
             }
             $p1 = substr($codigo, 0, 4); // Numero do banco + moeda
-            $p2 = substr($codigo, 19, 5); // 5 primeiras posiÁıes do campo livre
+            $p2 = substr($codigo, 19, 5); // 5 primeiras posi√ß√µes do campo livre
             $p3 = $this->boletoModulo10LinhaDigitavel("$p1$p2");
                 // Digito do campo 1
-            $p4 = "$p1$p2$p3"; // Uni„o
+            $p4 = "$p1$p2$p3"; // Uni√£o
             $campo1 = substr($p4, 0, 5) . '.' . substr($p4, 5);
-            $p1 = substr($codigo, 24, 10); //PosiÁıes de 6 a 15 do campo livre
+            $p1 = substr($codigo, 24, 10); //Posi√ß√µes de 6 a 15 do campo livre
             $p2 = $this->boletoModulo10LinhaDigitavel($p1); //Digito do campo 2
             $p3 = "$p1$p2";
             $campo2 = substr($p3, 0, 5) . '.' . substr($p3, 5);
-            $p1 = substr($codigo, 34, 10); //PosiÁıes de 16 a 25 do campo livre
+            $p1 = substr($codigo, 34, 10); //Posi√ß√µes de 16 a 25 do campo livre
             $p2 = $this->boletoModulo10LinhaDigitavel($p1); //Digito do Campo 3
             $p3 = "$p1$p2";
             $campo3 = substr($p3, 0, 5) . '.' . substr($p3, 5);
@@ -385,7 +385,7 @@ if (!class_exists('IdentifyNFePHP')) {
         public function identifyQRCode($codigo_barra)
         {
             /*
-            esta linha È grande pois a url È grande mesmo...
+            esta linha √© grande pois a url √© grande mesmo...
             QR-Code: https://nfce.set.rn.gov.br/consultarNFCe.aspx?chNFe=24130411982113000237650020000000071185945690&nVersao=100&tpAmb=2&dhEmi=323031332d30342d31355431353a32303a35352d30333a3030&vNF=13,90&vICMS=2,36&digVal=69466b66444662536161626c554539614f35476b4b48342f3964513d&cIdToken=000001&cHashQRCode=41799477BE9E40C0792C3B0E43094EA3CA4A2435
             */
 
@@ -401,12 +401,12 @@ if (!class_exists('IdentifyNFePHP')) {
                 $tmp_query['modelo'] = $tmp_chave;
                 if ($tmp_query['modelo'] == '65') {
                     if ($tmp_url['scheme'] != 'https') {
-                        // todos webservices do nfce s„o https, os demais È
+                        // todos webservices do nfce s√£o https, os demais √©
                         // site pra baixa xml do emitente
                         return (false);
                     }
                     // verificar o hash do qrcode?
-                    // se alguem descobrir =) agradeÁo
+                    // se alguem descobrir =) agrade√ßo
                     ///
                 }
                 return ($tmp_query);
@@ -517,7 +517,7 @@ if (!class_exists('IdentifyNFePHP')) {
         }
 
 
-        /* identificaÁ„o de arquivos */
+        /* identifica√ß√£o de arquivos */
         public function identifyFileTXT($parm)
         {
             // ARQUIVOS TXT
@@ -555,7 +555,7 @@ if (!class_exists('IdentifyNFePHP')) {
 
         public function identifyFileXML($parm)
         {
-            // arquivos XML (no futuro retornar a vers„o do XML, nfe e cte tem versıes...)
+            // arquivos XML (no futuro retornar a vers√£o do XML, nfe e cte tem vers√µes...)
             if (!is_object($parm)) { // pode ser passado uma instancia de DomDocument...
                 #$dom = new DomDocument;
                 $dom = new DOMDocument('1.0', 'utf-8');
@@ -591,15 +591,15 @@ if (!class_exists('IdentifyNFePHP')) {
             // Eventos NFE
             $procEventoNFe = $dom->getElementsByTagName("procEventoNFe")->item(0);
             if (!empty($procEventoNFe)) {
-                // verifica se n„o È nfeb2b
+                // verifica se n√£o √© nfeb2b
                 $procnfeProcB2B = $dom->getElementsByTagName("nfeProcB2B")->item(0);
                 $NFeB2B = $dom->getElementsByTagName("NFeB2B")->item(0);
                 if (!empty($procnfeProcB2B) && !empty($NFeB2B)) {
                     return (array('tipo' => NFEPHP_TIPO_ARQUIVO_NFE_NFEB2B));
                 }
-                // verifica se n„o È nfeb2b
+                // verifica se n√£o √© nfeb2b
 
-                // verificar se È nfc-e (mod=65)    // verificar se est· ok!
+                // verificar se √© nfc-e (mod=65)    // verificar se est√° ok!
                 $chave = $dom->getElementsByTagName("chNFe")->item(0);
                 if (empty($chave)) {
                     return (array('tipo' => NFEPHP_TIPO_ARQUIVO_DESCONHECIDO));
@@ -615,7 +615,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 return (array('tipo' => NFEPHP_TIPO_ARQUIVO_EVENTONFE));
             }
             // Eventos CTE
-            //      verificar se È esta tag <procEventoCTe>
+            //      verificar se √© esta tag <procEventoCTe>
             $procEventoCTe = $dom->getElementsByTagName("procEventoCTe")->item(0);
             if (!empty($procEventoCTe)) {
                 return (array('tipo' => NFEPHP_TIPO_ARQUIVO_EVENTOCTE));
@@ -653,7 +653,7 @@ if (!class_exists('IdentifyNFePHP')) {
             // NFe
             $nfeProc = $dom->getElementsByTagName("nfeProc")->item(0);
             if (!empty($nfeProc)) {
-                // verificar se È nfc-e (mod=65)
+                // verificar se √© nfc-e (mod=65)
                 $mod = $nfeProc->getElementsByTagName("mod")->item(0);
                 if (empty($mod)) {
                     return (array('tipo' => NFEPHP_TIPO_ARQUIVO_DESCONHECIDO));
@@ -671,7 +671,7 @@ if (!class_exists('IdentifyNFePHP')) {
             $NFe = $dom->getElementsByTagName("NFe")->item(0);
             $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
             if (!empty($NFe) && !empty($infNFe)) {
-                // verificar se È nfc-e (mod=65)
+                // verificar se √© nfc-e (mod=65)
                 $mod = $NFe->getElementsByTagName("mod")->item(0);
                 if (empty($mod)) {
                     return (array('tipo' => NFEPHP_TIPO_ARQUIVO_DESCONHECIDO));
@@ -681,7 +681,7 @@ if (!class_exists('IdentifyNFePHP')) {
                     return (array('tipo' => NFEPHP_TIPO_ARQUIVO_DESCONHECIDO));
                 }
                 if ($mod == 65) {
-                    return (array('tipo' => NFEPHP_TIPO_ARQUIVO_NFCE_SEM_PROTOCOLO)); // SER¡ QUE EXISTE?!
+                    return (array('tipo' => NFEPHP_TIPO_ARQUIVO_NFCE_SEM_PROTOCOLO)); // SER√Å QUE EXISTE?!
                 }
                 return (array('tipo' => NFEPHP_TIPO_ARQUIVO_NFE_SEM_PROTOCOLO));
             }
@@ -704,9 +704,9 @@ if (!class_exists('IdentifyNFePHP')) {
             return false;
         }
 
-        // esta funÁ„o tenta ler uma imagem ou pdf e pegar as chaves quando validas, ou o qrcode quando nfce
-        // ela vai criar arquivos temporarios e usar arquivos executaveis externos pela funÁ„o exec,
-        //     ent„o fiquem atentos
+        // esta fun√ß√£o tenta ler uma imagem ou pdf e pegar as chaves quando validas, ou o qrcode quando nfce
+        // ela vai criar arquivos temporarios e usar arquivos executaveis externos pela fun√ß√£o exec,
+        //     ent√£o fiquem atentos
         public function identifyFilePDFImage($parm, $force_imagem = false)
         {
             if (!function_exists('glob') || !function_exists('exec') ||
@@ -714,7 +714,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 !function_exists('file_get_contents') || !function_exists('file_put_contents') ||
                 !function_exists('escapeshellarg')
             ) {
-                // depois dar uma limpada no codigo, removendo a verificaÁ„o das funÁıes q tem em todos php
+                // depois dar uma limpada no codigo, removendo a verifica√ß√£o das fun√ß√µes q tem em todos php
                 return false;
             }
             if (!is_string($parm) && !is_resource($parm)) { // pode ser uma imagem $gd
@@ -728,7 +728,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 if (@is_file($parm)) { // carrega arquivo...
                     $parm = file_get_contents($parm);
                 }
-                // parm È o conteudo do arquivo e n„o o local do arquivo
+                // parm √© o conteudo do arquivo e n√£o o local do arquivo
                 if (strlen($parm) < 256) { // pelomenos 256 bytes.. (verificar o menor possivel para uma imagem util)
                     return false;
                 }
@@ -745,8 +745,8 @@ if (!class_exists('IdentifyNFePHP')) {
             }
             $path .= '/';
             /*
-                procura codigos de barra e tenta identificar se existe alguma informaÁ„o relevante
-                esta funÁ„o pode retornar um array com varios documentos, s„o separados cada um
+                procura codigos de barra e tenta identificar se existe alguma informa√ß√£o relevante
+                esta fun√ß√£o pode retornar um array com varios documentos, s√£o separados cada um
                 por um indice [0 .. n] e dentro de cada dele valores especificos
                 $ret=array('tipo'=>NFEPHP_TIPO_ARQUIVO_ARRAY,
                     0=>array de retorno1,
@@ -756,7 +756,7 @@ if (!class_exists('IdentifyNFePHP')) {
                     );
             */
             if (!$force_imagem) {
-                // verifica se È imagem...
+                // verifica se √© imagem...
                 if (!is_resource($parm)) {
                     if (function_exists('imagecreatefromstring')) {
                         $tmp = @imagecreatefromstring($parm);
@@ -767,7 +767,7 @@ if (!class_exists('IdentifyNFePHP')) {
                     $tmp =& $parm; // referencia o resource
                 }
                 if ($tmp === false) {
-                    // verifica se È pdf, se for converte pra varias imagens com 300dpi e abre cada um
+                    // verifica se √© pdf, se for converte pra varias imagens com 300dpi e abre cada um
                     if (!is_executable($this->path_convert)) {
                         return false;
                     }
@@ -803,10 +803,10 @@ if (!class_exists('IdentifyNFePHP')) {
                 $arquivo_tmp = tempnam($path, "_IdentifyNFEPHP_zbarimg");
                 if ($tmp !== false) {
                     if (!function_exists('imagejpeg')) {
-                        // vai com png sem compress„o (0), as vezes n„o reconhece no zbarimg
+                        // vai com png sem compress√£o (0), as vezes n√£o reconhece no zbarimg
                         imagepng($tmp, $arquivo_tmp, 0);
                     } else {
-                        // jpg È mais facil de ser reconhecida mas precisa ter alta qualidade
+                        // jpg √© mais facil de ser reconhecida mas precisa ter alta qualidade
                         imagejpeg($tmp, $arquivo_tmp, 100);
                     }
                     imagedestroy($tmp);
@@ -828,7 +828,7 @@ if (!class_exists('IdentifyNFePHP')) {
             #var_dump($output);
             $ret = false;
             foreach ($output as $v) {
-                // pega o tipo e o codigo de barra do retorno do zbarimg (vers„o testada = 0.10)
+                // pega o tipo e o codigo de barra do retorno do zbarimg (vers√£o testada = 0.10)
                 // procura codigos de barra que sejam chave de acesso de CTe ou NFe ou qrcode de NFCe
                 $tipo_cod_barra = substr($v, 0, strpos($v, ':'));
                 $cod_barra = substr($v, strpos($v, ':') + 1);
@@ -897,10 +897,10 @@ if (!class_exists('IdentifyNFePHP')) {
                 if (@is_file($parm)) { // carrega arquivo...
                     $parm = file_get_contents($parm);
                 }
-                // parm È o conteudo do arquivo e n„o o local do arquivo
+                // parm √© o conteudo do arquivo e n√£o o local do arquivo
             }
             if (function_exists('finfo_buffer')) {
-                // oba assim È mais rapido pra acha o formato do arquivo
+                // oba assim √© mais rapido pra acha o formato do arquivo
                 // $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $mime = finfo_buffer($parm, FILEINFO_MIME_TYPE);
                 if ($mime == 'application/pdf' || substr($mime, 0, 6) == 'image/') {
@@ -915,7 +915,7 @@ if (!class_exists('IdentifyNFePHP')) {
                         return ($tmp);
                     }
                 } elseif ($mime == 'text/plain') {
-                    // txt de importaÁ„o de nfe,cte
+                    // txt de importa√ß√£o de nfe,cte
                     $tmp = $this->identifyFileTXT($parm);
                     if ($tmp !== false) {
                         $tmp['mime'] = 'text/plain';
@@ -925,7 +925,7 @@ if (!class_exists('IdentifyNFePHP')) {
             }
 
             // vai um por um... faze oq... melhor doque nada
-            // txt de importaÁ„o de nfe,cte
+            // txt de importa√ß√£o de nfe,cte
             $tmp = $this->identifyFileTXT($parm);
             if ($tmp !== false) {
                 $tmp['mime'] = 'text/plain';
@@ -945,7 +945,7 @@ if (!class_exists('IdentifyNFePHP')) {
                 return ($tmp);
             }
 
-            // n„o deu =(
+            // n√£o deu =(
             return (array('tipo' => NFEPHP_TIPO_ARQUIVO_DESCONHECIDO));
         }
     }

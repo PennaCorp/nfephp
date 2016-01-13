@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
@@ -39,10 +39,10 @@
  * 
  *<Nota de Lucimar>
  *    	Fiz esse conversor de CTe > TXT baseado no conversor NFe > TXT do projeto.
- *	Alguns campos e grupos eu n„o implementei, pois n„o foi necess·rio o uso no meu cliente.
- *	Ent„o, criei um TODO List desses campos e grupos n„o implementados.
+ *	Alguns campos e grupos eu n√£o implementei, pois n√£o foi necess√°rio o uso no meu cliente.
+ *	Ent√£o, criei um TODO List desses campos e grupos n√£o implementados.
  *
- *	TODO List: (n˙mero - nome do campo, de acordo com o manual 1.0.4 de 25/05/2012.
+ *	TODO List: (n√∫mero - nome do campo, de acordo com o manual 1.0.4 de 25/05/2012.
  *                  O * depois do campo significa todo o grupo)
  *	63  - fluxo*
  *	290 - docAnt*
@@ -51,10 +51,10 @@
  *	396 - ICMSSN*
  *	399 - infCteAnu*
  * 
- *      TODO: Passar para a vers„o 2.00 do xml da CTe
+ *      TODO: Passar para a vers√£o 2.00 do xml da CTe
  */
 
-// Define o caminho base da instalaÁ„o do sistema
+// Define o caminho base da instala√ß√£o do sistema
 if (!defined('PATH_ROOT')) {
     define('PATH_ROOT', dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR);
 }
@@ -107,14 +107,14 @@ class ConvertCTePHP extends CommonNFePHP
 
     /**
      * limpar_string
-     * Se for = true remove caracteres especiais na convers„o de TXT pra XML
+     * Se for = true remove caracteres especiais na convers√£o de TXT pra XML
      * @var boolean
      */
     public $limpar_string = true;
 
     /**
      * __contruct
-     * MÈtodo contrutor da classe
+     * M√©todo contrutor da classe
      *
      * @param boolean $limpar_string Ativa flag para limpar os caracteres especiais e acentos
      * @return none
@@ -126,9 +126,9 @@ class ConvertCTePHP extends CommonNFePHP
 
     /**
      * nfetxt2xml
-     * MÈtodo de convers„o dos CTe de txt para xml, conforme
-     * especificaÁıes do Manual de ImportaÁ„o/ExportaÁ„o TXT
-     * Conhecimento de Transporte EletrÙnico vers„o 1.0.4 (25/05/2012)
+     * M√©todo de convers√£o dos CTe de txt para xml, conforme
+     * especifica√ß√µes do Manual de Importa√ß√£o/Exporta√ß√£o TXT
+     * Conhecimento de Transporte Eletr√¥nico vers√£o 1.0.4 (25/05/2012)
      *
      * @param mixed $txt Path para o arquivo txt, array ou o conteudo do txt em uma string
      * @return string xml construido
@@ -151,11 +151,11 @@ class ConvertCTePHP extends CommonNFePHP
 
     /**
      * zCtetxt2xmlArrayLinhas
-     * MÈtodo de convers„o das CTe de txt para xml, conforme
-     * especificaÁıes do Manual de ImportaÁ„o/ExportaÁ„o TXT
-     * Notas Fiscais eletrÙnicas vers„o 1.0.4 (25/05/2012)
+     * M√©todo de convers√£o das CTe de txt para xml, conforme
+     * especifica√ß√µes do Manual de Importa√ß√£o/Exporta√ß√£o TXT
+     * Notas Fiscais eletr√¥nicas vers√£o 1.0.4 (25/05/2012)
      *
-     * @param string $arrayComAsLinhasDoArquivo Array de Strings onde cada elemento È uma linha do arquivo
+     * @param string $arrayComAsLinhasDoArquivo Array de Strings onde cada elemento √© uma linha do arquivo
      * @return string xml construido
      */
     protected function zCtetxt2xmlArrayLinhas($arrayComAsLinhasDoArquivo)
@@ -164,11 +164,11 @@ class ConvertCTePHP extends CommonNFePHP
         $ctes = array();
         $cur_cte = -1;
 
-        //lÍ linha por linha do arquivo txt
+        //l√™ linha por linha do arquivo txt
         for ($l = 0; $l < count($arquivo); $l++) {
             //separa os elementos do arquivo txt usando o pipe "|"
             $dados = explode("|", $arquivo[$l]);
-            //remove todos os espaÁos adicionais, tabs, linefeed, e CR
+            //remove todos os espa√ßos adicionais, tabs, linefeed, e CR
             //de todos os campos de dados retirados do TXT
             for ($x = 0; $x < count($dados); $x++) {
                 if (!empty($dados[$x])) {
@@ -1289,7 +1289,7 @@ class ConvertCTePHP extends CommonNFePHP
             $this->chave = $cte['chave'];
             $this->tpAmb = $cte['tpAmb'];
             $this->xml = '';
-            //salva o xml na vari·vel se o txt n„o estiver em branco
+            //salva o xml na vari√°vel se o txt n√£o estiver em branco
             if (!empty($infCte)) {
                 $CTe->appendChild($infCte);
                 $dom->appendChild($CTe);
@@ -1301,7 +1301,7 @@ class ConvertCTePHP extends CommonNFePHP
                     '<?xml version="1.0" encoding="UTF-8"?>',
                     $xml
                 );
-                //remove linefeed, carriage return, tabs e multiplos espaÁos
+                //remove linefeed, carriage return, tabs e multiplos espa√ßos
                 $xml = preg_replace('/\s\s+/', ' ', $xml);
                 $xml = str_replace("> <", "><", $xml);
                 $arquivos_xml[] = $xml;
@@ -1321,9 +1321,9 @@ class ConvertCTePHP extends CommonNFePHP
      */
     private function zLimpaString($texto)
     {
-        $aFind = array('&', '·', '‡', '„', '‚', 'È', 'Í', 'Ì', 'Û', 'Ù', 'ı',
-            '˙', '¸', 'Á', '¡', '¿', '√', '¬', '…', ' ', 'Õ', '”', '‘', '’',
-            '⁄', '‹', '«');
+        $aFind = array('&', '√°', '√†', '√£', '√¢', '√©', '√™', '√≠', '√≥', '√¥', '√µ',
+            '√∫', '√º', '√ß', '√Å', '√Ä', '√É', '√Ç', '√â', '√ä', '√ç', '√ì', '√î', '√ï',
+            '√ö', '√ú', '√á');
         $aSubs = array('e', 'a', 'a', 'a', 'a', 'e', 'e', 'i', 'o', 'o', 'o',
             'u', 'u', 'c', 'A', 'A', 'A', 'A', 'E', 'E', 'I', 'O', 'O', 'O',
             'U', 'U', 'C');
@@ -1334,7 +1334,7 @@ class ConvertCTePHP extends CommonNFePHP
 
     /**
      * zCalculaDV
-     * FunÁ„o para o calculo o digito verificador da chave da CTe
+     * Fun√ß√£o para o calculo o digito verificador da chave da CTe
      * @param string $chave43
      * @return string 
      */

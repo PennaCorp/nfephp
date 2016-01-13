@@ -1,23 +1,23 @@
 <?php
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU (GPL)como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU (GPL)como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte <http://www.fsfla.org/svnwiki/trad/GPLv3> ou
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte <http://www.fsfla.org/svnwiki/trad/GPLv3> ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
  *
  *
@@ -35,12 +35,12 @@
  *              Elton Nagai <eltaum at gmail dot com>
  *              Leandro C. Lopez <leandro dot castoldi at gmail dot com>
  *              Lucas Vaccaro <lucas-vaccaro at outlook dot com>
- *              Jo„o Eduardo Silva CorrÍa <jscorrea2 at gmail dot com>
+ *              Jo√£o Eduardo Silva Corr√™a <jscorrea2 at gmail dot com>
  *              Rodrigo W Cardoso <rodrigogepem at gmail dot com>
  *
- * Esta classe presume que ser· usada a mesma conta de email para o envio e recebimento das NFe
+ * Esta classe presume que ser√° usada a mesma conta de email para o envio e recebimento das NFe
  */
-//define o caminho base da instalaÁ„o do sistema
+//define o caminho base da instala√ß√£o do sistema
 if (!defined('PATH_ROOT')) {
     define('PATH_ROOT', dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR);
 }
@@ -74,9 +74,9 @@ class MailNFePHP
     protected $debugMode = 0;
     /**
      * "Layout Template" do corpo do email em html
-     * Os dados vari·veis da mensagem html s„o :
+     * Os dados vari√°veis da mensagem html s√£o :
      * {numero}{serie}{emitente}{valor}{status}
-     * esses campos ser„o substituidos durante o envio do email
+     * esses campos ser√£o substituidos durante o envio do email
      * @var string
      */
     protected $layouthtml = '';
@@ -84,8 +84,8 @@ class MailNFePHP
     /**
      * __contruct
      * Construtor da classe MailNFePHP
-     * @param array $aConfig Matriz com os dados de configuraÁ„o
-     * @param number $mododebug (Optional) 1-SIM ou 0-N√O (0 default)
+     * @param array $aConfig Matriz com os dados de configura√ß√£o
+     * @param number $mododebug (Optional) 1-SIM ou 0-N√ÉO (0 default)
      * @package NFePHP
      * @author  Roberto L. Machado <linux dot rlm at gmail dot com>
      */
@@ -174,11 +174,11 @@ class MailNFePHP
 
     /**
      * enviaMail
-     * FunÁ„o de envio de emails da NFe a partir dos endereÁos de email inclusos no prÛprio xml
+     * Fun√ß√£o de envio de emails da NFe a partir dos endere√ßos de email inclusos no pr√≥prio xml
      *
      * @name    enviaMail
      * @param   string $filename passar uma string com o caminho completo para o arquivo XML
-     * @param   string $para ForÁa o envio da comunicaÁ„o apenas para o email indicado
+     * @param   string $para For√ßa o envio da comunica√ß√£o apenas para o email indicado
      * @return  boolean TRUE sucesso ou FALSE falha
      */
     public function enviaMail($filename = '', $sendto = '')
@@ -249,7 +249,7 @@ class MailNFePHP
                 $aMail['emitente'] = $emitente;
                 $aMail['vtotal'] = $vtotal;
                 $aMail['cStat'] = $cStat;
-                //para cada endereÁo de email encontrado na NFe
+                //para cada endere√ßo de email encontrado na NFe
                 foreach ($email as $mail) {
                     $aMail['para'] = $mail;
                     if (!$this->sendNFe($docXML, '', $nomeXML, '', $aMail, '1')) {
@@ -259,7 +259,7 @@ class MailNFePHP
                 } //fim foreach
             } //fim if(is_file(
         } else {
-            $this->mailERROR .= 'Essa nota fiscal n„o est· autorizada n.'. $numero . ' / ' . $serie.'!!';
+            $this->mailERROR .= 'Essa nota fiscal n√£o est√° autorizada n.'. $numero . ' / ' . $serie.'!!';
             $retorno = false;
         }//if cStat
         return $retorno;
@@ -267,41 +267,41 @@ class MailNFePHP
 
     /**
      * sendNFe
-     * FunÁ„o para envio da NF-e por email usando PHPMailer
+     * Fun√ß√£o para envio da NF-e por email usando PHPMailer
      *
      * @package NFePHP
      * @name sendNFe
-     * @param string $docXML arquivo XML, È obrigatÛrio
-     * @param string $docPDF DANFE em formato PDF, se n„o quizer mandar o pdf deixe em branco
-     * @param string $nomeXML Nome do arquivo XML, È obrigatÛrio
+     * @param string $docXML arquivo XML, √© obrigat√≥rio
+     * @param string $docPDF DANFE em formato PDF, se n√£o quizer mandar o pdf deixe em branco
+     * @param string $nomeXML Nome do arquivo XML, √© obrigat√≥rio
      * @param string $nomePDF Nome do arquivo PDF
-     * @param array $aMail Matriz com as informaÁıes necess·rias para envio do email
-     * @param boolean $auth Indica se È necess·ria a autenticaÁ„o
+     * @param array $aMail Matriz com as informa√ß√µes necess√°rias para envio do email
+     * @param boolean $auth Indica se √© necess√°ria a autentica√ß√£o
      * @return boolean TRUE sucesso ou FALSE falha
      */
     public function sendNFe($docXML = '', $docPDF = '', $nomeXML = '', $nomePDF = '', $aMail = '', $auth = '')
     {
-        //se n„o forem passados os parametros de envio sair
+        //se n√£o forem passados os parametros de envio sair
         if (!is_array($aMail)) {
-            $this->mailERROR = 'N„o foram passados parametros de envio!';
+            $this->mailERROR = 'N√£o foram passados parametros de envio!';
             return false;
         }
-        //retorna se n„o foi passado o xml
+        //retorna se n√£o foi passado o xml
         if ($docXML != '' && $nomeXML != '') {
             $fileXML = $this->temporariasDir.$nomeXML;
-            //retorna false se houve erro na gravaÁ„o
+            //retorna false se houve erro na grava√ß√£o
             if (!file_put_contents($fileXML, $docXML)) {
                 $this->mailERROR = '' .
-                "N„o foi possivel gravar o XML para envio. Permiss„o Negada ao tentar gravar $fileXML!";
+                "N√£o foi possivel gravar o XML para envio. Permiss√£o Negada ao tentar gravar $fileXML!";
                 return false;
             }
         } else {
-            $this->mailERROR = 'N„o foi passados o XML da NFe para envio. O XML È ObrigatÛrio!';
+            $this->mailERROR = 'N√£o foi passados o XML da NFe para envio. O XML √© Obrigat√≥rio!';
             return false;
         }
-        //validar o endereÁo de email passado
+        //validar o endere√ßo de email passado
         if (!$this->validEmailAdd($aMail['para'])) {
-            $this->mailERROR .= 'O endereÁo informado n„o È valido! '.$aMail['para'];
+            $this->mailERROR .= 'O endere√ßo informado n√£o √© valido! '.$aMail['para'];
             return false;
         }
         if ($auth == '') {
@@ -324,7 +324,7 @@ class MailNFePHP
         } else {
             $contato .= ' - '.$razao;
         }
-        //se n„o foi passado o pdf ignorar e sÛ enviar o xml
+        //se n√£o foi passado o pdf ignorar e s√≥ enviar o xml
         if ($docPDF != '' && $nomePDF != '') {
             //salvar temporariamente os arquivo passados
             $filePDF = $this->temporariasDir.'pdf-'. number_format(microtime(true)*1000000, 0, 0, 15) .'.pdf';
@@ -340,18 +340,18 @@ class MailNFePHP
                 $msg = $this->layoutCanchtml;
             } else {
                 $msg = "<p><b>Prezado Sr(a) {contato},</b><h2>{status}</h2></p>";
-                $msg .= "<p>VocÍ est· recebendo a notificaÁ„o de Cancelamento";
-                $msg .= " da Nota Fiscal EletrÙnica n˙mero {numero}, sÈrie {serie} de {emitente}</p>";
-                $msg .= "<p><i>Podemos conceituar a Nota Fiscal EletrÙnica como um documento de existÍncia";
+                $msg .= "<p>Voc√™ est√° recebendo a notifica√ß√£o de Cancelamento";
+                $msg .= " da Nota Fiscal Eletr√¥nica n√∫mero {numero}, s√©rie {serie} de {emitente}</p>";
+                $msg .= "<p><i>Podemos conceituar a Nota Fiscal Eletr√¥nica como um documento de exist√™ncia";
                 $msg .= " apenas digital, emitido e armazenado eletronicamente, com o intuito de documentar,";
-                $msg .= " para fins fiscais, uma operaÁ„o de circulaÁ„o de mercadorias, ocorrida entre as partes.";
-                $msg .= " Sua validade jurÌdica È garantida pela assinatura digital do remetente";
-                $msg .= " (garantia de autoria e de integridade) e recepÁ„o, pelo Fisco, do documento eletrÙnico,";
-                $msg .= " antes da ocorrÍncia do Fato Gerador.</i></p>";
-                $msg .= "<p><i>Os registros fiscais e cont·beis devem ser feitos, a partir do prÛprio";
+                $msg .= " para fins fiscais, uma opera√ß√£o de circula√ß√£o de mercadorias, ocorrida entre as partes.";
+                $msg .= " Sua validade jur√≠dica √© garantida pela assinatura digital do remetente";
+                $msg .= " (garantia de autoria e de integridade) e recep√ß√£o, pelo Fisco, do documento eletr√¥nico,";
+                $msg .= " antes da ocorr√™ncia do Fato Gerador.</i></p>";
+                $msg .= "<p><i>Os registros fiscais e cont√°beis devem ser feitos, a partir do pr√≥prio";
                 $msg .= " arquivo da NF-e e do Cancelamento, anexo neste e-mail. A validade e autenticidade";
-                $msg .= " deste documento eletrÙnico pode ser verificada no site nacional do projeto";
-                $msg .= " (www.nfe.fazenda.gov.br), atravÈs da chave de acesso contida no DANFE.</i></p>";
+                $msg .= " deste documento eletr√¥nico pode ser verificada no site nacional do projeto";
+                $msg .= " (www.nfe.fazenda.gov.br), atrav√©s da chave de acesso contida no DANFE.</i></p>";
                 $msg .= "<p><i></i></p>";
                 $msg .= "<p><b></b></p>";
                 $msg .= "<p>Para mais detalhes sobre o projeto, consulte: ";
@@ -359,8 +359,8 @@ class MailNFePHP
                 $msg .= "<br /><p>Atenciosamente,<p>{emitente}</p>";
             }
             // assunto email
-            $subject = utf8_decode("Cancelamento de NF-e Nota Fiscal EletrÙnica - N.$numero - $emitente");
-            // substitui campos vari·veis
+            $subject = utf8_decode("Cancelamento de NF-e Nota Fiscal Eletr√¥nica - N.$numero - $emitente");
+            // substitui campos vari√°veis
             $msg = str_replace('{status}', ' Cancelamento ', $msg);
         } else {
             $extra = '';
@@ -369,38 +369,38 @@ class MailNFePHP
                 $msg = $this->layouthtml;
             } else {
                 $msg = "<p><b>Prezado Sr(a) {contato},</b><h2>{status}</h2></p>";
-                $msg .= "<p>VocÍ est· recebendo a Nota Fiscal EletrÙnica n˙mero {numero}, sÈrie {serie} de";
-                $msg .= " {emitente}, no valor de R$ {valor}. Junto com a mercadoria, vocÍ receber· tambÈm um DANFE";
-                $msg .= " (Documento Auxiliar da Nota Fiscal EletrÙnica), que acompanha o tr‚nsito das";
+                $msg .= "<p>Voc√™ est√° recebendo a Nota Fiscal Eletr√¥nica n√∫mero {numero}, s√©rie {serie} de";
+                $msg .= " {emitente}, no valor de R$ {valor}. Junto com a mercadoria, voc√™ receber√° tamb√©m um DANFE";
+                $msg .= " (Documento Auxiliar da Nota Fiscal Eletr√¥nica), que acompanha o tr√¢nsito das";
                 $msg .= " mercadorias.</p>";
-                $msg .= "<p><i>Podemos conceituar a Nota Fiscal EletrÙnica como um documento de existÍncia apenas";
+                $msg .= "<p><i>Podemos conceituar a Nota Fiscal Eletr√¥nica como um documento de exist√™ncia apenas";
                 $msg .= " digital, emitido e armazenado eletronicamente, com o intuito de documentar, para fins";
-                $msg .= " fiscais, uma operaÁ„o de circulaÁ„o de mercadorias, ocorrida entre as partes.";
-                $msg .= " Sua validade jurÌdica garantida pela assinatura digital do remetente (garantia de autoria";
-                $msg .= " e de integridade) e recepÁ„o, pelo Fisco, do documento eletrÙnico, antes da";
-                $msg .= " ocorrÍncia do Fato Gerador.</i></p>";
-                $msg .= "<p><i>Os registros fiscais e cont·beis devem ser feitos, a partir do prÛprio arquivo";
+                $msg .= " fiscais, uma opera√ß√£o de circula√ß√£o de mercadorias, ocorrida entre as partes.";
+                $msg .= " Sua validade jur√≠dica garantida pela assinatura digital do remetente (garantia de autoria";
+                $msg .= " e de integridade) e recep√ß√£o, pelo Fisco, do documento eletr√¥nico, antes da";
+                $msg .= " ocorr√™ncia do Fato Gerador.</i></p>";
+                $msg .= "<p><i>Os registros fiscais e cont√°beis devem ser feitos, a partir do pr√≥prio arquivo";
                 $msg .= " da NF-e, anexo neste e-mail, ou utilizando o DANFE, que representa graficamente a Nota";
-                $msg .= " Fiscal EletrÙnica. A validade e autenticidade deste documento eletrÙnico pode ser";
-                $msg .= " verificada no site nacional do projeto (www.nfe.fazenda.gov.br), atravÈs da chave de acesso";
+                $msg .= " Fiscal Eletr√¥nica. A validade e autenticidade deste documento eletr√¥nico pode ser";
+                $msg .= " verificada no site nacional do projeto (www.nfe.fazenda.gov.br), atrav√©s da chave de acesso";
                 $msg .= " contida no DANFE.</i></p>";
-                $msg .= "<p><i>Para poder utilizar os dados descritos do DANFE na escrituraÁ„o da NF-e, tanto o";
-                $msg .= " contribuinte destinat·rio, como o contribuinte emitente, ter„o de verificar a validade da";
-                $msg .= " NF-e. Esta validade est· vinculada ‡ efetiva existÍncia da NF-e nos arquivos da SEFAZ,";
-                $msg .= " e comprovada atravÈs da emiss„o da AutorizaÁ„o de Uso.</i></p>";
-                $msg .= "<p><b>O DANFE n„o È uma nota fiscal, nem substitui uma nota fiscal, servindo apenas";
+                $msg .= "<p><i>Para poder utilizar os dados descritos do DANFE na escritura√ß√£o da NF-e, tanto o";
+                $msg .= " contribuinte destinat√°rio, como o contribuinte emitente, ter√£o de verificar a validade da";
+                $msg .= " NF-e. Esta validade est√° vinculada √† efetiva exist√™ncia da NF-e nos arquivos da SEFAZ,";
+                $msg .= " e comprovada atrav√©s da emiss√£o da Autoriza√ß√£o de Uso.</i></p>";
+                $msg .= "<p><b>O DANFE n√£o √© uma nota fiscal, nem substitui uma nota fiscal, servindo apenas";
                 $msg .= " como instrumento auxiliar para consulta da NF-e no Ambiente Nacional.</b></p>";
                 $msg .= "<p>Para mais detalhes sobre o projeto, consulte: ";
                 $msg .= "<a href='http://www.nfe.fazenda.gov.br/portal/Default.aspx'>www.nfe.fazenda.gov.br</a></p>";
                 $msg .= "<br /><p>Atenciosamente,<p>{emitente}</p>";
             }
             // assunto email
-            $subject = utf8_decode("NF-e Nota Fiscal EletrÙnica - N.$numero - $emitente");
-            // substitui campos vari·veis
-            $msg = str_replace('{status}', 'AutorizaÁ„o', $msg);
+            $subject = utf8_decode("NF-e Nota Fiscal Eletr√¥nica - N.$numero - $emitente");
+            // substitui campos vari√°veis
+            $msg = str_replace('{status}', 'Autoriza√ß√£o', $msg);
             $msg = str_replace('{valor}', $valor, $msg);
         }
-        // substitui campos vari·veis
+        // substitui campos vari√°veis
         $msg = str_replace('{contato}', $contato, $msg);
         $msg = str_replace('{emitente}', $emitente, $msg);
         $msg = str_replace('{numero}', $numero, $msg);
@@ -408,7 +408,7 @@ class MailNFePHP
         //corrige de utf8 para iso
         $msg = utf8_decode($msg);
         $txt = $this->html2txt($msg);
-        // O email ser· enviado no formato HTML
+        // O email ser√° enviado no formato HTML
         $htmlMessage = "<body bgcolor='#ffffff'>$msg</body>";
         //enviar o email
         if (!$result = $this->sendM($to, $contato, $subject, $txt, $htmlMessage, $fileXML, $filePDF, $auth, $extra)) {
@@ -422,49 +422,49 @@ class MailNFePHP
         if (is_file($filePDF)) {
             unlink($filePDF);
         }
-        return $result; //retorno da funÁ„o
-    } //fim da funÁ„o sendNFe
+        return $result; //retorno da fun√ß√£o
+    } //fim da fun√ß√£o sendNFe
 
 
     /**
      * __sendM
-     * FunÁ„o de envio do email
+     * Fun√ß√£o de envio do email
      *
      * @name sendM
-     * @param string $to            endereÁo de email do destinat·rio
+     * @param string $to            endere√ßo de email do destinat√°rio
      * @param string $contato       Nome do contato - empresa
      * @param string $subject       Assunto
      * @param string $txt           Corpo do email em txt
      * @param string $htmlMessage   Corpo do email em html
      * @param string $fileXML       path completo para o arquivo xml
      * @param string $filePDF       path completo para o arquivo pdf
-     * @param string $auth          Flag da autorizaÁ„o requerida 1-Sim 0-N„o
+     * @param string $auth          Flag da autoriza√ß√£o requerida 1-Sim 0-N√£o
      * @return boolean FALSE em caso de erro e TRUE se sucesso
      */
     private function sendM($to, $contato, $subject, $txt, $htmlMessage, $fileXML, $filePDF, $auth, $extra = '')
     {
-        // o parametro true indica que uma exceÁ„o ser· criada em caso de erro,
+        // o parametro true indica que uma exce√ß√£o ser√° criada em caso de erro,
         $mail = new PHPMailer(true);
         // informa a classe para usar SMTP
         $mail->IsSMTP();
-        // executa aÁıes
+        // executa a√ß√µes
         try {
             $mail->Host = $this->mailHOST;        // SMTP server
             $mail->SMTPDebug = 0;                      // habilita debug SMTP para testes
             $mail->Port = $this->mailPORT;        // Seta a porta a ser usada pelo SMTP
             if ($auth=='1' && $this->mailUSER != '' && $this->mailPASS !='') {
-                $mail->SMTPAuth   = true;                   // habilita autienticaÁ„o SMTP
+                $mail->SMTPAuth   = true;                   // habilita autientica√ß√£o SMTP
                 if ($this->mailPROTOCOL !='') {
                     $mail->SMTPSecure = $this->mailPROTOCOL;    // "tls" ou "ssl"
                 }
-                $mail->Username = $this->mailUSER;        // Nome do usu·rios do SMTP
-                $mail->Password = $this->mailPASS;        // Password do usu·rio SMPT
+                $mail->Username = $this->mailUSER;        // Nome do usu√°rios do SMTP
+                $mail->Password = $this->mailPASS;        // Password do usu√°rio SMPT
             } else {
                 $mail->SMTPAuth = false;
             }
-            $mail->AddReplyTo($this->mailREPLYTOmail, $this->mailREPLYTOname); //IndicaÁ„o do email de retorno
-            $mail->AddAddress($to, $contato);            // nome do destinat·rio
-            $mail->SetFrom($this->mailFROMmail, $this->mailFROMname); //identificaÁ„o do emitente
+            $mail->AddReplyTo($this->mailREPLYTOmail, $this->mailREPLYTOname); //Indica√ß√£o do email de retorno
+            $mail->AddAddress($to, $contato);            // nome do destinat√°rio
+            $mail->SetFrom($this->mailFROMmail, $this->mailFROMname); //identifica√ß√£o do emitente
             $mail->Subject = $subject;                  // Assunto
             $mail->AltBody = $txt;                      // Corpo a mensagem em txt
             $mail->MsgHTML($htmlMessage);               // Corpo da mensagem em HTML
@@ -479,7 +479,7 @@ class MailNFePHP
             }
             $mail->Send();                              // Comando de envio
             $result = true;
-            // È necess·rio buscar o erro
+            // √© necess√°rio buscar o erro
         } catch (phpmailerException $e) {               // captura de erros
             $this->mailERROR .= $e->errorMessage();      //Mensagens de erro do PHPMailer
             $result = false;
@@ -492,14 +492,14 @@ class MailNFePHP
 
     /**
      * validEmailAdd
-     * FunÁ„o de validaÁ„o dos endereÁos de email
+     * Fun√ß√£o de valida√ß√£o dos endere√ßos de email
      *
      * @name validEmailAdd
      * @version 1.02
      * @author  Douglas Lovell <http://www.linuxjournal.com/article/9585>
-     * @param string $email EndereÁo de email a ser testado, podem ser passados v·rios
-     *                      endereÁos separados por virgula
-     * @return boolean True se endereÁo È verdadeiro ou false caso haja algum erro
+     * @param string $email Endere√ßo de email a ser testado, podem ser passados v√°rios
+     *                      endere√ßos separados por virgula
+     * @return boolean True se endere√ßo √© verdadeiro ou false caso haja algum erro
      */
     public function validEmailAdd($email)
     {
@@ -508,7 +508,7 @@ class MailNFePHP
         foreach ($aMails as $email) {
             $atIndex = strrpos($email, "@");
             if (is_bool($atIndex) && !$atIndex) {
-                $this->mailERROR .= "$email - Isso n„o È um endereÁo de email.\n";
+                $this->mailERROR .= "$email - Isso n√£o √© um endere√ßo de email.\n";
                 $isValid = false;
             } else {
                 $domain = substr($email, $atIndex+1);
@@ -516,61 +516,61 @@ class MailNFePHP
                 $localLen = strlen($local);
                 $domainLen = strlen($domain);
                 if ($localLen < 1 || $localLen > 64) {
-                    // o endereÁo local È muito longo
-                    $this->mailERROR .= "$email - O endereÁo È muito longo.\n";
+                    // o endere√ßo local √© muito longo
+                    $this->mailERROR .= "$email - O endere√ßo √© muito longo.\n";
                     $isValid = false;
                 } elseif ($domainLen < 1 || $domainLen > 255) {
-                    // o comprimento da parte do dominio È muito longa
-                    $this->mailERROR .= "$email - O comprimento do dominio È muito longo.\n";
+                    // o comprimento da parte do dominio √© muito longa
+                    $this->mailERROR .= "$email - O comprimento do dominio √© muito longo.\n";
                     $isValid = false;
                 } elseif ($local[0] == '.' || $local[$localLen-1] == '.') {
-                    // endereÁo local inicia ou termina com ponto
-                    $this->mailERROR .= "$email - Parte do endereÁo inicia ou termina com ponto.\n";
+                    // endere√ßo local inicia ou termina com ponto
+                    $this->mailERROR .= "$email - Parte do endere√ßo inicia ou termina com ponto.\n";
                     $isValid = false;
                 } elseif (preg_match('/\\.\\./', $local)) {
-                    // endereÁo local com dois pontos consecutivos
-                    $this->mailERROR .= "$email - Parte do endereÁo tem dois pontos consecutivos.\n";
+                    // endere√ßo local com dois pontos consecutivos
+                    $this->mailERROR .= "$email - Parte do endere√ßo tem dois pontos consecutivos.\n";
                     $isValid = false;
                 } elseif (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) {
-                    // caracter n„o valido na parte do dominio
-                    $this->mailERROR .= "$email - Caracter n„o v·lido na parte do domÌnio.\n";
+                    // caracter n√£o valido na parte do dominio
+                    $this->mailERROR .= "$email - Caracter n√£o v√°lido na parte do dom√≠nio.\n";
                     $isValid = false;
                 } elseif (preg_match('/\\.\\./', $domain)) {
                     // parte do dominio tem dois pontos consecutivos
-                    $this->mailERROR .= "$email - Parte do domÌnio tem dois pontos consecutivos.\n";
+                    $this->mailERROR .= "$email - Parte do dom√≠nio tem dois pontos consecutivos.\n";
                     $isValid = false;
                 } elseif (!preg_match(
                     '/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/',
                     str_replace("\\\\", "", $local)
                 )) {
-                    // caracter n„o valido na parte do endereÁo
+                    // caracter n√£o valido na parte do endere√ßo
                     if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\", "", $local))) {
-                        $this->mailERROR .= "$email - Caracter n„o v·lido na parte do endereÁo.\n";
+                        $this->mailERROR .= "$email - Caracter n√£o v√°lido na parte do endere√ßo.\n";
                         $isValid = false;
                     }
                 }
                 if ($isValid && !(checkdnsrr($domain, "MX") || checkdnsrr($domain, "A"))) {
-                    // dominio n„o encontrado no DNS
-                    $this->mailERROR .= "$email - O domÌnio n„o foi encontrado no DNS.\n";
+                    // dominio n√£o encontrado no DNS
+                    $this->mailERROR .= "$email - O dom√≠nio n√£o foi encontrado no DNS.\n";
                     $isValid = false;
                 }
             }
         }
         return $isValid;
-    } //fim funÁ„o validEmailAdd
+    } //fim fun√ß√£o validEmailAdd
 
 
     /**
      * buscaEmail
-     * MÈtodo que recupera o XML da NFe do email e o coloca na pasta "recebidas"
-     * para posterior validaÁ„o e aceitaÁ„o via registro de evento na SEFAZ
-     * 1 - caso na caixa postal tenha email com xml de NFe, esse anexo ser·
-     *     baixado e colocado na pasta "recebidas", e o email ser· movido para
+     * M√©todo que recupera o XML da NFe do email e o coloca na pasta "recebidas"
+     * para posterior valida√ß√£o e aceita√ß√£o via registro de evento na SEFAZ
+     * 1 - caso na caixa postal tenha email com xml de NFe, esse anexo ser√°
+     *     baixado e colocado na pasta "recebidas", e o email ser√° movido para
      *     uma subpasta denominada pelo ANOMES da NFe;
-     * 2 - caso na caixa postal tenha email sem anexos, ou os anexos n„o
-     *     sejam NFe (em xml) o email ser· simplesmente deletado;
-     * 3 - caso na caixa postal tenha email com xml de NFe e n„o seja possivel
-     *     salvar o xml na pasta do sistema o email n„o ser· movido nem deletado
+     * 2 - caso na caixa postal tenha email sem anexos, ou os anexos n√£o
+     *     sejam NFe (em xml) o email ser√° simplesmente deletado;
+     * 3 - caso na caixa postal tenha email com xml de NFe e n√£o seja possivel
+     *     salvar o xml na pasta do sistema o email n√£o ser√° movido nem deletado
      *
      * @name buscaEmail
      * @return boolean True se verdadeiro ou false caso haja algum erro
@@ -583,17 +583,17 @@ class MailNFePHP
                 $this->mailUSER == '' ||
                 $this->mailPASS == ''
         ) {
-            $this->mailERROR = "Faltam dados de configuraÁ„o ou existem erros na configuraÁ„o \n";
+            $this->mailERROR = "Faltam dados de configura√ß√£o ou existem erros na configura√ß√£o \n";
             return false;
         }
-        //abre a conex„o IMAP
+        //abre a conex√£o IMAP
         $porta = !empty($this->mailIMAPport) ? ':'.$this->mailIMAPport : ':143';
         $security = !empty($this->mailIMAPsecurity) ? '/'.$this->mailIMAPsecurity : '';
         $nocerts = !empty($this->mailIMAPnocerts) ? '/'.$this->mailIMAPnocerts : '';
         $stream = "{".$this->mailIMAPhost.$porta.$security.$nocerts."}".$this->mailIMAPbox;
         $objMail = imap_open($stream, $this->mailUSER, $this->mailPASS);
         if ($objMail === false) {
-            $this->mailERROR = "Falha na conex„o IMAP \n";
+            $this->mailERROR = "Falha na conex√£o IMAP \n";
             return false;
         } else {
             //obter a lista de pastas existentes na caixa postal
@@ -627,7 +627,7 @@ class MailNFePHP
                 $msgno = $result[0]->msgno;
                 //marca sem xml em anexo
                 $flagXML = 0;
-                //marca xml como n„o salvo
+                //marca xml como n√£o salvo
                 $flagNFeSalva = 0;
                 //buscar os anexos da mensagem
                 $anexos = $this->getAnexosXML($objMail, $msgno);
@@ -638,7 +638,7 @@ class MailNFePHP
                     $dom->loadXML($anexos[$j], LIBXML_NOBLANKS | LIBXML_NOEMPTYTAG);
                     $NFe = $dom->getElementsByTagName("NFe")->item(0);
                     if (!is_null($NFe)) {
-                        //È uma NFe
+                        //√© uma NFe
                         $infNFe = $dom->getElementsByTagName("infNFe")->item(0);
                         $idNFe = str_replace('NFe', '', $infNFe->getAttribute("Id"));
                         $protNFe = $dom->getElementsByTagName("protNFe")->item(0);
@@ -646,11 +646,11 @@ class MailNFePHP
                         if (isset($dEmi)) {
                             $anomes = substr(str_replace('-', '', $dEmi), 0, 6);
                         }
-                        //verificar se È para a empresa
+                        //verificar se √© para a empresa
                         $dest = $dom->getElementsByTagName("dest")->item(0);
                         $destCNPJ = $dest->getElementsByTagName("CNPJ")->item(0)->nodeValue;
                         if ($destCNPJ == $this->CNPJ) {
-                            //sim essa NFe È endereÁada a nÛs
+                            //sim essa NFe √© endere√ßada a n√≥s
                             $flagXML = 1;
                             $nfeXML = $dom->saveXML();
                             $xmlname = $this->recebidasDir.'/'.$idNFe.'-nfe.xml';
@@ -668,9 +668,9 @@ class MailNFePHP
                     }//fim if NFe
                 }//fim for enexos
                 if ($flagNFeSalva == 1) {
-                    //a mensagem continha uma NFe v·lida e foi salva
-                    //ent„o mover o email para uma outra pasta $anomes
-                    //verificar se j· existe a pasta $anomes
+                    //a mensagem continha uma NFe v√°lida e foi salva
+                    //ent√£o mover o email para uma outra pasta $anomes
+                    //verificar se j√° existe a pasta $anomes
                     $flagFolder = 0;
                     foreach ($folders as $f) {
                         if ($f == $anomes) {
@@ -693,16 +693,16 @@ class MailNFePHP
                                         ". Foi movida para a caixa postal [ $anomes ] e o
                                             anexo foi salvo na pasta recebidas \n";
                             } else {
-                                $this->mailERROR .= 'A mensagem n„o foi movida para a pasta IMAP ANOMES '.
+                                $this->mailERROR .= 'A mensagem n√£o foi movida para a pasta IMAP ANOMES '.
                                         imap_last_error() . "\n";
                                 return false;
                             }
                         } else {
-                            $this->mailERROR .= 'N„o foi permitida a criaÁ„o de nova pasta ANOMES';
+                            $this->mailERROR .= 'N√£o foi permitida a cria√ß√£o de nova pasta ANOMES';
                             return false;
                         }
                     } else {
-                        //ou a pasta j· existia ou foi agora criada
+                        //ou a pasta j√° existia ou foi agora criada
                         //para permitir mover a mensagem para esta pasta
                         if (imap_mail_move($objMail, "$msgno:$msgno", "$this->mailIMAPbox.$anomes")) {
                             //imap_delete($objMail, $result[0]->uid, FT_UID);
@@ -713,23 +713,23 @@ class MailNFePHP
                                     ". Foi movida para a caixa postal [ $anomes ] e o
                                         anexo foi salvo na pasta recebidas \n";
                         } else {
-                            $this->mailERROR .= 'A mensagem n„o foi movida para a pasta IMAP ANOMES '.
+                            $this->mailERROR .= 'A mensagem n√£o foi movida para a pasta IMAP ANOMES '.
                                     imap_last_error() . "\n";
                             return false;
                         }
                     }
                 } else {
                     if ($flagXML == 1) {
-                        //a mensagem continha um xml de NFe v·lido mas falhou ao ser salva no diretorio
-                        //ent„o manter a mensagem onde est·
+                        //a mensagem continha um xml de NFe v√°lido mas falhou ao ser salva no diretorio
+                        //ent√£o manter a mensagem onde est√°
                         $this->mailERROR .= 'A mensagem '.$result[0]->msgno . ' enviada por ' .
                                 $result[0]->from . ' em ' .
                                 $result[0]->date . ' Assunto ' .
                                 $result[0]->subject .
-                                ". Foi mantida na caixa postal por falha na gravaÁ„o do xml \n";
+                                ". Foi mantida na caixa postal por falha na grava√ß√£o do xml \n";
                     } else {
-                        //a mensagem n„o continha um xml de NFe v·lido
-                        //ent„o marcar para deletar a mensagem da caixa postal
+                        //a mensagem n√£o continha um xml de NFe v√°lido
+                        //ent√£o marcar para deletar a mensagem da caixa postal
                         if (imap_delete($objMail, $uid, FT_UID)) {
                             $this->mailERROR .= 'A mensagem '.$result[0]->msgno . ' enviada por ' .
                                     $result[0]->from . ' em ' .
@@ -740,26 +740,26 @@ class MailNFePHP
                                     $result[0]->from . ' em ' .
                                     $result[0]->date . ' Assunto ' .
                                     $result[0]->subject .
-                                    ". N√O FOI apagada da caixa postal " . imap_last_error() . "\n";
+                                    ". N√ÉO FOI apagada da caixa postal " . imap_last_error() . "\n";
                             return false;
                         }
                     }
                 }//fim if
             }//fim for mensagens
-            //apaga todas as mensagens marcadas para deleÁ„o
+            //apaga todas as mensagens marcadas para dele√ß√£o
             imap_expunge($objMail);
-            //fecha a conex„o IMAP
+            //fecha a conex√£o IMAP
             imap_close($objMail);
         }//fim if
     }//fim buscaMail
 
     /**
      * getAnexosXML
-     * MÈtodo que extrai os anexos xml do email e os retorna para posterior
+     * M√©todo que extrai os anexos xml do email e os retorna para posterior
      * processamento e arquivo
      *
      * @name getAnexosXML
-     * @param object $connection Objeto da conex„o IMAP
+     * @param object $connection Objeto da conex√£o IMAP
      * @param integer $message_number Numero de ordem da mensagem na pasta IMAP
      * @return mixed vazio ou array
      */
@@ -803,7 +803,7 @@ class MailNFePHP
                         if (strtolower($object->attribute) == 'name') {
                             $attachments[$i]['is_attachment'] = true;
                             $attachments[$i]['filename'] = $object->value;
-                            $structure->parts[$i] = $structure; //alteraÁ„o para n„o ter que mexer nas linhas abaixo.
+                            $structure->parts[$i] = $structure; //altera√ß√£o para n√£o ter que mexer nas linhas abaixo.
                         }
                     }
                 }//fim if
@@ -826,12 +826,12 @@ class MailNFePHP
             }
         }
         /*
-        Existiam outros tipos de anexo que n„o conseguiam ser lidos,
+        Existiam outros tipos de anexo que n√£o conseguiam ser lidos,
         Anexos interiores de uma mensagem com conteudo escrito,
-        Seus anexos ficavam escondidos atr·s de parts->parts->parts,
+        Seus anexos ficavam escondidos atr√°s de parts->parts->parts,
         Seus conteudos dentro do fetchbody se escondiam em subpartes da mensagem,
-        Sendo assim, caso o sistema n„o encontre nenhum anexos ele checa se os anexos
-        est„o nessa situaÁ„o.
+        Sendo assim, caso o sistema n√£o encontre nenhum anexos ele checa se os anexos
+        est√£o nessa situa√ß√£o.
         Rodrigo W Cardoso <rodrigogepem at gmail dot com>
         */
         if (empty($anexos[0])) {

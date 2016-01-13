@@ -1,23 +1,23 @@
 <?php
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU (GPL)como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU (GPL)como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte <http://www.fsfla.org/svnwiki/trad/GPLv3> ou
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte <http://www.fsfla.org/svnwiki/trad/GPLv3> ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
  *
  * @package   NFePHP
@@ -53,11 +53,11 @@ class ImapNFePHP
     protected $limitmsg = 10;//limite de mensagem a serem processadas de cada vez
     protected $filesulfix = 'xml';//sulfixo do arquivo anexado que desejamos baixar
     protected $imapaction = 'none'; //none, delele ou move
-    protected $imapnewfolder = ''; //essa pasta j· deve existir na caixa postal
+    protected $imapnewfolder = ''; //essa pasta j√° deve existir na caixa postal
     protected $processedmsgs = array(); //lista de mensagens processadas e os dados do processamento
     
-    private $imapchange = false;// marca indica se houve modificaÁıes na caixa postal a serem atualizadas
-    private $imapmod = false; //indica se o modulo imap est· ativado no php
+    private $imapchange = false;// marca indica se houve modifica√ß√µes na caixa postal a serem atualizadas
+    private $imapmod = false; //indica se o modulo imap est√° ativado no php
     
     /**
      * Construtor da classe
@@ -88,7 +88,7 @@ class ImapNFePHP
     {
         if (!extension_loaded('imap')) {
             $this->imapmod = false;
-            $this->imaperror = 'Modulo IMAP n„o est· carregado no PHP';
+            $this->imaperror = 'Modulo IMAP n√£o est√° carregado no PHP';
         } else {
             $this->imapmod = true;
         }
@@ -283,7 +283,7 @@ class ImapNFePHP
     }
     
     /**
-     * Monta express„o para conex„o imap
+     * Monta express√£o para conex√£o imap
      */
     protected function mboxExpression()
     {
@@ -301,10 +301,10 @@ class ImapNFePHP
     }
     
     /**
-     * Estabelece conex„o com servidor IMAP
+     * Estabelece conex√£o com servidor IMAP
      * 
-     * @param string $config array para configuraÁ„o
-     * @return boolean true sucesso ou false fracasso, nesse caso consulte a vari·vel imaperror
+     * @param string $config array para configura√ß√£o
+     * @return boolean true sucesso ou false fracasso, nesse caso consulte a vari√°vel imaperror
      */
     public function imapConnect($config = '')
     {
@@ -348,7 +348,7 @@ class ImapNFePHP
     }
     
     /**
-     * Finaliza a comunicaÁ„o IMAP anteriormente iniciada, se houver
+     * Finaliza a comunica√ß√£o IMAP anteriormente iniciada, se houver
      */
     public function imapDisconnect()
     {
@@ -363,9 +363,9 @@ class ImapNFePHP
     
     /**
      * Busca por toda a pasta imap da caixa de correio por mensagens contendo arquivos xml
-     * anexados, caso existam estes ser„o baixados para a pasta de download indicada.
-     * Todas as mensagens ser„o removidas da pasta da caixa postal, 
-     * aquelas sem anexos em xml imeditamente e as com anexos xml apÛs os mesmos serem 
+     * anexados, caso existam estes ser√£o baixados para a pasta de download indicada.
+     * Todas as mensagens ser√£o removidas da pasta da caixa postal, 
+     * aquelas sem anexos em xml imeditamente e as com anexos xml ap√≥s os mesmos serem 
      * baixados com sucesso
      * @return boolean
      */
@@ -446,12 +446,12 @@ class ImapNFePHP
         $iCount = 0;
         foreach ($aArqs as $arq) {
             if ($arq['is_attachment'] == false) {
-                //n„o tem anexo ent„o marcar para aÁ„o
+                //n√£o tem anexo ent√£o marcar para a√ß√£o
                 continue; //foreach $arq
             }
             $attachname = strtolower($arq['filename']);
             if (!$this->fileSulfixCompare($attachname, $this->filesulfix)) {
-                //tem anexo mas n„o tem o sulfixo indicado, ent„o marcar para aÁ„o
+                //tem anexo mas n√£o tem o sulfixo indicado, ent√£o marcar para a√ß√£o
                 $aAtt[$iCount]['attachname'] = $attachname;
                 $aAtt[$iCount]['download'] = false;
                 $iCount++;
@@ -465,11 +465,11 @@ class ImapNFePHP
             if (fwrite($fileH, $content)) {
                 fclose($fileH);
                 @chmod($this->downfolder.DIRECTORY_SEPARATOR.$filename, 0755);
-                //arquivo salvo com sucesso, ent„o marcar para aÁ„o
+                //arquivo salvo com sucesso, ent√£o marcar para a√ß√£o
                 $aAtt[$iCount]['download'] = true;
                 $iCount++;
             } else {
-                //como n„o foi possivel fazer o download manter o email
+                //como n√£o foi possivel fazer o download manter o email
                 $aAtt[$iCount]['download'] = false;
                 $this->imaperror .= 'Falha ao tentar gravar o aquivo.';
                 $actionmark = false;

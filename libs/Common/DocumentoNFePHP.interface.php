@@ -1,22 +1,22 @@
 <?php
 /**
- * Este arquivo Ã© parte do projeto NFePHP - Nota Fiscal eletrÃ´nica em PHP.
+ * Este arquivo é parte do projeto NFePHP - Nota Fiscal eletrônica em PHP.
  *
- * Este programa Ã© um software livre: vocÃª pode redistribuir e/ou modificÃ¡-lo
- * sob os termos da LicenÃ§a PÃºblica Geral GNU como Ã© publicada pela FundaÃ§Ã£o
- * para o Software Livre, na versÃ£o 3 da licenÃ§a, ou qualquer versÃ£o posterior.
+ * Este programa é um software livre: você pode redistribuir e/ou modificá-lo
+ * sob os termos da Licença Pública Geral GNU como é publicada pela Fundação
+ * para o Software Livre, na versão 3 da licença, ou qualquer versão posterior.
  * e/ou
- * sob os termos da LicenÃ§a PÃºblica Geral Menor GNU (LGPL) como Ã© publicada pela
- * FundaÃ§Ã£o para o Software Livre, na versÃ£o 3 da licenÃ§a, ou qualquer versÃ£o posterior.
+ * sob os termos da Licença Pública Geral Menor GNU (LGPL) como é publicada pela
+ * Fundação para o Software Livre, na versão 3 da licença, ou qualquer versão posterior.
  *
- * Este programa Ã© distribuÃ­do na esperanÃ§a que serÃ¡ Ãºtil, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÃ­cita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUAÃ‡ÃƒO PARA UM PROPÃ“SITO EM PARTICULAR,
- * veja a LicenÃ§a PÃºblica Geral GNU para mais detalhes.
+ * Este programa é distribuído na esperança que será útil, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia explícita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUAÇÃO PARA UM PROPÓSITO EM PARTICULAR,
+ * veja a Licença Pública Geral GNU para mais detalhes.
  *
- * VocÃª deve ter recebido uma cÃ³pia da LicenÃ§a Publica GNU e da
- * LicenÃ§a PÃºblica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contrÃ¡rio consulte
+ * Você deve ter recebido uma cópia da Licença Publica GNU e da
+ * Licença Pública Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contrário consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
@@ -30,7 +30,7 @@
  * @link        http://www.nfephp.org/
  * @author      Marcos Diez <marcos at unitron dot com dot br>
  * 
- * Esta interface garante a semelhanÃ§a entre a DanfeNFePHP e a DacteNFePHP
+ * Esta interface garante a semelhança entre a DanfeNFePHP e a DacteNFePHP
  * 
  */
  

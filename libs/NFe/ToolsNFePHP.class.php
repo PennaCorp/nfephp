@@ -289,7 +289,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Tipo de ambiente 1-produção 2-homologação
      * @var string
      */
-    protected $tpAmb = '';
+    public $tpAmb = '';
     /**
      * schemeVer
      * String com o nome do subdiretorio onde se encontram os schemas
@@ -2922,7 +2922,8 @@ class ToolsNFePHP extends CommonNFePHP
             'nNFIni'=>'',
             'nNFFin'=>'',
             'dhRecbto'=>'',
-            'nProt'=>'');
+            'nProt'=>'',
+            'idInut' => '');
         //valida dos dados de entrada
         if ($nAno == '' || $nIni == '' || $nFin == '' || $xJust == '') {
             $msg = "Não foi passado algum dos parametos necessários ANO=$nAno inicio=$nIni "
@@ -3050,6 +3051,7 @@ class ToolsNFePHP extends CommonNFePHP
                 . str_pad($nSerie, 3, '0', STR_PAD_LEFT)
                 . str_pad($nIni, 9, '0', STR_PAD_LEFT)
                 . str_pad($nFin, 9, '0', STR_PAD_LEFT);
+        $aRetorno['idInut'] = $id;
         //montagem do cabeçalho da comunicação SOAP
         $cabec = "<nfeCabecMsg xmlns=\"$namespace\">"
                 . "<cUF>$this->cUF</cUF>"
@@ -3120,7 +3122,7 @@ class ToolsNFePHP extends CommonNFePHP
         //verificar o status da solicitação
         if ($cStat != '102') {
             //houve erro
-            $msg = "Rejei??o : $cStat - $xMotivo";
+            $msg = "Rejeição : $cStat - $xMotivo";
             $this->pSetError($msg);
             if ($this->exceptions) {
                 throw new nfephpException($msg);

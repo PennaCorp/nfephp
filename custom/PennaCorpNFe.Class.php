@@ -41,7 +41,7 @@
             $aConfigLoc['certKey'] = $pennaCorpCertificate->getCertKey();
             $aConfigLoc['keyPass'] = $pennaCorpCertificate->getPassword();
             $aConfigLoc['passPhrase'] = "";
-            $aConfigLoc['arquivosDir'] = "D:\\ECLIPSE\\Icarus\\component\\nfephp\\nfe";
+            $aConfigLoc['arquivosDir'] = __DIR__."../../../../XML/";
             $aConfigLoc['arquivoURLxml'] = "nfe_ws3_mod55.xml";
             $aConfigLoc['baseurl'] = "http://localhost/nfephp";
             $aConfigLoc['danfeLogo'] = "";
@@ -57,7 +57,7 @@
             $this->aConfig = $aConfigLoc;
             parent::__construct($aConfigLoc);
         }
-        public function pcInutNF(array $parametros){
+        public function pcInutNF(array $parametros, array &$aRetorno = array()){
             $hasNIni = isset($parametros['nIni']);
             $hasNFim = isset($parametros['nFin']);
             if (!$hasNIni && !$hasNFim){
@@ -81,7 +81,6 @@
             $parametros['xJust'] = (isset($parametros['xJust']) ? $parametros['xJust'] : "Pedido de inutilização de NFe");
             $year = date("y");
             $aConfigLoc = $this->aConfig;
-            $aRetorno = array();
             try{
                 $resultado = parent::inutNF($year,
                                 $aConfigLoc['serie'],
@@ -94,7 +93,7 @@
                 if (!$resultado || $this->errStatus){
                     return array("status" => false, "message" => $this->errMsg);
                 }
-                return array("status" => true, "message" => $aRetorno['xMotivo']);
+                return array("status" => true, "message" => utf8_decode($aRetorno['xMotivo']));
             }catch(Exception $e){
                 return array("status" => false, "message" => $e->getMessage());
             }

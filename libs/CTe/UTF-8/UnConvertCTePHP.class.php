@@ -1,28 +1,28 @@
 <?php
 /**
- * Este arquivo È parte do projeto NFePHP - Nota Fiscal eletrÙnica em PHP.
+ * Este arquivo √© parte do projeto NFePHP - Nota Fiscal eletr√¥nica em PHP.
  *
- * Este programa È um software livre: vocÍ pode redistribuir e/ou modific·-lo
- * sob os termos da LicenÁa P˙blica Geral GNU como È publicada pela FundaÁ„o
- * para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * Este programa √© um software livre: voc√™ pode redistribuir e/ou modific√°-lo
+ * sob os termos da Licen√ßa P√∫blica Geral GNU como √© publicada pela Funda√ß√£o
+ * para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  * e/ou
- * sob os termos da LicenÁa P˙blica Geral Menor GNU (LGPL) como È publicada pela
- * FundaÁ„o para o Software Livre, na vers„o 3 da licenÁa, ou qualquer vers„o posterior.
+ * sob os termos da Licen√ßa P√∫blica Geral Menor GNU (LGPL) como √© publicada pela
+ * Funda√ß√£o para o Software Livre, na vers√£o 3 da licen√ßa, ou qualquer vers√£o posterior.
  *
- * Este programa È distribuÌdo na esperanÁa que ser· ˙til, mas SEM NENHUMA
- * GARANTIA; nem mesmo a garantia explÌcita definida por qualquer VALOR COMERCIAL
- * ou de ADEQUA«√O PARA UM PROP”SITO EM PARTICULAR,
- * veja a LicenÁa P˙blica Geral GNU para mais detalhes.
+ * Este programa √© distribu√≠do na esperan√ßa que ser√° √∫til, mas SEM NENHUMA
+ * GARANTIA; nem mesmo a garantia expl√≠cita definida por qualquer VALOR COMERCIAL
+ * ou de ADEQUA√á√ÉO PARA UM PROP√ìSITO EM PARTICULAR,
+ * veja a Licen√ßa P√∫blica Geral GNU para mais detalhes.
  *
- * VocÍ deve ter recebido uma cÛpia da LicenÁa Publica GNU e da
- * LicenÁa P˙blica Geral Menor GNU (LGPL) junto com este programa.
- * Caso contr·rio consulte
+ * Voc√™ deve ter recebido uma c√≥pia da Licen√ßa Publica GNU e da
+ * Licen√ßa P√∫blica Geral Menor GNU (LGPL) junto com este programa.
+ * Caso contr√°rio consulte
  * <http://www.fsfla.org/svnwiki/trad/GPLv3>
  * ou
  * <http://www.fsfla.org/svnwiki/trad/LGPLv3>.
  * 
- * Esta classe atende aos critÈrios estabelecidos no
- * Manual de ImportaÁ„o/ExportaÁ„o TXT Notas Fiscais eletrÙnicas vers„o 2.0.0
+ * Esta classe atende aos crit√©rios estabelecidos no
+ * Manual de Importa√ß√£o/Exporta√ß√£o TXT Notas Fiscais eletr√¥nicas vers√£o 2.0.0
  *
  * @package     NFePHP
  * @name        UnConvertCTePHP
@@ -40,11 +40,11 @@
  *              Lucimar A. Magalhaes <lucimar.magalhaes at assistsolucoes dot com dot br>
  *              Roberto Spadim <rspadim at gmail dot com>
  * 
- * TODO : terminar e ajustar para vers„o 2.00
+ * TODO : terminar e ajustar para vers√£o 2.00
  * 
  */
 
-//define o caminho base da instalaÁ„o do sistema
+//define o caminho base da instala√ß√£o do sistema
 if (!defined('PATH_ROOT')) {
     define('PATH_ROOT', dirname(dirname(dirname(__file__))).DIRECTORY_SEPARATOR);
 }
@@ -70,9 +70,9 @@ class UnConvertCTePHP
 
     /**
      * ctexml2txt
-     * MÈtodo de convers„o das CTe de xml para txt, conforme
-     * especificaÁıes do Manual de ImportaÁ„o/ExportaÁ„o TXT
-     * Conhecimento de Transporte EletrÙnico vers„o 1.0.4 (25/05/2012)
+     * M√©todo de convers√£o das CTe de xml para txt, conforme
+     * especifica√ß√µes do Manual de Importa√ß√£o/Exporta√ß√£o TXT
+     * Conhecimento de Transporte Eletr√¥nico vers√£o 1.0.4 (25/05/2012)
      *
      * @name ctexml2txt
      * @param string $arq Path do arquivo xml
@@ -80,9 +80,9 @@ class UnConvertCTePHP
      */
     public function ctexml2txt($arq)
     {
-        //variavel que ir· conter o resultado
+        //variavel que ir√° conter o resultado
         $txt = "";
-        //verificar se a string passada como parametro È um arquivo
+        //verificar se a string passada como parametro √© um arquivo
         if (is_file($arq)) {
             $matriz[] = $arq;
         } else {
@@ -96,13 +96,13 @@ class UnConvertCTePHP
         $txt = "REGISTROSCTE|$nctematriz\r\n";
         //para cada cte passada na matriz
         for ($x = 0; $x < $nctematriz; $x++) {
-            //carregar o conte˙do do arquivo xml em uma string
+            //carregar o conte√∫do do arquivo xml em uma string
             $xml = file_get_contents($matriz[$x]);
             //instanciar o ojeto DOM
             $dom = new DOMDocument();
             //carregar o xml no objeto DOM
             $dom->loadXML($xml);
-            //carregar os grupos de dados possÌveis da CTe
+            //carregar os grupos de dados poss√≠veis da CTe
             $cteProc = $dom->getElementsByTagName("cteProc")->item(0);
             $infCte = $dom->getElementsByTagName("infCte")->item(0);
             $ide = $dom->getElementsByTagName("ide")->item(0);
@@ -420,19 +420,19 @@ class UnConvertCTePHP
                 $txt .= "LOCENT|$CNPJ|$CPF|$xNome|$xLgr|$nro|$xCpl|$xBairro|$cMun|$xMun|$UF\r\n";
             }
 
-            //Valores da PrestaÁ„o de ServiÁo
+            //Valores da Presta√ß√£o de Servi√ßo
             $vTPrest = $this->__simpleGetValue($vPrest, "vTPrest");
             $vRec = $this->__simpleGetValue($vPrest, "vRec");
             $txt .= "VPREST|$vTPrest|$vRec\r\n";
 
-            //Componentes do Valor da PrestaÁ„o
+            //Componentes do Valor da Presta√ß√£o
             foreach ($Comp as $k => $d) {
                 $xNome = $this->__simpleGetValue($Comp->item($k), "xNome");
                 $vComp = $this->__simpleGetValue($Comp->item($k), "vComp");
                 $txt .= "COMP|$xNome|$vComp\r\n";
             }
 
-            //InformaÁıes relativas aos Impostos
+            //Informa√ß√µes relativas aos Impostos
             $txt .= "IMP||\r\n";
             $CST = $this->__simpleGetValue($ICMS, "CST");
             $vBC = $this->__simpleGetValue($ICMS, "vBC");
@@ -460,7 +460,7 @@ class UnConvertCTePHP
                     break;
             }
 
-            //ICMS devido ‡ UF de origem da prestaÁ„o, quando diferente da UF do emitente
+            //ICMS devido √† UF de origem da presta√ß√£o, quando diferente da UF do emitente
             if ($this->__simpleGetValue($ide, "UFIni") != $this->__simpleGetValue($emit, "UF")) {
                 $txt .= "ICMSOutraUF|$CST|$pRedBCOutraUF|$vBCOutraUF|$pICMSOutraUF|$vICMSOutraUF\r\n";
             }
@@ -477,17 +477,17 @@ class UnConvertCTePHP
                 $txt .= "INFADFISCO|$infAdFisco\r\n";
             }
 
-            //Grupo de informaÁıes do CT-e Normal e Substituto
+            //Grupo de informa√ß√µes do CT-e Normal e Substituto
             $txt .= "INFCTENORM|\r\n";
 
-            //InformaÁıes da Carga do CT-e
+            //Informa√ß√µes da Carga do CT-e
             $vCarga = $this->__simpleGetValue($infCarga, "vCarga");
             $proPred = $this->__simpleGetValue($infCarga, "proPred");
             $xOutCat = $this->__simpleGetValue($infCarga, "xOutCat");
 
             $txt .= "INFCARGA|$vCarga|$proPred|$xOutCat\r\n";
 
-            //InformaÁıes de quantidades da Carga do CT-e
+            //Informa√ß√µes de quantidades da Carga do CT-e
             foreach ($infQ as $k => $d)
             {
                 $cUnid = $this->__simpleGetValue($infQ->item($k), "cUnid");
@@ -497,7 +497,7 @@ class UnConvertCTePHP
                 $txt .= "INFQ|$cUnid|$tpMed|$qCarga\r\n";
             }
 
-            //InformaÁıes de Seguro da Carga
+            //Informa√ß√µes de Seguro da Carga
             if (!empty($seg)) {
                 $respSeg = $this->__simpleGetValue($seg, "respSeg");
                 $xSeg = $this->__simpleGetValue($seg, "xSeg");
@@ -508,7 +508,7 @@ class UnConvertCTePHP
             }
             //INFMODAL|1.04|
             $txt .= "INFMODAL|1.04|\r\n";
-            //Leiaute - Rodovi·rio
+            //Leiaute ‚Äì Rodovi√°rio
             if (!empty($rodo)) {
                 $RNTRC = $this->__simpleGetValue($rodo, "RNTRC");
                 $dPrev = $this->__simpleGetValue($rodo, "dPrev");
@@ -575,7 +575,7 @@ class UnConvertCTePHP
                     }
                 }
             }
-            //Leiaute - Ferrovi·rio
+            //Leiaute ‚Äì Ferrovi√°rio
             if (!empty($ferrov)) {
                 $tpTraf = $this->__simpleGetValue($ferrov, "tpTraf");
                 $fluxo = $this->__simpleGetValue($ferrov, "fluxo");
@@ -663,5 +663,5 @@ class UnConvertCTePHP
         }
         $this->txt = $txt;
         return $txt;
-    } // fim da funÁ„o ctexml2txt
+    } // fim da fun√ß√£o ctexml2txt
 }//fim da classe

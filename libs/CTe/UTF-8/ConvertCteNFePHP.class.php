@@ -1,6 +1,6 @@
 <?php
 /*
-	ESTE C”DIGO ESTA SOB A LICENSA CREATIVE COMMONS BY SA
+	ESTE C√ìDIGO ESTA SOB A LICENSA CREATIVE COMMONS BY SA
 	DESENVOLVIDO POR - ROBERTO SPADIM <roberto at spadim dot com dot br>
 	2012/10/06 - Brasil
 	
@@ -12,11 +12,11 @@
 class ConvertCteNFePHP{ //implements ConvertCTePHP{
 /*
  *	TXT2XML, pode receber uma string com o conteudo TXT, ou uma string com o nome do arquivo, ou um array com o conteudo do TXT ja 'parcialmente' interpretado
- *			o retorno È um array no seguinte formato:
+ *			o retorno √© um array no seguinte formato:
  *			array(
  *				'id da cte no arquivo'=>array(
  *					'XML' => string do xml
- *					'erros'=>array( array de erros fatais que n„o deixam converter para o XML - erro de schema, neste caso a string XML pode existir ou n„o, depende do erro )
+ *					'erros'=>array( array de erros fatais que n√£o deixam converter para o XML - erro de schema, neste caso a string XML pode existir ou n√£o, depende do erro )
  *					'avisos'=>array( array de aviso que deixam o XML ser gerado, mas pode ter alterado o dado do TXT original )
  *				)
  */
@@ -68,7 +68,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		"IDDOCANTELE"	=>"IDDOCANTELE|chave|",
 		"SEG"		=>"SEG|respSeg|xSeg|nApol|nAver|vCarga|",
 		"INFMODAL"	=>"INFMODAL|versaoModal|",
-		// RODOVI¡RIO
+		// RODOVI√ÅRIO
 			"RODO"		=>"RODO|RNTRC|dPrev|lota|CIOT|",
 			"OCC"		=>"OCC|serie|nOcc|dEmi|",
 			"EMIOCC"	=>"EMIOCC|CNPJ|cInt|IE|UF|fone|",
@@ -174,11 +174,11 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		// CARREGA ARQUIVO
 		$RETURN=array(	'erros'	=>array(),
 				'avisos'=>array(),
-				'xml'	=>array());	// erros de interpretaÁ„o do arquivo
+				'xml'	=>array());	// erros de interpreta√ß√£o do arquivo
 		if(is_file($txt))
 			$txt=file_get_contents($txt);
 		// PROCESSA STRING E GERA ARRAY
-		$txt=$this->_TXT2XML_processa_txt($txt);	// esta funÁ„o gera erros de interpretaÁ„o do arquivo e separa os cte do arquivo
+		$txt=$this->_TXT2XML_processa_txt($txt);	// esta fun√ß√£o gera erros de interpreta√ß√£o do arquivo e separa os cte do arquivo
 #print_r($txt);
 		$RETURN['erros']	=array_merge($RETURN['erros'],$txt['erros']);
 		$RETURN['avisos']	=array_merge($RETURN['avisos'],$txt['avisos']);
@@ -204,12 +204,12 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		// retorna o array da tag
 		$ret	=array('TAG'=>$campos[0]);
 		if(count($v)!=count($campos))
-			$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") È diferente de ".count($campos);
+			$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") √© diferente de ".count($campos);
 		for($i=1;$i<count($campos);$i++){
 			if(trim($campos[$i])==='')
 				continue;
 			if(!isset($v[$i])){
-				$RETURN['erros'][]="$MSG_PADRAO Campo [$i] '".$campos[$i]."' n„o informado.";
+				$RETURN['erros'][]="$MSG_PADRAO Campo [$i] '".$campos[$i]."' n√£o informado.";
 				$v[$i]='';
 			}
 			$ret[ $campos[$i] ]=$v[$i];
@@ -221,7 +221,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 			return;
 		if(	!in_array($last_tag,	$this->campos_v104_lasttag[$cur_tag]) && 
 			!is_array(		$this->campos_v104_lasttag[$cur_tag]))
-			$RETURN['erros'][]="$MSG_PADRAO Ultima tag $last_tag, n„o esta em: ". 
+			$RETURN['erros'][]="$MSG_PADRAO Ultima tag $last_tag, n√£o esta em: ". 
 				implode(', ',	$this->campos_v104_lasttag[$cur_tag]);
 		return;
 	}
@@ -229,11 +229,11 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		// processa arquivo TXT (string) e gera um array das ctes
 		
 		$RETURN=array(
-			'erros'		=>array(),	// erros de importaÁ„o independente de qual cte esta...
-			'avisos'	=>array(),	// avisos de importaÁ„o independente de qual cte esta...
+			'erros'		=>array(),	// erros de importa√ß√£o independente de qual cte esta...
+			'avisos'	=>array(),	// avisos de importa√ß√£o independente de qual cte esta...
 			'docs'		=>array()	// ctes
 			);
-		// o arquivo TXT È feito em latin1, È OBRIGAT”RIO a convers„o para UTF-8 que È o padr„o do XML
+		// o arquivo TXT √© feito em latin1, √© OBRIGAT√ìRIO a convers√£o para UTF-8 que √© o padr√£o do XML
 		if (preg_match("/^[\\x00-\\xFF]*$/u", $string) === 1){	// charset do latin1
 			$string=utf8_encode($string);
 		}elseif(preg_match("%(?:".
@@ -245,7 +245,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				"|[\xF1-\xF3][\x80-\xBF]{3}".                  # planes 4-15
 				"|\xF4[\x80-\x8F][\x80-\xBF]{2}".    # plane 16
 				")+%xs", $string)!==1){
-			$RETURN['avisos'].="AtenÁ„o arquivo n„o est· na codificaÁ„o LATIN1, nem UTF-8.";
+			$RETURN['avisos'].="Aten√ß√£o arquivo n√£o est√° na codifica√ß√£o LATIN1, nem UTF-8.";
 		}
 		$string		=explode("\n",str_replace("\r",'',$string));	// remove \r dos \r\n, ou \n\r e explode arquivo 
 		$tot_ctes	=-1;
@@ -262,7 +262,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 			
 			
 			
-			$v=explode("|",$v);	// divide a linha pelos campos, neste caso n„o existe um arquivo CSV conforme o padr„o, e sim o padr„o da receita, ou seja n„o existe encapsulamento, quebra de linha e coisas do genero
+			$v=explode("|",$v);	// divide a linha pelos campos, neste caso n√£o existe um arquivo CSV conforme o padr√£o, e sim o padr√£o da receita, ou seja n√£o existe encapsulamento, quebra de linha e coisas do genero
 			$TAG=$v[0];
 			$MSG_PADRAO="[Linha $cur_linha, CTe $cur_cte, TAG $TAG]";
 			
@@ -274,9 +274,9 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				$MSG_PADRAO="[Linha $cur_linha, TAG $TAG]";
 				$this->_TXT2XML_verifica_last_tag($this->campos_v104_lasttag, $last_tag, $TAG, $RETURN);
 				if(count($v)!=count($campos))
-					$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") È diferente de ".count($campos);
+					$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag (".count($v).") √© diferente de ".count($campos);
 				if(!isset($v[1])){
-					$RETURN['avisos'][]="$MSG_PADRAO campo 'qtd ctes no arquivo' n„o informado, considerando como 0";
+					$RETURN['avisos'][]="$MSG_PADRAO campo 'qtd ctes no arquivo' n√£o informado, considerando como 0";
 					$v[1]=0;
 				}elseif((double)$v[1]<=0){
 					$RETURN['avisos'][]="$MSG_PADRAO campo 'qtd ctes no arquivo' menor igual a 0";
@@ -291,25 +291,25 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				$last_tag=$TAG;
 				continue;
 			}elseif($TAG==='CTE'){
-				//CTE|vers„o do schema|id| 
-				$campos=explode('|',$this->campos_v104[$TAG]);	// $this->campos_v104[$TAG] È oq tem mais campos
+				//CTE|vers√£o do schema|id| 
+				$campos=explode('|',$this->campos_v104[$TAG]);	// $this->campos_v104[$TAG] √© oq tem mais campos
 				// cria nova cte
 				$cur_cte++;
 				$cur_cte_tags	=array();
 				$MSG_PADRAO="[Linha $cur_linha, CTe $cur_cte, TAG $TAG]";
 				$this->_TXT2XML_verifica_last_tag($this->campos_v104_lasttag, $last_tag, $TAG, $RETURN);
 				if(count($v)!=count($campos))
-					$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag È diferente de ".count($campos);
+					$RETURN['avisos'][]="$MSG_PADRAO Quantidade de campos na tag √© diferente de ".count($campos);
 				if(!isset($v[1])){
-					$RETURN['erros'][]="$MSG_PADRAO campo 'versao' n„o informado, considerando como 1.04";
+					$RETURN['erros'][]="$MSG_PADRAO campo 'versao' n√£o informado, considerando como 1.04";
 				}elseif($v[1]!=='1.04'){
-					$RETURN['aviso'][]="$MSG_PADRAO campo 'versao' diferente de 1.04, esta n„o È a ultima vers„o da CTe";
+					$RETURN['aviso'][]="$MSG_PADRAO campo 'versao' diferente de 1.04, esta n√£o √© a ultima vers√£o da CTe";
 				}
 				if(!isset($v[2])){
-					$RETURN['avisos'][]="$MSG_PADRAO campo 'id' n„o informado, considerando como em branco";
+					$RETURN['avisos'][]="$MSG_PADRAO campo 'id' n√£o informado, considerando como em branco";
 					$v[2]='';
 				}elseif(strlen($v[2])!=47 && strlen($v[2])!=0){
-					$RETURN['avisos'][]="$MSG_PADRAO campo 'id', quantidade de caracteres (".strlen($v[2]).") n„o È igual a 47, a chave da CTe dever· ser calculada";
+					$RETURN['avisos'][]="$MSG_PADRAO campo 'id', quantidade de caracteres (".strlen($v[2]).") n√£o √© igual a 47, a chave da CTe dever√° ser calculada";
 				}
 				$cur_versao=$v[1];
 				$RETURN['docs'][$cur_cte]=array();
@@ -320,15 +320,15 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				$last_tag=$TAG;
 				continue;
 			}elseif($cur_versao==='1.04'){
-				///////////////// VERS√O 1.04
+				///////////////// VERS√ÉO 1.04
 				if(!isset($this->campos_v104[$TAG])){
-					$RETURN['erros'][]="$MSG_PADRAO Tag n„o existe no layout TXT";
+					$RETURN['erros'][]="$MSG_PADRAO Tag n√£o existe no layout TXT";
 					continue;
 				}
 				$campos=explode("|",$this->campos_v104[$TAG]);
 #print_r($campos);
 #print_r($v);				
-				// TAGS QUE S” APARECEM 1 VEZ:
+				// TAGS QUE S√ì APARECEM 1 VEZ:
 				if(in_array($TAG,array(
 					'IDE','TOMA03','TOMA04',
 					'COMPL','FLUXO',
@@ -350,11 +350,11 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				}
 				if($TAG=='TOMA03' || $TAG=='TOMA4'){
 					if(isset($cur_cte_tags['TOMA4']) && $TAG!='TOMA4'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG TOMA4 j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG TOMA4 j√° informada.";
 						continue;
 					}
 					if(isset($cur_cte_tags['TOMA03']) && $TAG!='TOMA03'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG TOMA03 j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG TOMA03 j√° informada.";
 						continue;
 					}
 				}elseif($TAG=='PASS'){
@@ -370,15 +370,15 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$last_tag='ENTREGA';
 					}
 					if(isset($cur_cte_tags['SEMDATA']) && $TAG!='SEMDATA'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG SEMDATA j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG SEMDATA j√° informada.";
 						continue;
 					}
 					if(isset($cur_cte_tags['COMDATA']) && $TAG!='COMDATA'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG COMDATA j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG COMDATA j√° informada.";
 						continue;
 					}
 					if(isset($cur_cte_tags['NOPERIODO']) && $TAG!='NOPERIODO'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG NOPERIODO j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG NOPERIODO j√° informada.";
 						continue;
 					}
 				}elseif($TAG=='SEMHORA' || $TAG=='COMHORA' || $TAG=='NOINTER'){
@@ -394,15 +394,15 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 					}
 					
 					if(isset($cur_cte_tags['SEMHORA']) && $TAG!='SEMHORA'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG SEMHORA j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG SEMHORA j√° informada.";
 						continue;
 					}
 					if(isset($cur_cte_tags['COMHORA']) && $TAG!='COMHORA'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG COMHORA j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG COMHORA j√° informada.";
 						continue;
 					}
 					if(isset($cur_cte_tags['NOINTER']) && $TAG!='NOINTER'){
-						$RETURN['erros'][]="$MSG_PADRAO TAG NOINTER j· informada.";
+						$RETURN['erros'][]="$MSG_PADRAO TAG NOINTER j√° informada.";
 						continue;
 					}
 				// TAGS OBSCONT/OBSFISCO
@@ -449,7 +449,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 					$tmp_arr=array('ICMS00','ICMS20','ICMS45','ICMS60','ICMS90','ICMSOutraUF','ICMSSN');
 					foreach($tmp_arr as $vv)
 						if(isset($cur_cte_tags[$vv]) && $TAG!=$vv){
-							$RETURN['erros'][]="$MSG_PADRAO TAG $vv j· informada.";
+							$RETURN['erros'][]="$MSG_PADRAO TAG $vv j√° informada.";
 							continue 2;
 						}
 					unset($vv,$tmp_arr);
@@ -485,7 +485,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$last_tag='EMIDOCANT';
 					}
 					
-				// rodovi·rio
+				// rodovi√°rio
 				}elseif($TAG=='RODO'){
 					if(!isset($cur_cte_tags['INFMODAL'])){
 						$this->_TXT2XML_verifica_last_tag($this->campos_v104_lasttag, $last_tag, 'INFMODAL', $RETURN);
@@ -525,15 +525,15 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 				$last_tag=$TAG;
 				continue;
 			}
-			$RETURN['erros'][]="$MSG_PADRAO N„o foi possivel interpretar linha, vers„o atual do schema: $cur_versao";
+			$RETURN['erros'][]="$MSG_PADRAO N√£o foi possivel interpretar linha, vers√£o atual do schema: $cur_versao";
 		}
 		if($qnt_tag_ctes!=1)
-			$RETURN['erros'][]="TAG REGISTROSCTE n„o encontrada no arquivo, atenÁ„o este arquivo pode n„o ser um arquivo TXT de CTe";
+			$RETURN['erros'][]="TAG REGISTROSCTE n√£o encontrada no arquivo, aten√ß√£o este arquivo pode n√£o ser um arquivo TXT de CTe";
 #var_dump($RETURN);
 		return($RETURN);
 	}
 	private function _TXT2XML_processa_array($array_ctes,$output_string=true){
-		// processa array (vindo da funÁ„o _TXT2XML_processa_txt) e gera varios arquivos XML ($output_string=true) ou varios objetos Dom ($output_string=false)
+		// processa array (vindo da fun√ß√£o _TXT2XML_processa_txt) e gera varios arquivos XML ($output_string=true) ou varios objetos Dom ($output_string=false)
 		if(!is_array($array_ctes))
 			return(false);
 		if(!is_array($array_ctes[0]))
@@ -543,7 +543,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		$RETURN=array(	'erros'	=>array(),
 				'avisos'=>array(),
 				'xml'	=>'');
-		// caso n„o seja vers„o 1.04 usar funÁ„o "_TXT2XML_processa_txt_converte_versao($array)" ou fazer um if ($cur_version pra cada campo...)
+		// caso n√£o seja vers√£o 1.04 usar fun√ß√£o "_TXT2XML_processa_txt_converte_versao($array)" ou fazer um if ($cur_version pra cada campo...)
 		foreach($array_ctes as $kcte=>$v){
 			unset(	$dom, $CTe,$infCte, $ide, $COMPL, $FLUXO, $ENTREGA, $REM, $INFNF, $DEST, $VPREST, $IMP, $INFCTENORM, $INFCARGA, $CONTQT, $DOCANT, $EMIDOCANT, $IDDOCANT, $INFMODAL, $RODO, $RODO_OCC, $RODO_VEIC, $COBR, 
 				$IDE_dhCont, $TMP_ADD_COMPL, $FLUXO_xDest,$FLUXO_xRota,$CONTQT_dPrev, $cur_version);
@@ -562,10 +562,10 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 					$infCte->setAttribute("Id", $v2['Id']);
 					$infCte->setAttribute("versao", $v2['versao']);
 				}elseif($cur_version=='1.04'){
-					// vers„o 1.04
+					// vers√£o 1.04
 					$MSG_PADRAO="[TAG ".$v2['TAG'].", CTe $kcte]";
-					if(!isset($this->campos_v104[$v2['TAG']])){ //tag n„o existe
-						$RETURN['avisos'][$kcte][]="$MSG_PADRAO TAG ".$v2['TAG']." n„o encontrada nos campos da vers„o 1.04";
+					if(!isset($this->campos_v104[$v2['TAG']])){ //tag n√£o existe
+						$RETURN['avisos'][$kcte][]="$MSG_PADRAO TAG ".$v2['TAG']." n√£o encontrada nos campos da vers√£o 1.04";
 						continue;
 					}
 					$campos=explode('|',$this->campos_v104[$v2['TAG']]);
@@ -576,13 +576,13 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							continue;
 						}
 						if(!isset($v2[$nome_campo])){
-							$RETURN['avisos'][$kcte][]="$MSG_PADRAO Campo $nome_campo n„o encontrada no array de importaÁ„o, considerando como em branco";
-							$v2[$nome_campo]='';	// cria campo em branco - n„o deve ocorrer!
+							$RETURN['avisos'][$kcte][]="$MSG_PADRAO Campo $nome_campo n√£o encontrada no array de importa√ß√£o, considerando como em branco";
+							$v2[$nome_campo]='';	// cria campo em branco - n√£o deve ocorrer!
 						}else{
 							$last_len=strlen($v2[$nome_campo]);
 							$v2[$nome_campo]=trim($v2[$nome_campo]);
 							if($last_len!=strlen($v2[$nome_campo])){
-								$RETURN['avisos'][$cte][]="$MSG_PADRAO Alterado o tamanho do campo $nome_campo apÛs TRIM de $last_len para ".strlen($v2[$nome_campo]);
+								$RETURN['avisos'][$cte][]="$MSG_PADRAO Alterado o tamanho do campo $nome_campo ap√≥s TRIM de $last_len para ".strlen($v2[$nome_campo]);
 							}
 						}
 					}
@@ -590,7 +590,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 					if($v2['TAG']=='IDE' && !isset($ide)){
 						$ide = $dom->createElement("ide");
 						if($v2['mod']!=57)
-							$RETURN['erros'][$kcte][]="$MSG_PADRAO campo 'mod' n„o È igual a 57";
+							$RETURN['erros'][$kcte][]="$MSG_PADRAO campo 'mod' n√£o √© igual a 57";
 						foreach($campos as $nome_campo){
 							if($nome_campo=='refCTE' || $nome_campo=='xDetRetira'){
 								if(empty($v2[$nome_campo]))
@@ -630,7 +630,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$tmp_grupo	=$dom->createElement("toma04");
 						$tmp_grupo2	=$dom->createElement("enderToma");
 						$cur_grupo	=& $tmp_grupo;
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if(	$nome_campo=='CNPJ' || $nome_campo=='CPF' ||
 								$nome_campo=='IE' || $nome_campo=='xFant' || $nome_campo=='xCpl' || 
@@ -644,7 +644,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							}
 							if($nome_campo=='xLgr'){
 								unset($cur_grupo);
-								// comeÁa a preenche o 'enderToma'
+								// come√ßa a preenche o 'enderToma'
 								// xLgr|nro|xCpl|xBairro|cMun|xMun|CEP|UF|cPais|xPais
 								$cur_grupo = &$tmp_grupo2;
 							}
@@ -765,7 +765,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$tmp_grupo	=$dom->createElement("emit");
 						$tmp_grupo2	=$dom->createElement("enderEmit");
 						$cur_grupo	=& $tmp_grupo;
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if(	$nome_campo=='xFant' || $nome_campo=='CEP' || $nome_campo=='xCpl'){
 								if(empty($v2[$nome_campo]))	
@@ -777,7 +777,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							}
 							if($nome_campo=='xLgr'){
 								unset($cur_grupo);
-								// comeÁa a preenche o endereÁo
+								// come√ßa a preenche o endere√ßo
 								// xLgr|nro|xCpl|xBairro|cMun|xMun|CEP|UF|<cPais|xPais>
 								$cur_grupo = &$tmp_grupo2;
 							}
@@ -803,7 +803,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$REM		=$dom->createElement("rem");
 						$tmp_grupo2	=$dom->createElement("enderReme");
 						$cur_grupo	=& $REM;
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if(	$nome_campo=='xFant' || $nome_campo=='CEP' || $nome_campo=='xCpl'){
 								if(empty($v2[$nome_campo]))	
@@ -815,7 +815,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							}
 							if($nome_campo=='xLgr'){
 								unset($cur_grupo);
-								// comeÁa a preenche o endereÁo
+								// come√ßa a preenche o endere√ßo
 								// xLgr|nro|xCpl|xBairro|cMun|xMun|CEP|UF|<cPais|xPais>
 								$cur_grupo = &$tmp_grupo2;
 							}
@@ -880,7 +880,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							$tmp_grupo2	=$dom->createElement("enderExped");
 						}
 						$cur_grupo	=& $tmp_grupo;
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if(	$nome_campo=='CNPJ' || $nome_campo=='CPF' || 
 								$nome_campo=='xFant' || $nome_campo=='xCpl' || 
@@ -894,7 +894,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							}
 							if ($nome_campo=='xLgr'){
 								unset($cur_grupo);
-								// comeÁa a preenche o 'enderToma'
+								// come√ßa a preenche o 'enderToma'
 								// xLgr|nro|xCpl|xBairro|cMun|xMun|CEP|UF|cPais|xPais
 								$cur_grupo = &$tmp_grupo2;
 							}
@@ -919,7 +919,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$DEST		=$dom->createElement("dest");
 						$tmp_grupo2	=$dom->createElement("enderDest");
 						$cur_grupo	=& $DEST;
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if(	$nome_campo=='CNPJ' || $nome_campo=='CPF' || 
 								$nome_campo=='xFant' || $nome_campo=='xCpl' || 
@@ -934,7 +934,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 							}
 							if ($nome_campo=='xLgr'){
 								unset($cur_grupo);
-								// comeÁa a preenche o 'enderToma'
+								// come√ßa a preenche o 'enderToma'
 								// xLgr|nro|xCpl|xBairro|cMun|xMun|CEP|UF|cPais|xPais
 								$cur_grupo = &$tmp_grupo2;
 							}
@@ -957,7 +957,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$infCte->appendChild($DEST);
 					}elseif($v2['TAG']=='LOCENT' && isset($DEST)){
 						$tmp_grupo	=$dom->createElement("locEnt");
-						// campo 'email' n„o existe no TXT
+						// campo 'email' n√£o existe no TXT
 						foreach($campos as $nome_campo){
 							if($nome_campo=='xCpl'){
 								if(empty($v2[$nome_campo]))	
@@ -1085,7 +1085,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						$INFMODAL->setAttribute("versaoModal", $v2['versaoModal']);
 						$INFCTENORM->appendChild($INFMODAL);
 					
-					// RODOVI¡RIO
+					// RODOVI√ÅRIO
 					}elseif($v2['TAG']=='RODO'){
 						$RODO=$dom->createElement("rodo");
 						foreach($campos as $nome_campo){
@@ -1159,7 +1159,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 						}
 						$RODO->appendChild($tmp_grupo);
 						
-					/// FIM RODOVI¡RIO
+					/// FIM RODOVI√ÅRIO
 					}elseif($v2['TAG']=='PERI' && isset($INFCTENORM)){
 						$tmp_grupo =$dom->createElement("peri");
 						foreach($campos as $nome_campo){
@@ -1219,7 +1219,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 								'<?xml version="1.0" encoding="UTF-8  standalone="no"?>',
 								'<?xml version="1.0" encoding="UTF-8"?>',
 								$RETURN['xml'][$kcte]);
-				//remove linefeed, carriage return, tabs e multiplos espaÁos
+				//remove linefeed, carriage return, tabs e multiplos espa√ßos
 				$RETURN['xml'][$kcte]= preg_replace('/\s\s+/',' ', $RETURN['xml'][$kcte]);
 				$RETURN['xml'][$kcte]= str_replace("> <","><", $RETURN['xml'][$kcte]);
 			}else{
@@ -1231,30 +1231,30 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 	}
 	private function __montaChaveXML(& $dom){
 		$ide    = $dom->getElementsByTagName("ide")->item(0);
-		if(empty($ide))		return("'ide' n„o encontrado");
+		if(empty($ide))		return("'ide' n√£o encontrado");
 		$emit   = $dom->getElementsByTagName("emit")->item(0);
-		if(empty($emit))	return("'emit' n„o encontrado");
+		if(empty($emit))	return("'emit' n√£o encontrado");
 		$cUF    = $ide->getElementsByTagName('cUF')->item(0);
-		if(empty($cUF))		return("'cUF' n„o encontrado");		$cUF = $cUF->nodeValue;
+		if(empty($cUF))		return("'cUF' n√£o encontrado");		$cUF = $cUF->nodeValue;
 		$dhEmi   = $ide->getElementsByTagName('dhEmi')->item(0);
-		if(empty($dhEmi))	return("'dhEmi' n„o encontrado");	$dhEmi = $dhEmi->nodeValue;
+		if(empty($dhEmi))	return("'dhEmi' n√£o encontrado");	$dhEmi = $dhEmi->nodeValue;
 		$CNPJ   = $emit->getElementsByTagName('CNPJ')->item(0);
-		if(empty($CNPJ))	return("'CNPJ' n„o encontrado");	$CNPJ = $CNPJ->nodeValue;
+		if(empty($CNPJ))	return("'CNPJ' n√£o encontrado");	$CNPJ = $CNPJ->nodeValue;
 		$mod    = $ide->getElementsByTagName('mod')->item(0);
-		if(empty($mod))		return("'mod' n„o encontrado");		$mod = $mod->nodeValue;
+		if(empty($mod))		return("'mod' n√£o encontrado");		$mod = $mod->nodeValue;
 		$serie  = $ide->getElementsByTagName('serie')->item(0);
-		if(empty($serie))	return("'serie' n„o encontrado");	$serie = $serie->nodeValue;
+		if(empty($serie))	return("'serie' n√£o encontrado");	$serie = $serie->nodeValue;
 		$nCT    = $ide->getElementsByTagName('nCT')->item(0);
-		if(empty($nCT))		return("'nCT' n„o encontrado");		$nCT = $nCT->nodeValue;
+		if(empty($nCT))		return("'nCT' n√£o encontrado");		$nCT = $nCT->nodeValue;
 		$tpEmis = $ide->getElementsByTagName('tpEmis')->item(0);
-		if(empty($tpEmis))	return("'tpEmis' n„o encontrado");	$tpEmis = $tpEmis->nodeValue;
+		if(empty($tpEmis))	return("'tpEmis' n√£o encontrado");	$tpEmis = $tpEmis->nodeValue;
 		$cCT    = $ide->getElementsByTagName('cCT')->item(0);
-		if(empty($cCT))		return("'cCT' n„o encontrado");		$cCT = $cCT->nodeValue;
+		if(empty($cCT))		return("'cCT' n√£o encontrado");		$cCT = $cCT->nodeValue;
 		$cDV    = $ide->getElementsByTagName('cDV')->item(0);
-		if(empty($cDV))		return("'cDV' n„o encontrado");
+		if(empty($cDV))		return("'cDV' n√£o encontrado");
 		
 		
-		if( strlen($cCT) != 8 ){	// gera o numero aleatÛrio
+		if( strlen($cCT) != 8 ){	// gera o numero aleat√≥rio
 			$cCT = $ide->getElementsByTagName('cCT')->item(0)->nodeValue = rand( 0 , 99999999 );
 		}
 		$tempData = explode("-", $dhEmi);
@@ -1276,7 +1276,7 @@ class ConvertCteNFePHP{ //implements ConvertCTePHP{
 		$cDV    = $ide->getElementsByTagName('cDV')->item(0)->nodeValue  = $this->__calculaDV($tempChave);
 		$chave  = $tempChave .= $cDV;
 		$infCte = $dom->getElementsByTagName("infCte")->item(0);
-		if(empty($infCte))		return("'infCte' n„o encontrado");
+		if(empty($infCte))		return("'infCte' n√£o encontrado");
 		$infCte->setAttribute("Id", "CTe" . $chave);
 		return(true);
 	} //fim __calculaChave
@@ -1340,35 +1340,35 @@ return(false);
 			}
 			unset($tmp_xml);
 			if(!is_object($dom)){
-				$RETURN['erros'][$kcte][]="N„o foi possivel criar o objeto DOMDocument para abrir o conte˙do XML";
+				$RETURN['erros'][$kcte][]="N√£o foi possivel criar o objeto DOMDocument para abrir o conte√∫do XML";
 				continue;
 			}
 			if(get_class($dom)!='DOMDocument'){
-				$RETURN['erros'][$kcte][]="Tipo de objeto n„o È DOMDocument";
+				$RETURN['erros'][$kcte][]="Tipo de objeto n√£o √© DOMDocument";
 				continue;
 			}
 			$RETURN['txt'][$kcte]='';
 			$CUR_TXT=& $RETURN['txt'][$kcte];
 			$infCte = $dom->getElementsByTagName("infCte")->item(0);
 			if (!isset($infCte)){
-				$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag infCte n„o encontrada";
+				$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag infCte n√£o encontrada";
 				continue;
 			}
 			$versao = $infCte->getAttribute("versao");
-			/// vamos l·.... processo reverso agora
+			/// vamos l√°.... processo reverso agora
 			if($versao=='2.00'){
 				// A
 				$CAMPOS	=explode('|',$this->campos_v104['A']);
 				foreach($CAMPOS as $k=>$v)
 					if($k!=0 && strlen(trim($v))>0)
-						$CAMPOS[$k]=$infCte->getAttribute($v);	// sÛ atributos
+						$CAMPOS[$k]=$infCte->getAttribute($v);	// s√≥ atributos
 				$CUR_TXT.=implode('|',$CAMPOS)."\n";
 				$MSG_PADRAO="[CTe $kcte - ".$CAMPOS[2]."]";
 				
 				// B
 				$ide=$dom->getElementsByTagName("ide")->item(0);
 				if (empty($ide)){
-					$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag ide n„o encontrada";
+					$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag ide n√£o encontrada";
 					continue;
 				}
 				$CAMPOS	=explode('|',$this->campos_v104['B']);
@@ -1492,7 +1492,7 @@ return(false);
 				// C, C02, C02a
 				$infCte=$dom->getElementsByTagName("infCte")->item(0);
 				if (empty($infCte)){
-					$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag infCte n„o encontrada";
+					$RETURN['erros'][$kcte][]="$MSG_PADRAO Tag infCte n√£o encontrada";
 					continue;
 				}
 				$emit=$infCte->getElementsByTagName("emit")->item(0);
@@ -1681,7 +1681,7 @@ return(false);
 						$CUR_TXT.=implode('|',$CAMPOS)."\n";
 					}
 				}
-				// ÕTENS.....
+				// √çTENS.....
 				$det=$infCte->getElementsByTagName("det");
 				for($cur_item=0;$cur_item<$det->length;$cur_item++){
 					$item=$det->item($cur_item);
@@ -2439,7 +2439,7 @@ return(false);
 						}
 					}
 				}
-				// COBRAN«A
+				// COBRAN√áA
 				// Y02
 				$cobr=$infCte->getElementsByTagName("cobr")->item(0);
 				if(!empty($cobr)){
@@ -2541,7 +2541,7 @@ return(false);
 						}
 					}
 				}
-				// EXPORTA«√O
+				// EXPORTA√á√ÉO
 				// ZA
 				$tmp_grupo=$infCte->getElementsByTagName("exporta")->item(0);
 				if(!empty($tmp_grupo)){
