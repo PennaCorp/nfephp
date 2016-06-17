@@ -4,7 +4,7 @@
     class PennaCorpNFe extends ToolsNFePHP{
         private $pennaCorpCertificate;
         private $aConfig = array();
-        public function __construct(PennaCorpCertificate $pennaCorpCertificate){
+        public function __construct(PennaCorpCertificate $pennaCorpCertificate, $modelo = 55){
             $con = con();
             $this->pennaCorpCertificate = $pennaCorpCertificate;
             $query = "select EM_RAZAO, EM_UF, EM_CGC, EM_GRUPO, EM_MODELO, EM_SERIE, ";
@@ -35,14 +35,13 @@
             $aConfigLoc['modelo'] = $row['EM_MODELO'];
             $aConfigLoc['serie'] = $row['EM_SERIE'];
             //Por segurança, o nome do certificado da empresa é criptografado com MD5
-            /*definir gravação de senha*/
             $aConfigLoc['pubKey'] = $pennaCorpCertificate->getPubKey();
             $aConfigLoc['priKey'] = $pennaCorpCertificate->getPriKey();
             $aConfigLoc['certKey'] = $pennaCorpCertificate->getCertKey();
             $aConfigLoc['keyPass'] = $pennaCorpCertificate->getPassword();
             $aConfigLoc['passPhrase'] = "";
             $aConfigLoc['arquivosDir'] = __DIR__."../../../../XML/";
-            $aConfigLoc['arquivoURLxml'] = "nfe_ws3_mod55.xml";
+            $aConfigLoc['arquivoURLxml'] = "nfe_ws3_mod{$modelo}.xml";
             $aConfigLoc['baseurl'] = "http://localhost/nfephp";
             $aConfigLoc['danfeLogo'] = "";
             $aConfigLoc['danfeLogoPos'] = "L";

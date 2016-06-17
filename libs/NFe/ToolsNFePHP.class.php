@@ -392,7 +392,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Ex. 201003
      * @var string
      */
-    private $anoMes = '';
+    protected $anoMes = '';
     /**
      * aURL
      * Array com as URLs dos webservices da SEFAZ
@@ -439,67 +439,67 @@ class ToolsNFePHP extends CommonNFePHP
      * Instância do WebService
      * @var string
      */
-    private $URLxsi = 'http://www.w3.org/2001/XMLSchema-instance';
+    protected $URLxsi = 'http://www.w3.org/2001/XMLSchema-instance';
     /**
      * URLxsd
      * Instância do WebService
      * @var string
      */
-    private $URLxsd = 'http://www.w3.org/2001/XMLSchema';
+    protected $URLxsd = 'http://www.w3.org/2001/XMLSchema';
     /**
      * URLnfe
      * Instância do WebService
      * @var string
      */
-    private $URLnfe = 'http://www.portalfiscal.inf.br/nfe';
+    protected $URLnfe = 'http://www.portalfiscal.inf.br/nfe';
     /**
      * URLdsig
      * Instância do WebService
      * @var string
      */
-    private $URLdsig = 'http://www.w3.org/2000/09/xmldsig#';
+    protected $URLdsig = 'http://www.w3.org/2000/09/xmldsig#';
     /**
      * URLCanonMeth
      * Instância do WebService
      * @var string
      */
-    private $URLCanonMeth = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+    protected $URLCanonMeth = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
     /**
      * URLSigMeth
      * Instância do WebService
      * @var string
      */
-    private $URLSigMeth = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
+    protected $URLSigMeth = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
     /**
      * URLTransfMeth_1
      * Instância do WebService
      * @var string
      */
-    private $URLTransfMeth_1 = 'http://www.w3.org/2000/09/xmldsig#enveloped-signature';
+    protected $URLTransfMeth_1 = 'http://www.w3.org/2000/09/xmldsig#enveloped-signature';
     /**
      * URLTransfMeth_2
      * Instância do WebService
      * @var string
      */
-    private $URLTransfMeth_2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+    protected $URLTransfMeth_2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
     /**
      * URLDigestMeth
      * Instância do WebService
      * @var string
      */
-    private $URLDigestMeth = 'http://www.w3.org/2000/09/xmldsig#sha1';
+    protected $URLDigestMeth = 'http://www.w3.org/2000/09/xmldsig#sha1';
     /**
      * URLPortal
      * Instância do WebService
      * @var string
      */
-    private $URLPortal = 'http://www.portalfiscal.inf.br/nfe';
+    protected $URLPortal = 'http://www.portalfiscal.inf.br/nfe';
     /**
      * aliaslist
      * Lista dos aliases para os estados que usam Sefaz própria ou Sefaz Virtual
      * @var array
      */
-    private $aliaslist = array(
+    protected $aliaslist = array(
         //unidades da Federação:
         'AC'=>'SVRS',
         'AL'=>'SVRS',
@@ -539,7 +539,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Lista dos numeros identificadores dos estados
      * @var array
      */
-    private $cUFlist = array('AC'=>'12',
+    protected $cUFlist = array('AC'=>'12',
         'AL'=>'27',
         'AM'=>'13',
         'AP'=>'16',
@@ -573,7 +573,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Lista de relacionamento dos estados com os sistemas de continvência
      * @var array
      */
-    private $ctgList = array(
+    protected $ctgList = array(
         'AC'=>'SVCAN',
         'AL'=>'SVCAN',
         'AM'=>'SVCAN',
@@ -607,7 +607,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Lista dos numeros identificadores dos estados
      * @var array
      */
-    private $siglaUFList = array('11'=>'RO',
+    protected $siglaUFList = array('11'=>'RO',
                                  '12'=>'AC',
                                  '13'=>'AM',
                                  '14'=>'RR',
@@ -640,7 +640,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Lista das zonas de tempo para os estados brasileiros
      * @var array
      */
-    private $tzUFlist = array('AC'=>'America/Rio_Branco',
+    protected $tzUFlist = array('AC'=>'America/Rio_Branco',
                               'AL'=>'America/Sao_Paulo',
                               'AM'=>'America/Manaus',
                               'AP'=>'America/Sao_Paulo',
@@ -3462,6 +3462,7 @@ class ToolsNFePHP extends CommonNFePHP
     {
         $aResp = array(
             'bStat' => false,
+            'chaveId' => null,
             'versao' => null,
             'idLote' => null,
             'tpAmb' => null,
@@ -3548,6 +3549,8 @@ class ToolsNFePHP extends CommonNFePHP
                 $zenSeqEvento = trim($nSeqEvento);
             }
             $chaveId = "ID".$tpEvento.$chNFe.$zenSeqEvento;
+            $aResp['chaveId'] = $chaveId;
+            $aResp['fileName'] = $chNFe."-".$nSeqEvento."-procCCe.xml";
             $descEvento = 'Carta de Correcao';
             $xCondUso = 'A Carta de Correcao e disciplinada pelo paragrafo 1o-A do '
                     . 'art. 7o do Convenio S/N, de 15 de dezembro de 1970 e pode ser utilizada '
@@ -4688,7 +4691,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param type $tpAmb tipo de ambiente 1-produção ou 2 homologação
      * @return mixed o numero encontrado no arquivo ou false em qualquer outro caso
      */
-    private function pGetUltNSU($sigla = '', $tpAmb = '')
+    protected function pGetUltNSU($sigla = '', $tpAmb = '')
     {
         try {
             if ($sigla=='' || $tpAmb=='') {
@@ -4728,7 +4731,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param type $ultNSU Valor retornado da consulta a SEFAZ
      * @return boolean true gravado ou false falha
      */
-    private function putUltNSU($sigla, $tpAmb = self::AMBIENTE_HOMOLOGACAO, $ultNSU = '')
+    protected function putUltNSU($sigla, $tpAmb = self::AMBIENTE_HOMOLOGACAO, $ultNSU = '')
     {
         try {
             if ($sigla=='' || $tpAmb=='' || $ultNSU=='') {
@@ -4773,7 +4776,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param numeric $tpAmb tipo do ambiente
      * @param string $metodo método
      */
-    private function pTrata239($xml = '', $siglaUF = '', $tpAmb = '', $servico = '', $versaodefault = '')
+    protected function pTrata239($xml = '', $siglaUF = '', $tpAmb = '', $servico = '', $versaodefault = '')
     {
         //quando ocorre esse erro o que está errado é a versão indicada no arquivo nfe_ws2.xml
         // para esse método, então nos resta ler o retorno pegar o numero correto da versão,
@@ -4857,7 +4860,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @return string xml descompactado
      * @throws Exception
      */
-    private function pGunzip2($data)
+    protected function pGunzip2($data)
     {
         //cria um nome para o arquivo temporario
         do {
@@ -4895,7 +4898,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param string $data Dados compactados com gzip
      * @return mixed
      */
-    private function pGunzip1($data)
+    protected function pGunzip1($data)
     {
         $len = strlen($data);
         if ($len < 18 || strcmp(substr($data, 0, 2), "\x1f\x8b")) {
@@ -5053,7 +5056,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param string $cnt certificado
      * @return string certificado reformatado
      */
-    private function pSplitLines($cnt = '')
+    protected function pSplitLines($cnt = '')
     {
         if ($cnt != '') {
             $cnt = rtrim(chunk_split(str_replace(array("\r", "\n"), '', $cnt), 76, "\n"));
@@ -5068,7 +5071,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @name cleanString
      * @return  string Texto sem caractere especiais
      */
-    private function pCleanString($texto)
+    protected function pCleanString($texto)
     {
         $aFind = array('&','á','à','ã','â','é','ê','í','ó','ô','õ','ú','ü',
             'ç','Á','À','Ã','Â','É','Ê','Í','Ó','Ô','Õ','Ú','Ü','Ç');
@@ -5087,7 +5090,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param   string $msg Descrição do erro
      * @return  none
      */
-    private function pSetError($msg)
+    protected function pSetError($msg)
     {
         $this->errMsg .= "$msg\n";
         $this->errStatus = true;
@@ -5135,7 +5138,7 @@ class ToolsNFePHP extends CommonNFePHP
      * Gera numero de lote com base em microtime
      * @return string
      */
-    private function pGeraNumLote()
+    protected function pGeraNumLote()
     {
         return substr(str_replace(',', '', number_format(microtime(true)*1000000, 0)), 0, 15);
     }
@@ -5147,22 +5150,31 @@ class ToolsNFePHP extends CommonNFePHP
      * @param boolean $remEnc remover encoding
      * @return string
      */
-    private function pClearXml($xml = '', $remEnc = false)
+    protected function pClearXml($xml = '', $remEnc = false)
     {
-        $retXml = $xml;
+        //$xml = self::clearMsg($xml);
+        $aFind = array(
+            'xmlns:default="http://www.w3.org/2000/09/xmldsig#"',
+            ' standalone="no"',
+            'default:',
+            ':default',
+            "\n",
+            "\r",
+            "\t"
+        );
         if ($remEnc) {
-            $retXml = str_replace('<?xml version="1.0"?>', '', $retXml);
-            $retXml = str_replace('<?xml version="1.0" encoding="utf-8"?>', '', $retXml);
-            $retXml = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $retXml);
+            $aFind[] = '<?xml version="1.0"?>';
+            $aFind[] = '<?xml version="1.0" encoding="utf-8"?>';
+            $aFind[] = '<?xml version="1.0" encoding="UTF-8"?>';
+            $aFind[] = '<?xml version="1.0" encoding="utf-8" standalone="no"?>';
+            $aFind[] = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>';
         }
-        $retXml = str_replace("xmlns:default=\"http://www.w3.org/2000/09/xmldsig#\"", '', $retXml);
-        $retXml = str_replace('default:', '', $retXml);
-        $retXml = str_replace(':default', '', $retXml);
-        $retXml = str_replace("\n", '', $retXml);
-        $retXml = str_replace("\r", '', $retXml);
-        $retXml = str_replace("\s", '', $retXml);
-        $retXml = str_replace("\t", '', $retXml);
+        $retXml = str_replace($aFind, "", $xml);
         return $retXml;
+    }
+
+    protected function clearXml($xml = '', $remEnc = false){
+        return self::pClearXml($xml, $remEnc);
     }
 
     /**
@@ -5172,7 +5184,7 @@ class ToolsNFePHP extends CommonNFePHP
      * @param array $aURL Dados das Urls do SEFAZ
      * @return void
      */
-    private function pLoadServico(
+    protected function pLoadServico(
         $servico,
         $siglaUF,
         $tpAmb,
